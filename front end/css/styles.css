@@ -7,3 +7,24 @@
   /* margin-top: 25%; */
   /* margin-bottom: 50%; */
 } */
+
+
+
+body{
+  .assignment-item{
+    color: black;
+    border-radius: 6px;
+    background-color: white;
+  }
+
+  .assignment-name{
+    color: black;
+    font-size: 30px;
+  }
+
+  .assignment-subject{
+    color: rgba(69,69,69,1);
+    font-size: 20px;
+  }
+
+}
