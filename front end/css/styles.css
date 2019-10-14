@@ -9,30 +9,64 @@
 } */
 
 
-
-body{
-
-  .useless class{}
-
   .assignment-item{
-    color: black;
     border-radius: 6px;
-    background-color: white;
-    border-width: thin;
+    color: black;
+    background-color: rgba(69,69,69,0.69);
+    border-width: 4px;
     border-color: rgba(69,69,69,0.69);
-    width: inherit;
-    height: inherit;
+    padding-left: 10px;
   }
-
 
   .assignment-name{
     color: black;
-    font-size: 30px;
+    font-size: 25px;
+    margin-bottom: 0%;
+    margin-top: 0px;
+
   }
 
   .assignment-subject{
     color: rgba(69,69,69,1);
-    font-size: 20px;
+    font-size: 18px;
+    margin-bottom: 5%;
+    margin-top: 0px;
   }
 
-}
+  .not-submitted{
+    color: red !important;
+    font-size: 25px;
+    text-align: center;
+    margin-bottom: 0px;
+    margin-top: 0px;
+  }
+
+  .submitted{
+    color: rgba(1, 250, 5, 1); !important;
+    font-size: 25px;
+    text-align: center;
+    margin-bottom: 0px;
+    margin-top: 0px;
+  }
+
+  .due{
+    color: orange;
+    font-size: 18px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    text-align: center;
+  }
+
+  .submit-button{
+    background-color: #6d9eebff;
+    padding: 5px;
+    padding-left: 9px;
+    padding-right: 9px;
+    margin-top: 5%;
+    font-size: 25px;
+    width: auto;
+    color: black;
+    border-radius: 4px;
+    text-align: center;
+    margin-left: 29%
+  }
