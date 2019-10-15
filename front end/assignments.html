@@ -1,149 +1,164 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-    <title>Assignments</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+  <title>Assignments</title>
 
-    <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-    <link href="css/styles.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-    <link href="css/nord-colours.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <!-- /////////////////////////////////////////////////////// -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="css/materialize.css">
+  <link rel="stylesheet" href="css/materialize.min.css">
+  <link rel="stylesheet" href="css/nord-colours.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- /////////////////////////////////////////////////////// -->
 
-    <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 </head>
 
-  <body>
-    <nav class="nord-darkblue" role="navigation">
-      <div class="nav-wrapper container"><a id="logo-container" href="home.html" class="brand-logo"><img src="cisco.png" height="50px" width="auto" style="padding-top:5px;"/></a>
-        <ul class="right hide-on-med-and-down">
-          <li><a href="" class="modal-trigger">Profile</a></li>
-          <li><a href="" class="modal-trigger">Log out</a></li>
-        </ul>
+<body>
 
-        <!-- <ul id="nav-mobile" class="sidenav">
-          <li><a href="#">Navbar Link</a></li>
-          <li><a href="#modalSignup" class="modal-trigger">Sign Up</a></li>
-          <li><a href="#modalLogin" class="modal-trigger">Log In</a></li>
-        </ul> -->
-        <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-      </div>
-    </nav>
+  <ul id="profileDropdown" class="dropdown-content">
+    <li><a href="profile.html" class="modal-trigger">Profile</a></li>
+    <li><a href="index.html" class="modal-trigger">Log out</a></li>
+  </ul>
+
+  <nav class="nord-darkblue" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="home.html" class="brand-logo"><img src="cisco.png" height="50px" width="auto" style="padding-top:5px;" /></a>
+      <ul class="right hide-on-med-and-down">
+        <a class="dropdown-trigger" href="#!" data-target="profileDropdown"><i class="material-icons">person arrow_drop_down</i></a>
+      </ul>
+
+      <ul id="nav-mobile" class="sidenav">
+        <li><a href="" class="modal-trigger">Profile</a></li>
+        <li><a href="" class="modal-trigger">Log out</a></li>
+      </ul>
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+
+    <!-- <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Drop Me!</a>
+
+    <ul id='dropdown1' class='dropdown-content'>
+      <li><a href="#" class="modal-trigger">Profile</a></li>
+      <li><a href="#" class="modal-trigger">Log out</a></li>
+    </ul>
+ -->
 
 
 
 
-    <!-- main part with all the stuff in it -->
-    <div style ="margin-left: 20px;">
+  <!-- main part with all the stuff in it -->
+  <div style="margin-left: 20px;">
 
-    <div class="row" style = "padding-top: 5%;">
+    <div class="row" style="padding-top: 5%;">
       <!-- side part with adspace or whatever is needed here -->
 
       <div class="col s1" style="background-color: rgba(20,200,155,1); margin-right: 0px;">
-          <h4>AD SPACE/ Extra Space</h4>
+        <h4>AD SPACE / Extra Space</h4>
       </div>
 
 
       <div class="col s10 offset-s1">
-        <div class = "row" style = "font-size: 35px;"><u>All Assignments<u></div>
+        <div class="row" style="font-size: 35px;"><u>All Assignments<u></div>
         <div class="row">
           <div class=" col s2 assignment-item">
-            <div class = "assignment-name">Math stuff</div>
-            <div class = "assignment-subject">Math</div>
-            <div class = "due">Due Wednesday<br>October 16, 2019</div>
-            <div class = "submitted">Submitted</div>
+            <div class="assignment-name">Math stuff</div>
+            <div class="assignment-subject">Math</div>
+            <div class="due">Due Wednesday<br>October 16, 2019</div>
+            <div class="submitted">Submitted</div>
           </div>
           <div class="col s2 assignment-item">
-            <div class = "assignment-name">Economics Stuff</div>
-            <div class = "assignment-subject">Economics</div>
-            <div class = "due">Due Next Friday<br> October 25, 2019</div>
-            <div class = "not-submitted">Not Submitted</div>
-            <a class = "submit-button">Submit</a>
+            <div class="assignment-name">Economics Stuff</div>
+            <div class="assignment-subject">Economics</div>
+            <div class="due">Due Next Friday<br> October 25, 2019</div>
+            <div class="not-submitted">Not Submitted</div>
+            <a class="submit-button">Submit</a>
           </div>
           <div class="col s2 assignment-item">
-            <div class = "assignment-name">ToK stuff</div>
-            <div class = "assignment-subject">ToK</div>
-            <div class = "due">Due Tomorrow<br>October 15, 2019</div>
-            <div class = "not-submitted">Not Submitted</div>
-            <a class = "submit-button">Submit</a>
+            <div class="assignment-name">ToK stuff</div>
+            <div class="assignment-subject">ToK</div>
+            <div class="due">Due Tomorrow<br>October 15, 2019</div>
+            <div class="not-submitted">Not Submitted</div>
+            <a class="submit-button">Submit</a>
           </div>
           <div class="col s2 assignment-item">
-            <div class = "assignment-name">Chemistry stuff</div>
-            <div class = "assignment-subject">Chemistry</div>
-            <div class = "due">Due Tomorrow<br>October 15, 2019</div>
-            <div class = "not-submitted">Not submitted</div>
-            <a class = "submit-button">Submit</a>
+            <div class="assignment-name">Chemistry stuff</div>
+            <div class="assignment-subject">Chemistry</div>
+            <div class="due">Due Tomorrow<br>October 15, 2019</div>
+            <div class="not-submitted">Not submitted</div>
+            <a class="submit-button">Submit</a>
           </div>
           <div class="col s2 assignment-item">
-            <div class = "assignment-name">L&L Homework</div>
-            <div class = "assignment-subject">L&L</div>
-            <div class = "due">Due Tomorrow<br>October 15, 2019</div>
-            <div class = "submitted">Submitted</div>
+            <div class="assignment-name">L&L Homework</div>
+            <div class="assignment-subject">L&L</div>
+            <div class="due">Due Tomorrow<br>October 15, 2019</div>
+            <div class="submitted">Submitted</div>
           </div>
         </div>
 
 
         <div class="row">
           <div class="col s2 assignment-item">
-            <div class = "assignment-name">Physics Homework</div>
-            <div class = "assignment-subject">Physics</div>
-            <div class = "due">Due Next Friday October 25, 2019</div>
-            <div class = "not-submitted">Not Submitted</div>
-            <a class = "submit-button">Submit</a>
+            <div class="assignment-name">Physics Homework</div>
+            <div class="assignment-subject">Physics</div>
+            <div class="due">Due Next Friday October 25, 2019</div>
+            <div class="not-submitted">Not Submitted</div>
+            <a class="submit-button">Submit</a>
           </div>
         </div>
 
         <br>
         <br>
 
-        <div class = "row" style = "font-size: 35px;"><u>Due Soon<u></div>
+        <div class="row" style="font-size: 35px;"><u>Due Soon<u></div>
         <div class="row">
           <div class=" col s2 assignment-item">
-            <div class = "assignment-name">Math stuff</div>
-            <div class = "assignment-subject">Math</div>
-            <div class = "due">Due Wednesday<br>October 16, 2019</div>
-            <div class = "submitted">Submitted</div>
+            <div class="assignment-name">Math stuff</div>
+            <div class="assignment-subject">Math</div>
+            <div class="due">Due Wednesday<br>October 16, 2019</div>
+            <div class="submitted">Submitted</div>
           </div>
           <div class="col s2 assignment-item">
-            <div class = "assignment-name">ToK stuff</div>
-            <div class = "assignment-subject">ToK</div>
-            <div class = "due">Due Tomorrow<br>October 15, 2019</div>
-            <div class = "not-submitted">Not Submitted</div>
-            <a class = "submit-button">Submit</a>
+            <div class="assignment-name">ToK stuff</div>
+            <div class="assignment-subject">ToK</div>
+            <div class="due">Due Tomorrow<br>October 15, 2019</div>
+            <div class="not-submitted">Not Submitted</div>
+            <a class="submit-button">Submit</a>
           </div>
           <div class="col s2 assignment-item">
-            <div class = "assignment-name">Chemistry stuff</div>
-            <div class = "assignment-subject">Chemistry</div>
-            <div class = "due">Due Tomorrow<br>October 15, 2019</div>
-            <div class = "not-submitted">Not submitted</div>
-            <a class = "submit-button">Submit</a>
+            <div class="assignment-name">Chemistry stuff</div>
+            <div class="assignment-subject">Chemistry</div>
+            <div class="due">Due Tomorrow<br>October 15, 2019</div>
+            <div class="not-submitted">Not submitted</div>
+            <a class="submit-button">Submit</a>
           </div>
           <div class="col s2 assignment-item">
-            <div class = "assignment-name">L&L Homework</div>
-            <div class = "assignment-subject">L&L</div>
-            <div class = "due">Due Tomorrow<br>October 15, 2019</div>
-            <div class = "submitted">Submitted</div>
+            <div class="assignment-name">L&L Homework</div>
+            <div class="assignment-subject">L&L</div>
+            <div class="due">Due Tomorrow<br>October 15, 2019</div>
+            <div class="submitted">Submitted</div>
           </div>
         </div>
 
         <br>
         <br>
 
-        <div class = "row" style = "font-size: 35px;"><u>Submitted<u></div>
+        <div class="row" style="font-size: 35px;"><u>Submitted<u></div>
         <div class="row">
           <div class=" col s2 assignment-item">
-            <div class = "assignment-name">Math stuff</div>
-            <div class = "assignment-subject">Math</div>
-            <div class = "due">Due Wednesday<br>October 16, 2019</div>
-            <div class = "submitted">Submitted</div>
+            <div class="assignment-name">Math stuff</div>
+            <div class="assignment-subject">Math</div>
+            <div class="due">Due Wednesday<br>October 16, 2019</div>
+            <div class="submitted">Submitted</div>
           </div>
 
           <div class="col s2 assignment-item">
-            <div class = "assignment-name">L&L Homework</div>
-            <div class = "assignment-subject">L&L</div>
-            <div class = "due">Due Tomorrow<br>October 15, 2019</div>
-            <div class = "submitted">Submitted</div>
+            <div class="assignment-name">L&L Homework</div>
+            <div class="assignment-subject">L&L</div>
+            <div class="due">Due Tomorrow<br>October 15, 2019</div>
+            <div class="submitted">Submitted</div>
           </div>
         </div>
 
@@ -153,13 +168,31 @@
 
     </div>
 
-</div>
+  </div>
 
 
 
+  <!-- /////////////////////////////////////////////////////// -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="css/materialize.css">
+  <link rel="stylesheet" href="css/materialize.min.css">
+  <link rel="stylesheet" href="css/nord-colours.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- /////////////////////////////////////////////////////// -->
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('.dropdown-trigger');
+      var instances = M.Dropdown.init(elems, options);
+    });
+
+    // Or with jQuery
+
+    $('.dropdown-trigger').dropdown();
+  </script>
 
 
-  </body>
+</body>
 
 
 
