@@ -14,6 +14,11 @@
 </head>
 
   <body>
+    <div class="fixed-action-btn">
+      <a class="btn-floating btn-large nord-red">
+        <i class="large material-icons">mode_edit</i>
+      </a>
+   </div>
     <nav class="nord-darkblue" role="navigation">
       <ul id="profileDropdown" class="dropdown-content">
         <li><a href="profile.html" class="modal-trigger">Profile</a></li>
@@ -24,7 +29,7 @@
         <ul class="right hide-on-med-and-down">
           <li><a href="profile.html">Profile</a></li>
           <li><a href="assignments.html">Assignments</a></li>
-          <li><a class="dropdown-trigger" href="#!" data-target="profileDropdown"><i class="material-icons">person arrow_drop_down</i></a></li>
+          <li><a class="dropdown-trigger" href="" data-target="profileDropdown"><i class="material-icons">person arrow_drop_down</i></a></li>
         </ul>
 
         <ul id="nav-mobile" class="sidenav">
@@ -48,6 +53,25 @@
     <script type="text/javascript" src="js/materialize.min.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
     <!-- /////////////////////////////////////////////////////// -->
+    <script>
+    //////DROPDOWN//////
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('.dropdown-trigger');
+      var instances = M.Dropdown.init(elems, options);
+    });
+    $('.dropdown-trigger').dropdown();
+    ///////////////////
+
+
+    //////FLOATING BUTTON//////
+      document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.fixed-action-btn');
+        var instances = M.FloatingActionButton.init(elems, options);
+      });
+      $(document).ready(function(){
+      $('.fixed-action-btn').floatingActionButton();
+    //////////////////////////
+  </script>
   </body>
 
 

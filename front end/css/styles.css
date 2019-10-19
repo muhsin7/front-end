@@ -1,23 +1,17 @@
-/* input[submit]{
-  color: white; !important
-  border-radius: 50px;
-}
-
-.center-form{
-  /* margin-top: 25%; */
-  /* margin-bottom: 50%; */
-} */
-
-
+  html{
+    height: 100%;
+  }
   .assignment-item{
     border-radius: 6px;
-    color: black;
+    /* color: grey; */
     border-width: 4px;
     border-color: black !important;
     padding-left: 10px;
-    border: solid #000;
-    border-width: 4px 4px;
-    border-radius: 50px !important;
+    border: solid;
+    border-color: grey !important;
+    border-width: medium;
+    /* border-radius: 50px !important; */
+    margin-left: 30px !important;
   }
 
   .assignment-name{
@@ -34,6 +28,10 @@
     margin-top: 0px;
   }
 
+  .assignment-content{
+    padding: 10px !important;
+  }
+
   .not-submitted{
     color: red !important;
     font-size: 20px;
@@ -42,8 +40,10 @@
     margin-top: 0px;
   }
 
+/* https://www.schemecolor.com/faded-green.php */
   .submitted{
-    color: rgba(1, 250, 5, 1); !important;
+    background-color: #7BC17E !important;
+    color: #A4D1A2 !important;
     font-size: 20px;
     text-align: center;
     margin-bottom: 0px;
@@ -55,7 +55,7 @@
     font-size: 15px;
     margin-bottom: 0px;
     margin-top: 0px;
-    text-align: center;
+    /* text-align: center; */
   }
 
   .submit-button{
@@ -71,3 +71,37 @@
     text-align: center;
     margin-left: 29% */
   }
+
+.classes{
+  border-radius: 10px;
+  border-width: medium;
+  border: solid;
+  border-color: grey;
+  margin-top: 50px;
+  width: 200px;
+}
+
+/* .classes b{
+  margin: 10px !important;
+  padding-top: 10px !important;
+} */
+
+.class_text{
+    margin: 5px;
+}
+
+.class_text li{
+  padding: 5px;
+  border-radius: 5px;
+  transition: .5s ease;
+  margin-top: 2.5px;
+}
+
+.class_text li:hover{
+  background-color: #003255;
+  color: white;
+}
+
+a{
+  color: #F28650;
+}
