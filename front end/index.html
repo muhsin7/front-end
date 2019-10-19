@@ -5,12 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
   <title>Cisco site</title>
 
-<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="css/styles.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="css/nord-colours.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+  <!-- /////////////////////////////////////////////////////// -->
+  <link rel="stylesheet" href="css/icons.css">
+  <link rel="stylesheet" href="css/materialize.css">
+  <link rel="stylesheet" href="css/materialize.min.css">
+  <link rel="stylesheet" href="css/nord-colours.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- /////////////////////////////////////////////////////// -->
 </head>
 <body>
   <nav class="nord-darkblue" role="navigation">
@@ -30,15 +31,15 @@
   </nav>
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
-      <br><br>
-      <h1 class="header center nord-purple-text">Title Title</h1>
+      <br><br><br /><br /><br />
+      <h1 class="header center nord-purple-text"><i class="medium material-icons">book</i>EduNordz</h1>
       <div class="row center">
-        <h5 class="header col s12 light">description description description description description description description description description </h5>
+        <h5 class="header col s12 light">Web application that aids students</h5>
       </div>
       <div class="row center">
-        <a href="#modalStart" class="btn-large waves-effect waves-light nord-red modal-trigger">Get Started!</a>
+        <a href="#modalStart" class="btn-large waves-effect waves-light nord-darkblue nord-lightblue-text modal-trigger">Get Started!</a>
       </div>
-      <br><br>
+      <br><br><br />
 
     </div>
   </div>
@@ -48,11 +49,11 @@
   <div id="modalLogin" class="modal">
     <div class="modal-content">
       <center>
-        Log In
+        <h4>Log In</h4>
       </center>
       <form class="" action="index.html" method="post">
-        Username: <i><input type="text" name="username" placeholder="Enter Username"></i>
-        Password: <i><input type="password" name="password" placeholder="Enter Password"></i>
+        <label>Username</label> <i><input type="text" name="username" placeholder="Enter Username"></i>
+        <label>Password</label><i><input type="password" name="password" placeholder="Enter Password"></i>
         <input class="btn btn-large nord-darkblue white-text" type="submit" name="submit" value="Log In"/>
       </form>
       <br />
@@ -66,13 +67,20 @@
   <div id="modalSignup" class="modal">
     <div class="modal-content">
       <center>
-        Sign Up
+        <h4>Sign up</h4>
       </center>
       <form class="" action="index.html" method="post">
-        Email: <i><input type="text" name="email" placeholder="Enter e-mail"></i>
-        Username: <i><input type="text" name="username" placeholder="Enter Username"></i>
-        Password: <i><input type="password" name="password" placeholder="Enter Password"></i>
-        Re enter password: <i><input type="password" name="password" placeholder="Re enter password"></i>
+        <div class="input-field col s12">
+          <select>
+            <option value="" disabled selected>Choose account type</option>
+            <option value="1">Teacher</option>
+            <option value="2">Student</option>
+          </select>
+        </div>
+        <label>Email</label> <i><input type="text" name="email" placeholder="Enter e-mail"></i>
+        <label>Username</label> <i><input type="text" name="username" placeholder="Enter Username"></i>
+        <label>Password</label> <i><input type="password" name="password" placeholder="Enter Password"></i>
+        <label>Re-enter password</label> <i><input type="password" name="password" placeholder="Re enter password"></i>
         <input class="btn btn-large nord-darkblue white-text" type="submit" name="submit" value="Sign Up"/>
         <br />
         <div class="loginerror"></div>
@@ -86,87 +94,19 @@
   <div id="modalStart" class="modal">
     <div class="modal-content">
       <center>
-        Sign up as a...
+        <h3>Sign up as a...</h3>
       </center>
-      <a class="waves-effect waves-light btn-large nord-red">Teacher</a>
-      <a class="waves-effect waves-light btn-large nord-red">Student</a>
+    <center>
+      <a class="waves-effect waves-light btn-large nord-red modal-trigger" href="#modalSignup">Teacher</a>
+      &nbsp;
+      <a class="waves-effect waves-light btn-large nord-red modal-trigger" href="#modalSignup">Student</a>
+    </center>
     </div>
   </div>
 
-  <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-
-  <!-- <div class="container">
-    <div class="section">
-
-      <div class="row">
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">flash_on</i></h2>
-            <h5 class="center">Speeds up development</h5>
-
-            <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
-          </div>
-        </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
-            <h5 class="center">User Experience Focused</h5>
-
-            <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>
-          </div>
-        </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">settings</i></h2>
-            <h5 class="center">Easy to work with</h5>
-
-            <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-    <br><br>
-  </div> -->
   <br /><br /><br /><br /><br /><br />
-  <footer class="page-footer nord-orange" style="bottom: 0;">
-    <div class="container">
-      <div class="col l6">
-        Content
-      </div>
-      <br />
-    </div>
-    <!-- <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <h5 class="white-text">Company Bio</h5>
-          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
-
-
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Settings</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
-          </ul>
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Connect</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
-          </ul>
-        </div>
-      </div>
-    </div> -->
-    <div class="footer-copyright nord-yellow">
+  <footer class="page-footer nord-darkblue" style="bottom: 0;">
+    <div class="nord-darkblue">
       <div class="container" style="text-align: right;">
       Made for Cisco Talent Outreach by <a class="orange-text text-lighten-3">muhsin7</a>, <a class="orange-text text-lighten-3">Teminix</a>, <a class="orange-text text-lighten-3">chanmanstanflan</a>, <a class="orange-text text-lighten-3">Keya-Gupta</a>, <a class="orange-text text-lighten-3"></a>, <a class="orange-text text-lighten-3">YugalPatel</a>
       </div>
@@ -178,23 +118,30 @@
   <script type="text/javascript" src="js/angular.min.js"></script>
   <script type="text/javascript" src="js/initializing"></script>
   <script type="text/javascript" src="js/jquery.js"></script>
-  <script type="text/javascript" src="js/material.js"></script>
+  <script type="text/javascript" src="js/materialize.js"></script>
   <script type="text/javascript" src="js/materialize.min.js"></script>
   <script type="text/javascript" src="js/script.js"></script>
   <!-- /////////////////////////////////////////////////////// -->
   <script>
-      ////////////////////////////////////////////////////////////////////////////////////////////////
+        //////MODALS//////
         document.addEventListener('DOMContentLoaded', function() {
           var elems = document.querySelectorAll('.modal');
           var instances = M.Modal.init(elems, options);
         });
-
-        // Or with jQuery
-
         $(document).ready(function(){
           $('.modal').modal();
         });
-      /////////////////////////////////////////////////////////////////////////////////////////////////
+      ////////////////////
+
+      //////SELECT//////
+        document.addEventListener('DOMContentLoaded', function() {
+          var elems = document.querySelectorAll('select');
+          var instances = M.FormSelect.init(elems, options);
+        });
+        $(document).ready(function(){
+          $('select').formSelect();
+        });
+      ////////////////////
   </script>
 
   </body>

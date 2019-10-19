@@ -27,3 +27,35 @@ document.addEventListener('DOMContentLoaded', function() {
     var instances = M.FloatingActionButton.init(elems, options);
   });
 //////////////////////////
+
+
+
+//////SELECT//////
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems, options);
+  });
+  $(document).ready(function(){
+    $('select').formSelect();
+  });
+////////////////////
+
+
+/////AUTOCOMPLETE/////
+document.addEventListener('DOMContentLoaded', function() {
+   var elems = document.querySelectorAll('.autocomplete');
+   var instances = M.Autocomplete.init(elems, options);
+ });
+ $(document).ready(function(){
+   $('input.autocomplete').autocomplete({
+     data: {
+       "Chemistry HL": null,
+       "Physics HL": null,
+       "Mathematics AA HL": null,
+       "Spanish Ab HL": null,
+       "Language and Literature SL": null,
+       "Economics SL": null
+     },
+   });
+ });
+//////////////////////

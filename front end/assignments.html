@@ -7,7 +7,7 @@
   <title>Assignments</title>
 
   <!-- /////////////////////////////////////////////////////// -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="css/icons.css">
   <link rel="stylesheet" href="css/materialize.css">
   <link rel="stylesheet" href="css/materialize.min.css">
   <link rel="stylesheet" href="css/nord-colours.css">
@@ -28,14 +28,16 @@
     <div class="nav-wrapper container">
       <a id="logo-container" href="home.html" class="brand-logo"><img src="images/cisco.png" height="50px" width="auto" style="padding-top:5px;" /></a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="profile.html">Profile</a></li>
-        <li><a href="assignments.html">Assignments</a></li>
+        <li><a href="home.html">Home</a></li>
+        <li class="active"><a href="assignments.html">Assignments</a></li>
         <li><a class="dropdown-trigger" href="#!" data-target="profileDropdown"><i class="material-icons">person arrow_drop_down</i></a></li>
       </ul>
 
       <ul id="nav-mobile" class="sidenav">
-        <li><a href="" class="modal-trigger">Profile</a></li>
-        <li><a href="" class="modal-trigger">Log out</a></li>
+        <li><a href="home.html">Home</a></li>
+        <li class="active"><a href="assignments.html">Assignments</a></li>
+        <li><a href="profile.html" class="modal-trigger">Profile</a></li>
+        <li><a href="logout.html" class="modal-trigger">Log out</a></li>
       </ul>
       <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     </div>
@@ -71,43 +73,17 @@
                 <div class="assignment-name">Math stuff</div>
                 <div class="assignment-subject">Math</div>
                 <div class="due">Due Wednesday<br>October 16, 2019</div>
-                <div class="submitted btn submit">Submitted</div>
+                <center><div class="submitted btn submit">Submitted</div></center>
               </div>
             </div>
 
-            <div class=" col s2 assignment-item">
-              <div class="assignment-content">
-                <div class="assignment-name">Math stuff</div>
-                <div class="assignment-subject">Math</div>
-                <div class="due">Due Wednesday<br>October 16, 2019</div>
-                <div class="submitted btn submit">Submitted</div>
-              </div>
-            </div>
-
-            <div class=" col s2 assignment-item">
-              <div class="assignment-content">
-                <div class="assignment-name">Math stuff</div>
-                <div class="assignment-subject">Math</div>
-                <div class="due">Due Wednesday<br>October 16, 2019</div>
-                <div class="submitted btn submit">Submitted</div>
-              </div>
-            </div>
-
-            <div class=" col s2 assignment-item">
-              <div class="assignment-content">
-                <div class="assignment-name">Math stuff</div>
-                <div class="assignment-subject">Math</div>
-                <div class="due">Due Wednesday<br>October 16, 2019</div>
-                <div class="submitted btn submit">Submitted</div>
-              </div>
-            </div>
 
           <div class="col s2 assignment-item">
             <div class="assignment-content">
               <div class="assignment-name">Chemistry stuff</div>
               <div class="assignment-subject">Chemistry</div>
               <div class="due">Due Tomorrow<br>October 15, 2019</div>
-              <div class="not-submitted btn submit">Not submitted</div>
+              <center><div class="not-submitted btn submit"><div id="submit">Not Submitted</div></div></center>
             </div>
           </div>
 
@@ -121,15 +97,14 @@
           <hr />
         </div>
         <div class="row">
-          <div class=" col s2 assignment-item">
+          <div class="col s2 assignment-item">
             <div class="assignment-content">
-              <div class="assignment-name">Math stuff</div>
-              <div class="assignment-subject">Math</div>
-              <div class="due">Due Wednesday<br>October 16, 2019</div>
-              <div class="submitted btn submit">Submitted</div>
+              <div class="assignment-name">Chemistry stuff</div>
+              <div class="assignment-subject">Chemistry</div>
+              <div class="due">Due Tomorrow<br>October 15, 2019</div>
+              <center><div class="not-submitted btn submit"><div id="submit">Not Submitted</div></div></center>
             </div>
           </div>
-
         </div>
 
         <br>
@@ -140,7 +115,14 @@
           <hr />
         </div>
         <div class="row">
-
+          <div class="col s2 assignment-item">
+            <div class="assignment-content">
+              <div class="assignment-name">Math stuff</div>
+              <div class="assignment-subject">Math</div>
+              <div class="due">Due Wednesday<br>October 16, 2019</div>
+              <center><div class="submitted btn submit">Submitted</div></center>
+            </div>
+          </div>
         </div>
 
 
@@ -157,7 +139,7 @@
   <script type="text/javascript" src="js/angular.min.js"></script>
   <script type="text/javascript" src="js/initializing"></script>
   <script type="text/javascript" src="js/jquery.js"></script>
-  <script type="text/javascript" src="js/material.js"></script>
+  <script type="text/javascript" src="js/materialize.js"></script>
   <script type="text/javascript" src="js/materialize.min.js"></script>
   <script type="text/javascript" src="js/script.js"></script>
   <!-- /////////////////////////////////////////////////////// -->
@@ -171,6 +153,34 @@
     // Or with jQuery
 
     $('.dropdown-trigger').dropdown();
+
+
+    ////////////////////////////////////
+    $(document).ready(function(){
+      $(".not-submitted").on('mouseover',function(){
+      $('#submit').html("Submit Now!").fadeIn(1500);
+      })
+      $(".not-submitted").on('mouseout',function(){
+
+        $('#submit').html("Not Submitted").fadeIn(1500);
+      })
+    })
+    //////////////////////////////////////////
+
+    //////SELECT//////
+      document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('select');
+        var instances = M.FormSelect.init(elems, options);
+      });
+      $(document).ready(function(){
+        $('select').formSelect();
+      });
+      $(document).ready(function() {
+      $('select').material_select();
+  });
+    ////////////////////
+
+
   </script>
 
 
