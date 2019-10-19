@@ -13,8 +13,11 @@
     border-radius: 6px;
     color: black;
     border-width: 4px;
-    border-color: rgba(69,69,69,0.69) !important;
+    border-color: black !important;
     padding-left: 10px;
+    border: solid #000;
+    border-width: 4px 4px;
+    border-radius: 50px !important;
   }
 
   .assignment-name{
@@ -22,7 +25,6 @@
     font-size: 20px;
     margin-bottom: 0%;
     margin-top: 0px;
-
   }
 
   .assignment-subject{
@@ -57,7 +59,7 @@
   }
 
   .submit-button{
-    background-color: #6d9eebff;
+    /* background-color: #6d9eebff;
     padding: 5px;
     padding-left: 9px;
     padding-right: 9px;
@@ -67,5 +69,5 @@
     color: black;
     border-radius: 4px;
     text-align: center;
-    margin-left: 29%
+    margin-left: 29% */
   }

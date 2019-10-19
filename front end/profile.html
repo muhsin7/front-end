@@ -15,19 +15,35 @@
 
   <body>
     <nav class="nord-darkblue" role="navigation">
-      <div class="nav-wrapper container"><a id="logo-container" href="home.html" class="brand-logo"><img src="cisco.png" height="50px" width="auto" style="padding-top:5px;"/></a>
+      <ul id="profileDropdown" class="dropdown-content">
+        <li><a href="profile.html" class="modal-trigger">Profile</a></li>
+        <li><a href="index.html" class="modal-trigger">Log out</a></li>
+      </ul>
+      <div class="nav-wrapper container">
+        <a id="logo-container" href="home.html" class="brand-logo"><img src="images/cisco.png" height="50px" width="auto" style="padding-top:5px;" /></a>
         <ul class="right hide-on-med-and-down">
-          <li><a href="" class="modal-trigger">Log out</a></li>
+          <li><a href="profile.html">Profile</a></li>
+          <li><a href="assignments.html">Assignments</a></li>
+          <li><a class="dropdown-trigger" href="#!" data-target="profileDropdown"><i class="material-icons">person arrow_drop_down</i></a></li>
         </ul>
 
         <ul id="nav-mobile" class="sidenav">
-          <!-- <li><a href="#">Navbar Link</a></li> -->
-          <li><a href="#modalSignup" class="modal-trigger">Sign Up</a></li>
-          <li><a href="#modalLogin" class="modal-trigger">Log In</a></li>
+          <li><a href="" class="modal-trigger">Profile</a></li>
+          <li><a href="" class="modal-trigger">Log out</a></li>
         </ul>
         <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       </div>
     </nav>
+
+
+    <!-- /////////////////////////////////////////////////////// -->
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/initializing"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/material.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+    <!-- /////////////////////////////////////////////////////// -->
   </body>
 
 
