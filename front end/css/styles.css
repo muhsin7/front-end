@@ -12,7 +12,7 @@
   .assignment-item{
     border-radius: 6px;
     color: black;
-    border-width: 4px;
+    border: 4px;
     border-color: rgba(69,69,69,0.69) !important;
     padding-left: 10px;
   }
