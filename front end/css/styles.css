@@ -33,8 +33,9 @@
   }
 
   .not-submitted{
-    color: red !important;
-    font-size: 20px;
+    background-color: #ef5d7a;
+    color: #f48ba0 !important;
+    font-size: 12.5px !important;
     text-align: center;
     margin-bottom: 0px;
     margin-top: 0px;
@@ -43,13 +44,15 @@
 /* https://www.schemecolor.com/faded-green.php */
   .submitted{
     background-color: #7BC17E !important;
-    color: #A4D1A2 !important;
-    font-size: 20px;
-    text-align: center;
-    margin-bottom: 0px;
-    margin-top: 0px;
+    color: #b1ffad !important;
   }
 
+  .submit{
+    font-size: 17.5px;
+    text-align: center;
+    align-self: center;
+    margin-top: 10px;
+  }
   .due{
     color: orange;
     font-size: 15px;
