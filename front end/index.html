@@ -17,7 +17,7 @@
   <nav class="nord-darkblue" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"><img src="images/cisco.png" height="50px" width="auto" style="padding-top:5px;"/></a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="#modalSignup" class="modal-trigger">Sign Up</a></li>
+        <li><a href="#modalSignup" id="accountSignup" class="modal-trigger">Sign Up</a></li>
         <li><a href="#modalLogin" class="modal-trigger">Log In</a></li>
       </ul>
 
@@ -71,8 +71,8 @@
       </center>
       <form class="" action="index.html" method="post">
         <div class="input-field col s12">
-          <select>
-            <option value="" disabled selected>Choose account type</option>
+          <select id="accountType">
+            <option value="null" disabled selected>Choose account type</option>
             <option value="1">Teacher</option>
             <option value="2">Student</option>
           </select>
@@ -97,9 +97,9 @@
         <h3>Sign up as a...</h3>
       </center>
     <center>
-      <a class="waves-effect waves-light btn-large nord-red modal-trigger" href="#modalSignup">Teacher</a>
+      <a class="waves-effect waves-light btn-large nord-red modal-trigger" id="teacherAccountButton" href="#modalSignup">Teacher</a>
       &nbsp;
-      <a class="waves-effect waves-light btn-large nord-red modal-trigger" href="#modalSignup">Student</a>
+      <a class="waves-effect waves-light btn-large nord-red modal-trigger" id="studentAccountButton" href="#modalSignup">Student</a>
     </center>
     </div>
   </div>
@@ -124,23 +124,38 @@
   <!-- /////////////////////////////////////////////////////// -->
   <script>
         //////MODALS//////
-        document.addEventListener('DOMContentLoaded', function() {
-          var elems = document.querySelectorAll('.modal');
-          var instances = M.Modal.init(elems, options);
-        });
+        // document.addEventListener('DOMContentLoaded', function() {
+        //   var elems = document.querySelectorAll('.modal');
+        //   var instances = M.Modal.init(elems, options);
+        // });
         $(document).ready(function(){
           $('.modal').modal();
         });
       ////////////////////
 
       //////SELECT//////
-        document.addEventListener('DOMContentLoaded', function() {
-          var elems = document.querySelectorAll('select');
-          var instances = M.FormSelect.init(elems, options);
-        });
+        // document.addEventListener('DOMContentLoaded', function() {
+        //   var elems = document.querySelectorAll('select');
+        //   var instances = M.FormSelect.init(elems, options);
+        // });
         $(document).ready(function(){
           $('select').formSelect();
         });
+        $(() => {
+          $("#teacherAccountButton").on("click",() => {
+            $('#accountType').val('1')
+            $('#accountType').formSelect()
+          })
+          $("#accountSignup").on("click",() => {
+            $('#accountType').val('null')
+            $('#accountType').formSelect()
+          })
+          $("#studentAccountButton").on("click",() => {
+            $('#accountType').val('2')
+            $('#accountType').formSelect()
+          })
+        })
+        console.log("%cHello muhsin, did you know you could do this? %clul","background-color:black; color:white;font-weight:bold; font-size:40px","background-color:black;font-weight:bold; font-size:40px;color:red")
       ////////////////////
   </script>
 
