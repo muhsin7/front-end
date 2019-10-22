@@ -1,12 +1,4 @@
 
-//////MODALS///////
-document.addEventListener('DOMContentLoaded', function() {
-  var elems = document.querySelectorAll('.modal');
-  var instances = M.Modal.init(elems, options);
-});
-
-// Or with jQuery
-
 $(document).ready(function(){
   $('.modal').modal();
 });
@@ -14,27 +6,19 @@ $(document).ready(function(){
 
 
 //////DROPDOWN//////
-document.addEventListener('DOMContentLoaded', function() {
-  var elems = document.querySelectorAll('.dropdown-trigger');
-  var instances = M.Dropdown.init(elems, options);
-});
+  $('.dropdown-trigger').dropdown();
 ///////////////////
 
 
 //////FLOATING BUTTON//////
-  document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.fixed-action-btn');
-    var instances = M.FloatingActionButton.init(elems, options);
-  });
+$(document).ready(function(){
+    $('.fixed-action-btn').floatingActionButton();
+  })
 //////////////////////////
 
 
 
 //////SELECT//////
-  document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('select');
-    var instances = M.FormSelect.init(elems, options);
-  });
   $(document).ready(function(){
     $('select').formSelect();
   });
@@ -42,10 +26,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 /////AUTOCOMPLETE/////
-document.addEventListener('DOMContentLoaded', function() {
-   var elems = document.querySelectorAll('.autocomplete');
-   var instances = M.Autocomplete.init(elems, options);
- });
  $(document).ready(function(){
    $('input.autocomplete').autocomplete({
      data: {

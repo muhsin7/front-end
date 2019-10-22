@@ -6,11 +6,11 @@
     <title>Home</title>
 
     <!-- /////////////////////////////////////////////////////// -->
-    <link rel="stylesheet" href="../public/css/icons.css">
-    <link rel="stylesheet" href="../public/css/materialize.css">
-    <link rel="stylesheet" href="../public/css/materialize.css">
-    <link rel="stylesheet" href="../public/css/nord-colours.css">
-    <link rel="stylesheet" href="../public/css/styles.css">
+    <link rel="stylesheet" href="/css/icons.css">
+    <link rel="stylesheet" href="/css/materialize.css">
+    <link rel="stylesheet" href="/css/materialize.css">
+    <link rel="stylesheet" href="/css/nord-colours.css">
+    <link rel="stylesheet" href="/css/styles.css">
     <!-- /////////////////////////////////////////////////////// -->
 </head>
 
@@ -81,7 +81,7 @@
        <li><a href="index.html" class="modal-trigger">Log out</a></li>
      </ul>
      <div class="nav-wrapper container">
-       <a id="logo-container" href="home.html" class="brand-logo"><img src="../public/images/cisco.png" height="50px" width="auto" style="padding-top:5px;" /></a>
+       <a id="logo-container" href="home.html" class="brand-logo"><img src="/images/cisco.png" height="50px" width="auto" style="padding-top:5px;" /></a>
        <ul class="right hide-on-med-and-down">
          <li  class="active"><a href="home.html">Home</a></li>
          <li><a href="assignments.html">Assignments</a></li>
@@ -143,28 +143,20 @@
     </div>
 
     <!-- /////////////////////////////////////////////////////// -->
-    <script type="text/javascript" src="../public/js/angular.min.js"></script>
-    <script type="text/javascript" src="../public/js/initializing"></script>
-    <script type="text/javascript" src="../public/js/jquery.js"></script>
-    <script type="text/javascript" src="../public/js/materialize.js"></script>
-    <script type="text/javascript" src="../public/js/materialize.min.js"></script>
-    <script type="text/javascript" src="../public/js/script.js"></script>
+    <script type="text/javascript" src="/js/angular.min.js"></script>
+    <script type="text/javascript" src="/js/initializing"></script>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/materialize.js"></script>
+    <script type="text/javascript" src="/js/materialize.min.js"></script>
+    <script type="text/javascript" src="/js/script.js"></script>
     <!-- /////////////////////////////////////////////////////// -->
     <script>
     //////DROPDOWN//////
-    document.addEventListener('DOMContentLoaded', function() {
-      var elems = document.querySelectorAll('.dropdown-trigger');
-      var instances = M.Dropdown.init(elems, options);
-    });
     $('.dropdown-trigger').dropdown();
     ///////////////////
 
 
     //////MODALS///////
-    // document.addEventListener('DOMContentLoaded', function() {
-    //   var elems = document.querySelectorAll('.modal');
-    //   var instances = M.Modal.init(elems, options);
-    // });
     $(document).ready(function(){
       $('.modal').modal();
     });
@@ -172,24 +164,13 @@
 
 
         //////SELECT//////
-          // document.addEventListener('DOMContentLoaded', function() {
-          //   var elems = document.querySelectorAll('select');
-          //   var instances = M.FormSelect.init(elems, options);
-          // });
           $(document).ready(function(){
             $('select').formSelect();
           });
-          $(document).ready(function() {
-          $('select').material_select();
-      });
         ////////////////////
 
 
         /////AUTOCOMPLETE/////
-        // document.addEventListener('DOMContentLoaded', function() {
-        //    var elems = document.querySelectorAll('.autocomplete');
-        //    var instances = M.Autocomplete.init(elems, options);
-        //  });
          $(document).ready(function(){
            $('input.autocomplete').autocomplete({
              data: {
