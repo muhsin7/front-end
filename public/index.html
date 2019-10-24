@@ -69,9 +69,9 @@
       <center>
         <h4>Sign up</h4>
       </center>
-      <form class="" action="index.html" method="post">
-        <div class="input-field col s12">
-          <select id="accountType">
+      <div class="form" action="/dummy" method="post" indirect-submit="true" id="signUpForm">
+        <div class="input-field col s12" ignore-value-container>
+          <select id="accountType" read-value-container read-value name="type">
             <option value="null" disabled selected>Choose account type</option>
             <option value="1">Teacher</option>
             <option value="2">Student</option>
@@ -86,7 +86,7 @@
         <div class="loginerror"></div>
         <i>Already have an account? Log in <a href="#modalLogin"class="modal-trigger" >here</a>!</i>
         </div>
-      </form>
+      </div>
     </div>
 
   </div>
@@ -124,33 +124,45 @@
   <script type="text/javascript" src="/js/events.js"></script>
   <!-- /////////////////////////////////////////////////////// -->
   <script>
-        $.initSession()
-        //////MODALS//////
-        $(document).ready(function(){
-          $('.modal').modal();
-        });
-      ////////////////////
-
-      //////SELECT//////
-        $(document).ready(function(){
-          $('select').formSelect();
-        });
         $(() => {
-          $("#teacherAccountButton").on("click",() => {
-            $('#accountType').val('1')
-            $('#accountType').formSelect()
+          $.initSession()
+          $(window).on("sessionLoaded",(event,response) => {
+            // l(response)
           })
-          $("#accountSignup").on("click",() => {
-            $('#accountType').val('null')
-            $('#accountType').formSelect()
+          $('#signUpForm').on('confirm',function() {
+            l('lul')
+            $(this).trigger("submit")
           })
-          $("#studentAccountButton").on("click",() => {
-            $('#accountType').val('2')
-            $('#accountType').formSelect()
+          $('#signUpForm').on('success',function(event,response) {
+            l(response)
           })
+          //////MODALS//////
+          $(document).ready(function(){
+            $('.modal').modal();
+          });
+          ////////////////////
+
+          //////SELECT//////
+          $(document).ready(function(){
+            $('select').formSelect();
+          });
+          $(() => {
+            $("#teacherAccountButton").on("click",() => {
+              $('#accountType').val('1')
+              $('#accountType').formSelect()
+            })
+            $("#accountSignup").on("click",() => {
+              $('#accountType').val('null')
+              $('#accountType').formSelect()
+            })
+            $("#studentAccountButton").on("click",() => {
+              $('#accountType').val('2')
+              $('#accountType').formSelect()
+            })
+          })
+          // console.log("%cHello muhsin, did you know you could do this? %clul","background-color:black; color:white;font-weight:bold; font-size:40px","background-color:black;font-weight:bold; font-size:40px;color:red")
+          ////////////////////
         })
-        console.log("%cHello muhsin, did you know you could do this? %clul","background-color:black; color:white;font-weight:bold; font-size:40px","background-color:black;font-weight:bold; font-size:40px;color:red")
-      ////////////////////
   </script>
 
   </body>
