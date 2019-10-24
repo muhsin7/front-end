@@ -200,3 +200,23 @@ a{
   padding-top: 20px;
   background: #003255 !important;
 }
+
+.parallax-container{
+    background-color: #722C8A;
+    height: 300px;
+    width: 100%;
+}
+
+.pfp{
+  height: 100px;
+  width: auto;
+  border-radius: 10px;
+  margin-top: 50px;
+  margin-left: 50px;
+}
+
+.profile_info{
+  margin-top: 50px;
+  /* margin-left: 50px; */
+  color: #fff;
+}
