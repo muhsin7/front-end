@@ -12,6 +12,21 @@
   <link rel="stylesheet" href="/css/nord-colours.css">
   <link rel="stylesheet" href="/css/styles.css">
   <!-- /////////////////////////////////////////////////////// -->
+  <style media="screen">
+    .input-container {
+      position:relative;
+    }
+    .red-prompt {
+      color:red;
+      display:block;
+      font-size: 12px;
+      margin-bottom:10px;
+      font-style: normal;
+    }
+    .loginerror {
+      color:red
+    }
+  </style>
 </head>
 <body>
   <nav class="nord-darkblue" role="navigation">
@@ -51,11 +66,14 @@
       <center>
         <h4>Log In</h4>
       </center>
-      <form class="" action="index.html" method="post">
+      <div class="form" action="/auth/login" method="post" on-error-prompt-selector=".loginerror" on-success-redirect="home.html">
         <label>Username</label> <i><input type="text" name="username" placeholder="Enter Username"></i>
         <label>Password</label><i><input type="password" name="password" placeholder="Enter Password"></i>
+        <div class="loginerror">
+
+        </div>
         <input class="btn btn-large nord-darkblue white-text" type="submit" name="submit" value="Log In"/>
-      </form>
+      </div>
       <br />
       <div class="loginerror"></div>
       <i>Don't have an account? Sign up <a class="modal-trigger" href="#modalSignup">here</a>!</i>
@@ -69,21 +87,22 @@
       <center>
         <h4>Sign up</h4>
       </center>
-      <div class="form" action="/dummy" method="post" indirect-submit="true" id="signUpForm">
+      <div class="form" action="/auth/signup" method="post" id="signUpForm" output-body custom-validation="true" required-element="<span class='red-prompt'>" on-error-prompt-selector=".loginerror" on-success-redirect="home.html">
         <div class="input-field col s12" ignore-value-container>
-          <select id="accountType" read-value-container read-value name="type">
-            <option value="null" disabled selected>Choose account type</option>
-            <option value="1">Teacher</option>
-            <option value="2">Student</option>
+          <select id="accountType" read-value-container read-value name="type" required>
+            <option value="" disabled selected>Choose account type</option>
+            <option value="teacher">Teacher</option>
+            <option value="student">Student</option>
           </select>
         </div>
-        <label>Email</label> <i><input type="text" name="email" placeholder="Enter e-mail"></i>
-        <label>Username</label> <i><input type="text" name="username" placeholder="Enter Username"></i>
-        <label>Password</label> <i><input type="password" name="password" placeholder="Enter Password"></i>
-        <label>Re-enter password</label> <i><input type="password" name="password" placeholder="Re enter password"></i>
-        <input class="btn btn-large nord-darkblue white-text" type="submit" name="submit" value="Sign Up"/>
-        <br />
+        <label>Email</label> <i><input type="email" name="email" placeholder="Enter e-mail" required ></i>
+        <label>Username</label> <i><input type="text" name="username" placeholder="Enter Username" required></i>
+        <label>Password</label><i><input type="password" name="password" placeholder="Enter Password" minlength="3" required></i>
+        <!-- <span class="red-prompt">This field is required</span> -->
+        <label>Re-enter password</label> <input type="password" name="confirm_password" placeholder="Re enter password" required>
         <div class="loginerror"></div>
+        <input class="btn btn-large nord-darkblue white-text" type="submit" value="Sign Up"/>
+        <br />
         <i>Already have an account? Log in <a href="#modalLogin"class="modal-trigger" >here</a>!</i>
         </div>
       </div>
@@ -130,8 +149,16 @@
             // l(response)
           })
           $('#signUpForm').on('confirm',function() {
-            l('lul')
-            $(this).trigger("submit")
+            // l('lul')
+            let form = $(this);
+            let password = form.find("input[name=password]")
+            let confirm_password = form.find("input[name=confirm_password]");
+            let errorPrompt = form.find(form.attr("on-error-prompt-selector"));
+            if (confirm_password.val() != password.val()) {
+                errorPrompt.html("Confirm password and password have to be the same.")
+            } else {
+              form.trigger('submit')
+            }
           })
           $('#signUpForm').on('success',function(event,response) {
             l(response)
@@ -148,15 +175,15 @@
           });
           $(() => {
             $("#teacherAccountButton").on("click",() => {
-              $('#accountType').val('1')
+              $('#accountType').val('teacher')
               $('#accountType').formSelect()
             })
             $("#accountSignup").on("click",() => {
-              $('#accountType').val('null')
+              $('#accountType').val('')
               $('#accountType').formSelect()
             })
             $("#studentAccountButton").on("click",() => {
-              $('#accountType').val('2')
+              $('#accountType').val('student')
               $('#accountType').formSelect()
             })
           })

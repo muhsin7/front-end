@@ -14,65 +14,122 @@ $(() => {
   $('.form input').on("keydown",function(e) {
     let form = $(this).parents(".form").first()
     if(e.which==13){
-      form.trigger('submit')
+      // form.trigger('submit')
+      let condition = (typeof form.attr("custom-validation") != "undefined" && form.attr("custom-validation") == 'true');
+      if (condition) form.trigger("confirm");
+      else form.trigger("submit")
     }
   })
   $('.form [type=submit]').on('click',function(e){
     // l($(this).parents('.form'))
-    form = $(this).parents('.form').first()
-    if (typeof form.attr("indirect-submit") != "undefined" && form.attr("indirect-submit") == 'true') form.trigger("confirm");
+    // l('Submit button has been clicked')
+    form = $(this).parents('.form').first();
+    let condition = (typeof form.attr("custom-validation") != "undefined" && form.attr("custom-validation") == 'true');
+    if (condition) form.trigger("confirm");
     else form.trigger("submit")
   })
   $('.form').on('submit',function(e){
     // let form = $(this).parents('.form').first();
     let form = $(this);
-    let data;
-    if(form.attr("method").toUpperCase() == 'POST'){
-      if (typeof form.attr('multipart') != 'undefined' && form.attr('multipart').toLowerCase()=="true") {
-        data = new FormData();
-        // console.log("Yes this is formdata type")
-        for(let elem of form.find('input')){
-          elem = $(elem)
-          if (typeof elem.attr("ignore-value") == "undefined" &&  elem.parents("[ignore-valu-container]").length==0) {
+    let IS_VALID = true;
+    for (let k of form.find('[required]')) {
+      let validationElement = $((typeof form.attr("required-element") == 'undefined') ?  '<span class="red-prompt">': form.attr('required-element'));
+      k = $(k)
+      let valid = true;
+      if (k.val() == null) valid = false;
+      else if (k.val().trim() == '') valid = false;
+      IS_VALID = valid;
+      l(IS_VALID)
+      l(valid)
+      if (!valid) {
+        validationElement.html("This field is required")
+        if (k.next().attr('class') != validationElement.attr('class')) validationElement.insertAfter(k)
+        break
+      } else if (k.next().attr('class') == validationElement.attr('class')) k.next().remove()
+    }
+      for (let k of form.find('[type=email]')) {
+        let validationElement = $((typeof form.attr("required-element") == 'undefined') ?  '<span class="red-prompt">': form.attr('required-element'));
+        k = $(k);
+        let valid = true;
+        let emailValidationExpression = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+        if (k.val() == null) valid = false;
+        else if(!emailValidationExpression.test(k.val())) valid = false;
+        l('email is '+emailValidationExpression.test(k.val()))
+        IS_VALID = IS_VALID ? valid: false;
+        if(!valid){
+          validationElement.html("Invalid email provided");
+          if(k.next().attr('class') == validationElement.attr('class')) k.next().html('Invalid email provided')
+          else validationElement.insertAfter(k)
+          break;
+        } else if(k.next().attr('class') == validationElement.attr('class')) k.next().remove();
+      }
+      for (let k of form.find("input[type=text][minlength],input[type=password][minlength]")) {
+        k = $(k);
+        // l("minlength handler called")
+        let validationElement = $((typeof form.attr("required-element") == 'undefined') ?  '<span class="red-prompt">': form.attr('required-element'));
+        let length = (isNaN(k.attr("minlength"))) ? 0 : Number(k.attr("minlength"));
+        let valid = true
+        if(k.val() == null) valid=false;
+        else if(k.val().length < length) valid=false;
+        IS_VALID = IS_VALID ? valid: IS_VALID;
+        if(!valid){
+          validationElement.html("Minimum field length is: "+length);
+          if(k.next().attr('class') == validationElement.attr('class')) k.next().html("Minimum field length is: "+length)
+          else validationElement.insertAfter(k)
+          break;
+        } else if(k.next().attr('class') == validationElement.attr('class')) k.next().remove()
+      }
+    if (IS_VALID) {
+      let data;
+      if(form.attr("method").toUpperCase() == 'POST'){
+        if (typeof form.attr('multipart') != 'undefined' && form.attr('multipart').toLowerCase()=="true") {
+          data = new FormData();
+          // console.log("Yes this is formdata type")
+          for(let elem of form.find('input')){
+            elem = $(elem)
+            if (typeof elem.attr("ignore-value") == "undefined" &&  elem.parents("[ignore-valu-container]").length==0) {
               if(elem.attr('type') == 'file'){
                 // console.log('yes this type file')
                 data.append($(elem).attr("name"),new Blob([elem.files[0]],{type:'image/jpeg'}))
               } else {
                 data.append($(elem).attr("name"),$(elem).val())
               }
+            }
           }
-        }
-      } else {
-        data = {}
-        for(let elem of form.find('input[name],select[name]')){
-          elem = $(elem);
-          if((typeof elem.attr("ignore-value") == "undefined" && elem.parents('[ignore-value-container]').length == 0)||(typeof elem.attr("read-value") != "undefined" || elem.parents("[read-value-container]").length != 0)) {
-            data[elem.attr('name')] = elem.val();
+        } else {
+          data = {}
+          for(let elem of form.find('input[name],select[name]')){
+            elem = $(elem);
+            if((typeof elem.attr("ignore-value") == "undefined" && elem.parents('[ignore-value-container]').length == 0)||(typeof elem.attr("read-value") != "undefined" || elem.parents("[read-value-container]").length != 0)) {
+              data[elem.attr('name')] = elem.val();
+            }
           }
         }
       }
-    }
-    // l(data)
-    let request = {
-      url:form.attr("action"),
-      method:(typeof form.attr('method')=='undefined')?'GET':form.attr('method').toUpperCase(),
-      data,
-      success:function(response){
-        form.trigger('success',[response])
-        // l(form)
-        // l('yoy')
-      },
-      error:function(error){
-        // l('error occured: '+error),
-        form.trigger('error',[error.responseText])
+      // l(data)
+      let request = {
+        url:form.attr("action"),
+        method:(typeof form.attr('method')=='undefined')?'GET':form.attr('method').toUpperCase(),
+        data,
+        success:function(response){
+          form.trigger('success',[response])
+          // l(form)
+          // l('yoy')
+        },
+        error:function(error){
+          // l('error occured: '+error),
+          form.trigger('error',[error.responseText])
+        }
       }
+      if(typeof form.attr('multipart') != 'undefined' && form.attr("multipart").toLowerCase() == 'true'){
+        request.contentType = false;
+        request.cache = false;
+        request.processData = false
+      }
+      $.ajax(request)
+      if(form.attr('output-body') != null) console.log(request.data)
     }
-    if(typeof form.attr('multipart') != 'undefined' && form.attr("multipart").toLowerCase() == 'true'){
-      request.contentType = false;
-      request.cache = false;
-      request.processData = false
-    }
-    $.ajax(request)
+
   })
   $('.form').on('success',function(event,response){
     let form = $(this);
