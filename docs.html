@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<link rel="stylesheet" href="highlight.default.min.css">
+<script src="highlight.js"></script>
+<script src="public/js/jquery.js" charset="utf-8"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+  <head>
+    <meta charset="utf-8">
+    <title>Docs</title>
+    <style media="screen">
+      @font-face {
+          font-family: "roboto";
+          src:url("roboto/RobotoCondensed-Regular.ttf")
+      }
+      body {
+        font-family:"roboto";
+      }
+      .big {
+        font-size:70px
+      }
+      a {
+        color:inherit;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration:underline;
+      }
+      .code {
+        font-family: courier;
+        color:red;
+        background-color: rgb(230,230,230);
+        padding:1px 2px;
+        border-radius:2px;
+      }
+      .code.dark {
+        background-color: darkgrey;
+        color:white
+      }
+      a.code {
+        text-decoration: underline;
+      }
+      code {
+        font-size:15px
+      }
+      hr.thick {
+        border-top: 10px black solid
+      }
+      .big-spacing > li {
+        margin-top:20px;
+        margin-bottom:20px
+      }
+      .big-spacing > li li {
+        margin-top:10px;
+        margin-bottom:10px;
+      }
+      hr {
+        border-top:2px black solid;
+      }
+      hr.sub {
+        border-top:2px lightgrey solid;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="big">Docs</h1>
+    <hr class="thick">
+    <br>
+    Welcome to the docs for the front end, here is where the different custom attributes for forms would be explained
+    <h2>Using forms:</h2>
+    <hr>
+    Include the <span class="code">events.js</span>, and <span class="code">jquery</span> in your html file.
+    <pre>
+      <code class="html">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en" dir="ltr"&gt;
+  &lt;head&gt;
+    &lt;script src="events.js" charset="utf-8"&gt;&lt;/script&gt;
+    &lt;script src="jquery.js" charset="utf-8"&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;!-- Form element is recognised with the help of class="form" --&gt;
+    &lt;div class="form"&gt;
+      &lt;input type="text" name="" value=""&gt;
+      &lt;input type="text" name="" value=""&gt;
+      &lt;input type="text" name="" value=""&gt;
+      &lt;button type="submit" name="button"&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+      </code>
+    </pre>
+    <h2>Documentation</h2>
+    <hr>
+    The forms documentation would consist of two parts, the form itself and the children of the form.
+    <h3>Contents:</h3>
+    <ul>
+      <li>Forms
+        <ul>
+          <li>Form element attributes:</li>
+          <ul class="assign-anchors">
+            <li><a href="#" class="code">action</a></li>
+            <li><a href="#" class="code">method</a></li>
+            <li><a href="#" class="code">on-success</a></li>
+            <li><a href="#" class="code">on-error</a></li>
+            <li><a href="#" class="code">on-success-reload</a></li>
+            <li><a href="#" class="code">on-success-redirect</a></li>
+            <li><a href="#" class="code">on-error-prompt-selector</a></li>
+            <li><a href="#" class="code">custom-validation</a></li>
+            <li><a href="#" class="code">required-element</a></li>
+            <li><a href="#" class="code">output-body</a></li>
+          </ul>
+          <li>Form child element attributes</li>
+          <ul class="assign-anchors">
+            <li><a href="#" class="code">required</a></li>
+            <li><a href="#" class="code">minlength</a></li>
+            <li><a href="#" class="code">ignore-value</a></li>
+            <li><a href="#" class="code">ignore-value-container</a></li>
+            <li><a href="#" class="code">read-value</a></li>
+            <li><a href="#" class="code">read-value-container</a></li>
+          </ul>
+        </ul>
+      </li>
+      <li><u>Important notes while using materialise(yes muh-chan, this is needed):</u>
+        <a href="#">
+          <ul>
+            <li>Using materialise <span class="code">&lt;select&gt;</span></li>
+          </ul>
+        </a>
+      </li>
+    </ul>
+    <br>
+    <h4>Doc format:</h4>
+    <ul>
+      <li><span class="code">nameofattribute</span>
+        <ul>
+          <li><span class="dark code">="&lt;var&gt;"</span> - attribute's required value <span class="dark code">'var'</span></li>
+          <li><span class="dark code">="[var]" </span> - attribute's optional value <span class="dark code">'var'</span></li>
+          <li><span class="dark code">="something | something-else" </span> - attribute's value can be <span class="dark code">"something"</span> OR <span class="dark code">"something else"</span></li>
+        </ul>
+      </li>
+    </ul>
+    It's ok if you didn't get it lol, you'll figure out.
+    <h2>Forms</h2>
+    <hr>
+    <h3>Form element attributes</h3>
+    <hr class="sub">
+    <ul class="big-spacing">
+      <li>
+        <!-- <a id="action"></a> -->
+        <span class="code" id="action">action</span><span class="dark code">="&lt;location&gt;"</span>
+        <ul>
+          <li><span class="dark code">location</span>: The location where the form would be processed/sent. This is like the classic action attribute in the vanilla form functionality </li>
+        </ul>
+      </li>
+      <li>
+        <span class="code" id="method">method</span><span class="dark code">="GET|POST|&lt;any other types&gt;"</span>
+        <ul>
+          <li><span class="dark code">GET</span>: Usually used for basic requests, usually not advised for cisco project</li>
+          <li><span class="dark code">POST</span>: Usually used for larger and more requests, advised for cisco project</li>
+          <li><span class="dark code">any other type</span>: In case back end man specifies, use that</li>
+        </ul>
+      </li>
+      <li>
+        <span class="code" id="on-success">on-success</span><span class="dark code">="&lt;JavaScript&gt;"</span>
+        <ul>
+          <li><span class="dark code">JavaScript</span>: When the form submission completes and the server acknowledges form submission, <span class="dark code">JavaScript</span> would be executed as normal javascript. Just like the normal <span class="dark code">onclick</span> attribute for buttons. You are given a variable inside <span class="dark code">JavaScript</span>
+          called <span class="dark code">response</span>, this is the response by the server("successfully registered user","successfully updated post" etc.) which can be used like the following:
+          <div class="">
+            <pre>
+<code class="html">&lt;div class="form" action="/auth/login" method="post" on-success="console.log(response)"&gt;
+  &lt;!-- stuff --&gt;
+&lt;/div&gt;
+</code>
+            </pre>
+          </div>
+          The above <span class="dark code">on-success</span> attribute would log to the console the <span class="dark code">response</span> to the console.
+          </li>
+        </ul>
+      </li>
+      <li>
+        <span class="code" id="on-error">on-error</span><span class="dark code">="&lt;JavaScript&gt;"</span>
+        <ul>
+          <li><span class="dark code">JavaScript</span>: Similar to <span class="dark code">on-success</span>, however, this code would fire only when the server returns an error. Ex: "Invalid username and password". This time the variable you are given is called <span class="dark code">error</span>.
+          This can be used like the following
+          <div class="">
+            <pre>
+<code class="html">&lt;div class="form" action="/auth/login" method="post" on-success="console.log(response)" on-error="console.log(error)"&gt;
+  &lt;!-- stuff --&gt;
+&lt;/div&gt;
+</code>
+            </pre>
+          </div>
+          The above <span class="dark code">on-error</span> attribute would log to the console the <span class="dark code">error</span> it received from the server(if there was an error in the first place).
+          </li>
+        </ul>
+      </li>
+      <li>
+        <span class="code" id="on-success-reload">on-success-reload</span><span class="dark code">="true|false"</span>
+        <ul>
+          <li><span class="dark code">true</span>: The page would reload in case the request succeeds(like earlier)</li>
+        </ul>
+      </li>
+      <li>
+        <span class="code" id="on-success-redirect">on-success-redirect</span><span class="dark code">="&lt;location&gt;"</span>
+        <ul>
+          <li><span class="dark code">location</span>: Would redirect the user to a specific page once the request succeeds</li>
+        </ul>
+      </li>
+    </ul>
+
+  </body>
+  <script type="text/javascript">
+    $(() => {
+      $('ul.assign-anchors li a').each((e,k) => {
+        $(k).attr("href","#"+$(k).text())
+      })
+    })
+  </script>
+</html>

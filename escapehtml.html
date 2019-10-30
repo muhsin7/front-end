@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Escape html with the help of this</title>
+    <script src="public/js/jquery.js" charset="utf-8"></script>
+    <style media="screen">
+      body {
+        font-family:arial;
+      }
+      #main {
+        width:100%
+      }
+    </style>
+  </head>
+  <body>
+    <h1>yeet</h1>
+    <textarea id="main" rows="8"></textarea>
+    <button type="button" id="button">Submit</button>
+    <button id="copy" name="button">Copy</button><br>
+    <textarea id="copy-zone" rows="8" cols="80" readonly></textarea>
+  </body>
+  <script type="text/javascript">
+    $(() => {
+      let button = $('#button')
+      let text = $('#main');
+      let copyZone = $('#copy-zone')
+      button.on('click',(event) => {
+        let final = text.val().replace(/</g,"&lt;");
+        final = final.replace(/>/g,"&gt;");
+        copyZone.val(final);
+        copyZone[0].select();
+      })
+      text.on("keydown",(e) => {
+        if(e.which == 13){
+          button.trigger("click")
+        }
+      })
+      $('#copy').on('click',(event) => {
+        document.execCommand("copy")
+      })
+    })
+  </script>
+</html>
