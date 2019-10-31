@@ -7,11 +7,11 @@
     <title>Home</title>
 
     <!-- /////////////////////////////////////////////////////// -->
-    <link rel="stylesheet" href="/css/icons.css">
-    <link rel="stylesheet" href="/css/materialize.css">
-    <link rel="stylesheet" href="/css/materialize.css">
-    <link rel="stylesheet" href="/css/nord-colours.css">
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="css/icons.css">
+    <link rel="stylesheet" href="css/materialize.css">
+    <link rel="stylesheet" href="css/materialize.css">
+    <link rel="stylesheet" href="css/nord-colours.css">
+    <link rel="stylesheet" href="css/styles.css">
     <!-- /////////////////////////////////////////////////////// -->
 </head>
 
@@ -82,7 +82,7 @@
        <li><a href="/auth/logout" class="modal-trigger">Log out</a></li>
      </ul>
      <div class="nav-wrapper container">
-       <a id="logo-container" href="home.html" class="brand-logo"><img src="/images/cisco.png" height="50px" width="auto" style="padding-top:5px;" /></a>
+       <a id="logo-container" href="home.html" class="brand-logo"><img src="images/cisco.png" height="50px" width="auto" style="padding-top:5px;" /></a>
        <ul class="right hide-on-med-and-down">
          <li  class="active"><a href="home.html">Home</a></li>
          <li><a href="assignments.html">Assignments</a></li>
@@ -122,8 +122,28 @@
               <a href="class.html"><li class="truncate">Economics SL</li></a>
             </div>
           </div>
+          <hr />
+          <a href="#joinClass" class="joinclass modal-trigger"><i class="material-icons tiny">add</i><b>Join Class</b></a>
+          <br style="font-size: 50%"/>
+          <!-- <a href="#createClass" class="joinclass modal-trigger"><i class="material-icons tiny">add</i><b>Create Class</b></a>
+          <br style="font-size: 50%"/> -->
           <br />
         </div>
+
+        <div id="joinClass" class="modal">
+          <div class="modal-content">
+            <div class="form">
+              <h4>Enter Group Code</h4>
+              <input type="text" name="groupcode" id="groupcode" data-length="5"/>
+              <label for="groupcode">Enter 6 character group code (case insensitive)</label>
+              <div class="modal-footer">
+                <button type="submit" name="button" class="btn-flat nord-darkblue-text">Submit</button>
+                <a href="#!" class="modal-close waves-effect waves-red btn-flat nord-red" style="color:white">Cancel</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="col offset-s1 s8">
           <h2>Posts</h2>
           <hr />
@@ -144,13 +164,13 @@
     </div>
 
     <!-- /////////////////////////////////////////////////////// -->
-    <script type="text/javascript" src="/js/angular.min.js"></script>
-    <script type="text/javascript" src="/js/jquery.js"></script>
-    <script type="text/javascript" src="/js/materialize.js"></script>
-    <script type="text/javascript" src="/js/materialize.min.js"></script>
-    <script type="text/javascript" src="/js/initializing.js"></script>
-    <script type="text/javascript" src="/js/script.js"></script>
-    <script type="text/javascript" src="/js/events.js"></script>
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/materialize.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/initializing.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript" src="js/events.js"></script>
     <!-- /////////////////////////////////////////////////////// -->
     <script>
     //////DROPDOWN//////

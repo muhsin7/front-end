@@ -223,3 +223,28 @@ a{
 teacher-container,session-data, session-onload, student-container {
   display:none;
 }
+
+.joinclass{
+  margin: 10px;
+  bottom: 10px !important;
+  padding: 5px;
+  border-radius: 5px;
+  transition: .5s ease;
+  background-color: #F28650;
+  color: #003255;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.joinclass:hover{
+  color: #F28650;
+  background-color:#003255
+}
+
+#joinClass{
+  width: 400px !important;
+  height: 230px !important;
+  border-radius: 5px;
+  top: 50% !important;
+  bottom: 50% !important;
+}
