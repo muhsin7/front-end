@@ -220,3 +220,6 @@ a{
   /* margin-left: 50px; */
   color: #fff;
 }
+teacher-container,session-data, session-onload, student-container {
+  display:none;
+}

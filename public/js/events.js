@@ -1,7 +1,29 @@
 var l = console.log;
+let observer = new MutationObserver((mutationList) => {
+  for(let mutation of mutationList){
+    if(mutation.type == "attributes") {
+      l(mutation)
+    }
+  }
+})
 $.initSession = () => {
   $(() => {
-    $(window).trigger("sessionLoaded",["Hello sir"])
+    // $(window).trigger("sessionLoaded",["Hello sir"])
+    $.ajax ({
+      url:"/api/session/get",
+      type:"GET",
+      success:function(data){
+        $(window).trigger("sessionLoaded",[null,data]);
+        for(let key in data){
+          let elems = $(`session-data[prop=${key}]`)
+          elems.html(data[key]);
+          elems.css('display','inline')
+        }
+        $('session-onload').css('display','inline')
+      }, error:function(err) {
+        $(window).trigger("sessionLoaded",[new Error("Session failed to load")])
+      }
+    })
   })
 }
 $(() => {
