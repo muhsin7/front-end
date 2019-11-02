@@ -1,6 +1,9 @@
-[
-  "assignments",
-  "format",
-  "home",
-  "profile"
-]
+{
+  "view-directory":"/public/private",
+  "views":{
+    "/home":{
+      "teacher":"/home.html"
+    },
+    "/":"/index.html"
+  }
+}

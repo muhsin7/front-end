@@ -44,9 +44,3 @@ $(document).ready(function(){
 
 
 // NON MATERIALISE STUFF:
-$(window).on('sessionLoaded',(event,err,session) => {
-  if (err) console.error(err);
-  else {
-    $(`${session.type}-container`).css('display','initial')
-  }
-})
