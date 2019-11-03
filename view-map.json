@@ -2,7 +2,8 @@
   "view-directory":"/public/private",
   "views":{
     "/home":{
-      "teacher":"/home.html"
+      "teacher":"teacher.html",
+      "student":"student.html"
     },
     "/":"/index.html"
   }
