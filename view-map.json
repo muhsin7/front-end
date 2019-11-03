@@ -5,6 +5,9 @@
       "teacher":"teacher.html",
       "student":"student.html"
     },
-    "/":"/index.html"
+    "/":"index.html",
+    "/profile": "profile.html",
+    "/assignments": "assignments.html",
+    "/class": "class.html"
   }
 }

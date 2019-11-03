@@ -66,7 +66,7 @@
       <center>
         <h4>Log In</h4>
       </center>
-      <div class="form" action="/auth/login" method="post" on-error-prompt-selector=".loginerror" on-success-redirect="home.html">
+      <div class="form" action="/auth/login" method="post" on-error-prompt-selector=".loginerror" on-success-redirect="/home/">
         <label>Username</label> <i><input type="text" name="username" placeholder="Enter Username"></i>
         <label>Password</label><i><input type="password" name="password" placeholder="Enter Password"></i>
         <div class="loginerror">
@@ -87,7 +87,7 @@
       <center>
         <h4>Sign up</h4>
       </center>
-      <div class="form" action="/auth/signup" method="post" id="signUpForm" output-body custom-validation="true" required-element="<span class='red-prompt'>" on-error-prompt-selector=".loginerror" on-success-redirect="home.html">
+      <div class="form" action="/auth/signup" method="post" id="signUpForm" output-body custom-validation="true" required-element="<span class='red-prompt'>" on-error-prompt-selector=".loginerror" on-success-redirect="/home/">
         <div class="input-field col s12" ignore-value-container>
           <select id="accountType" read-value-container read-value name="type" required>
             <option value="" disabled selected>Choose account type</option>
