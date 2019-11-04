@@ -1,13 +1,17 @@
 {
-  "view-directory":"/public/private",
+  "view-directory":"public/private",
   "views":{
-    "/home":{
-      "teacher":"teacher.html",
-      "student":"student.html"
+    "session":{
+      "/home":{
+        "teacher":"teacher.html",
+        "student":"student.html"
+      },
+      "/profile": "profile.html",
+      "/assignments": "assignments.html",
+      "/class": "class.html"
     },
-    "/":"index.html",
-    "/profile": "profile.html",
-    "/assignments": "assignments.html",
-    "/class": "class.html"
+    "no-session":{
+      "/":"index.html"
+    }
   }
 }
