@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- /////////////////////////////////////////////////////// -->
+    <link rel="stylesheet" href="../css/icons.css">
+    <link rel="stylesheet" href="../css/materialize.css">
+    <link rel="stylesheet" href="../css/materialize.css">
+    <link rel="stylesheet" href="../css/nord-colours.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <!-- /////////////////////////////////////////////////////// -->
+
+  </head>
+  <body>
+
+    <nav class="nord-darkblue" role="navigation">
+      <ul id="profileDropdown" class="dropdown-content">
+        <li><a href="/profile/" class="modal-trigger">Profile</a></li>
+        <li><a href="/auth/logout" class="modal-trigger">Log out</a></li>
+      </ul>
+      <div class="nav-wrapper container">
+        <a id="logo-container" href="/home/" class="brand-logo"><img src="../images/cisco.png" height="50px" width="auto" style="padding-top:5px;" /></a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="/home/">Home</a></li>
+          <li><a href="/assignments/">Assignments</a></li>
+          <li><a class="dropdown-trigger" href="#!" data-target="profileDropdown"><i class="material-icons">person arrow_drop_down</i></a></li>
+        </ul>
+
+        <ul id="nav-mobile" class="sidenav">
+          <li><a href="/home/">Home</a></li>
+          <li><a href="/assignments/">Assignments</a></li>
+          <li><a href="/profile/" class="modal-trigger">Profile</a></li>
+          <li><a href="/auth/logout" class="modal-trigger">Log out</a></li>
+        </ul>
+        <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      </div>
+    </nav>
+
+
+
+
+    <div class="container class-header">
+      <div class="row">
+        <h3>Class name</h3>
+        <h5>Teacher</h5>
+        <a href="#" data-target="class_page_menu" class="dropdown-trigger"><i class="right-align material-icons medium class_menu">more_horiz</i></a>
+      </div>
+    </div>
+
+    <ul class="dropdown-content" id="class_page_menu">
+      <li class="color_list_item">
+            <ul class="color-picker">
+              <!-- <li><div class="color nord-lightblue"></div></li>
+              <li><div class="color nord-darkblue"></div></li>
+              <li><div class="color nord-darkgrey"></div></li>
+              <li><div class="color nord-red"></div></li>
+              <li><div class="color nord-orange"></div></li>
+              <li><div class="color nord-purple"></div></li>
+              <li><div class="color nord-yellow"></div></li> -->
+              <div href="#" class="color nord-lightblue"></div>
+              <div href="#" class="color nord-darkblue"></div>
+              <div href="#" class="color nord-darkgrey"></div>
+              <div href="#" class="color nord-red"></div>
+              <div href="#" class="color nord-orange"></div>
+              <div href="#" class="color nord-purple"></div>
+              <div href="#" class="color nord-yellow"></div>
+            </ul>
+        </li>
+          <li class="class_options"><a href="#!">Leave class</a></li>
+          <li class="warn class_options"><a href="#!"><i class="material-icons">edit</i>Rename</a></li>
+          <li class="warn class_options"><a href="#!"><i class="material-icons">delete</i>Delete class</a></li>
+    </ul>
+    <div class="container">
+        <div class="row col s12">
+          <div class="col s2">
+            <a href="#" onclick="show(this);"><div class="tab">Members</div></a>
+            <a href="#" onclick="show(this);"><div class="tab">Posts</div></a>
+            <a href="#" onclick="show(this);"><div class="tab">Assignments</div></a>
+          </div>
+          <div class="class_members col s8 offset-s1">
+            <h3>Members</h3>
+            <hr />
+          </div>
+          <div class="class_posts col s9 offset-s1">
+            <h3>Posts</h3>
+            <hr />
+          </div>
+          <div class="class_assignments col s9 offset-s1">
+            <h3>Assignments</h3>
+            <hr />
+          </div>
+        </div>
+    </div>
+    <!-- /////////////////////////////////////////////////////// -->
+    <script type="text/javascript" src="../js/angular.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/materialize.js"></script>
+    <script type="text/javascript" src="../js/materialize.min.js"></script>
+    <script type="text/javascript" src="../js/initializing.js"></script>
+    <script type="text/javascript" src="../js/script.js"></script>
+    <script type="text/javascript" src="../js/events.js"></script>
+    <!-- /////////////////////////////////////////////////////// -->
+    <script>
+      $('div.color').click(function(){
+        var class = this.className;
+        alert(class);
+      }
+      )
+
+      function show(){
+        if this.hasClass("class_members"){
+          this.css("visibility", "visible");
+          $('.class_posts').css("visibility", "hidden");
+          $('.class_assignments').css("visibility", "hidden");
+        }
+
+        else if this.hasClass("class_posts"){
+          this.css("visibility", "visible");
+          $('.class_members').css("visibility", "hidden");
+          $('.class_assignments').css("visibility", "hidden");
+        }
+
+        else if this.hasClass("class_assignments"){
+          this.css("visibility", "visible");
+          $('.class_posts').css("visibility", "hidden");
+          $('.class_members').css("visibility", "hidden");
+        }
+      }
+    </script>
+
+  </body>
+</html>

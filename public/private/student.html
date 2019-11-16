@@ -114,18 +114,25 @@
           <div class="truncate">
             <div class="class_text">
               <session-error>
-                <a href="/class/"><li class="truncate">Chemistry HL</li></a>
-                <a href="/class/"><li class="truncate">Physics HL</li></a>
-                <a href="/class/"><li class="truncate">Mathematics AA HL</li></a>
-                <a href="/class/"><li class="truncate">Spanish Ab HL</li></a>
-                <a href="/class/"><li class="truncate">Language and Literature SL</li></a>
-                <a href="/class/"><li class="truncate">Economics SL</li></a>
+                <a href="/class/"><li class="truncate">Chemistry HL<a href="#" class="dropdown-trigger" data-target="classDropdown"><i class="material-icons class_menu">more_horiz</i></a></li></a>
+                <a href="/class/"><li class="truncate">Physics HL<a href="#" class="dropdown-trigger" data-target="classDropdown"><i class="material-icons class_menu">more_horiz</i></a></li></a>
+                <a href="/class/"><li class="truncate">Mathematics AA HL<a href="#" class="dropdown-trigger" data-target="classDropdown"><i class="material-icons class_menu">more_horiz</i></a></li></a>
+                <a href="/class/"><li class="truncate">Spanish Ab HL<a href="#" class="dropdown-trigger" data-target="classDropdown"><i class="material-icons class_menu">more_horiz</i></a></li></a>
+                <a href="/class/"><li class="truncate">Language and Literature SL<a href="#" class="dropdown-trigger" data-target="classDropdown"><i class="material-icons class_menu">more_horiz</i></a></li></a>
+                <a href="/class/"><li class="truncate">Economics SL<a href="#" class="dropdown-trigger" data-target="classDropdown"><i class="material-icons class_menu">more_horiz</i></a></li></a>
               </session-error>
             </div>
           </div>
           <hr />
-          <a href="#joinClass" class="joinclass modal-trigger"><i class="material-icons tiny">add</i><b>Join Class</b></a>
-          <br style="font-size: 50%"/>
+          <ul class="dropdown-content" id="classDropdown" href="#">
+            <li class="class_options"><a href="#!">Open class</a></li>
+            <li class="class_options"><a href="#!">Leave class</a></li>
+    
+          </ul>
+          <br />
+          <center class="class_buttons">
+            <a href="#joinClass" class="joinclass modal-trigger"><i class="material-icons tiny">add</i><b>Join Class</b></a>
+          </center>
           <!-- <a href="#createClass" class="joinclass modal-trigger"><i class="material-icons tiny">add</i><b>Create Class</b></a>
           <br style="font-size: 50%"/> -->
           <br />

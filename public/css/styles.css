@@ -227,14 +227,15 @@ teacher-container,session, session-onload, student-container,session-error {
 .joinclass{
   margin: 10px;
   bottom: 10px !important;
-  padding: 2px;
+  padding: 5px;
   border-radius: 5px;
   transition: .5s ease;
   background-color: #F28650;
   color: #003255;
   /* padding-left: 5px; */
-  font-size:12px;
+  font-size:14px;
   /* padding-right: 5px; */
+  width: 100% !important;
 }
 
 .joinclass:hover{
@@ -248,4 +249,146 @@ teacher-container,session, session-onload, student-container,session-error {
   border-radius: 5px;
   top: 50% !important;
   bottom: 50% !important;
+}
+
+.class_menu{
+  border-radius: 50px;
+  visibility: hidden;
+  /* transition: .5s ease; */
+  list-style-type: none !important;
+  /* display: inline !important; */
+}
+
+.class_text li:hover .class_menu{
+  visibility: visible;
+}
+
+.class_menu:hover{
+  background-color: rgba(0,0,0,0.5);
+}
+
+
+.class-header{
+  border-radius: 10px;
+  background-color: #722C8A;
+  color: white;
+  margin-top: 20px;
+}
+
+.class-header .row{
+  padding: 10px;
+  padding-left: 20px;
+}
+
+.class-header i{
+  visibility: visible;
+  transition: .5s ease;
+}
+
+.color{
+  height: 24px;
+  width: 24px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#class_page_menu{
+  width: auto !important;
+  border-radius: 10px;
+}
+
+#class_page_menu li{
+    height: auto !important;
+}
+
+.color-picker div{
+  display: inline-block;
+  display: flex;
+  margin: 0px;
+  display: inline-block; }
+
+.color-picker{
+  margin: 7.5px;
+  margin-top: 10px;
+}
+
+.color_list_item{
+  cursor: default !important;
+}
+
+
+.tab{
+  color: #fff;
+  background-color: #722C8A;
+  padding: 5px;
+  font-size: 17.5px;
+  margin: 5px;
+  border-radius: 5px;
+  transition: .5s ease;
+}
+
+.tab:hover{
+  color: #722C8A;
+  background-color: #fff;
+  border: solid;
+  border-color: #722C8A;
+}
+
+.row .col{
+  padding: 0 0;
+}
+
+.class_members, .class_posts, .class_assignments{
+  visibility: hidden;
+}
+
+#classDropdown{
+  width: 150px !important;
+  height: auto  !important;
+  border-radius: 5px;
+}
+
+.class_options{
+  min-height: 15px !important;
+  margin-top: 0px !important;
+  transition: .5s ease;
+  border-radius: 0px !important;
+}
+
+.class_options:hover{
+  background: #F28650 !important;
+}
+
+.dropdown-content li > a{
+  padding: 5px !important;
+  color: #722C8A;
+}
+
+.warn{
+  background-color: #ef5d7a !important;
+  color: #fff !important !important;
+  transition: .5s ease;
+}
+
+.warn  a > li{
+  color: #fff;
+}
+
+.class_options i{
+  margin: 0 0 0 0 !important;
+}
+
+.warn:hover{
+  color: #ef5d7a !important;
+  background-color: #F28650 !important;
+}
+
+.class_buttons{
+  margin-bottom: 10px;
+}
+
+.class_buttons a{
+  font-size: 14px;
+  bottom: 15px !important;
 }

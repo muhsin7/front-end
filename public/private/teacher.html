@@ -112,25 +112,32 @@
           <b>Classes</b>
           <hr/>
           <div class="truncate">
-            <div class="class_text" id="class-list">
+            <ul class="class_text" id="class-list">
               <session-error>
-                <a href="/class/"><li class="truncate">Chemistry HL</li></a>
-                <a href="/class/"><li class="truncate">Physics HL</li></a>
-                <a href="/class/"><li class="truncate">Mathematics AA HL</li></a>
-                <a href="/class/"><li class="truncate">Spanish Ab HL</li></a>
-                <a href="/class/"><li class="truncate">Language and Literature SL</li></a>
-                <a href="/class/"><li class="truncate">Economics SL</li></a>
+                <a href="/class/"><li class="truncate">Chemistry HL<a href="#" class="dropdown-trigger" data-target="classDropdown"><i class="material-icons class_menu">more_horiz</i></a></li></a>
+                <a href="/class/"><li class="truncate">Physics HL<a href="#" class="dropdown-trigger" data-target="classDropdown"><i class="material-icons class_menu">more_horiz</i></a></li></a>
+                <a href="/class/"><li class="truncate">Mathematics AA HL<a href="#" class="dropdown-trigger" data-target="classDropdown"><i class="material-icons class_menu">more_horiz</i></a></li></a>
+                <a href="/class/"><li class="truncate">Spanish Ab HL<a href="#" class="dropdown-trigger" data-target="classDropdown"><i class="material-icons class_menu">more_horiz</i></a></li></a>
+                <a href="/class/"><li class="truncate">Language and Literature SL<a href="#" class="dropdown-trigger" data-target="classDropdown"><i class="material-icons class_menu">more_horiz</i></a></li></a>
+                <a href="/class/"><li class="truncate">Economics SL<a href="#" class="dropdown-trigger" data-target="classDropdown"><i class="material-icons class_menu">more_horiz</i></a></li></a>
               </session-error>
-            </div>
+            </ul>
           </div>
           <hr />
-          <a href="#joinClass" class="joinclass modal-trigger"><i class="material-icons tiny">add</i><b>Join Class</b></a>
-          <a href="#createClass" class="joinclass modal-trigger"><i class="material-icons tiny">add</i><b>Create Class</b></a>
-          <br style="font-size: 50%"/>
-          <!-- <a href="#createClass" class="joinclass modal-trigger"><i class="material-icons tiny">add</i><b>Create Class</b></a>
-          <br style="font-size: 50%"/> -->
-          <br />
+          <center class="class_buttons">
+            <a href="#joinClass" class="joinclass modal-trigger"><i class="material-icons tiny">add</i><b>Join Class</b></a>
+            <br   /><br />
+            <a href="#createClass" class="joinclass modal-trigger"><i class="material-icons tiny">add</i><b>Create Class</b></a>
+          </center>
+          <!-- <br /> -->
         </div>
+
+        <ul class="dropdown-content" id="classDropdown" href="#">
+          <li class="class_options"><a href="#!">Open class</a></li>
+          <li class="class_options"><a href="#!">Leave class</a></li>
+          <li class="warn class_options"><a href="#!"><i class="material-icons">edit</i>Rename</a></li>
+          <li class="warn class_options"><a href="#!"><i class="material-icons">delete</i>Delete class</a></li>
+        </ul>
 
         <div id="joinClass" class="modal">
           <div class="modal-content">
@@ -238,6 +245,14 @@
            });
          });
         //////////////////////
+
+
+
+      $('#classDropdown').mouseout(function(){
+          var isntance = M.Dropdown.getInstance('#classDropdown');
+          instance.close();
+        }
+      );
   </script>
   </body>
 
