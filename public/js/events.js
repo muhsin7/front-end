@@ -1,4 +1,15 @@
 var l = console.log;
+$.fn.dissolve = function(){
+  let elem = $(this);
+  let parent = elem.parent();
+  let sibling = elem.prev();
+  elem.detach();
+  for(let child of elem.children()) {
+    if(sibling[0] == undefined) parent.prepend(child)
+    else sibling.after(child)
+  }
+  elem.remove()
+}
 let observer = new MutationObserver((mutationList) => {
   for(let mutation of mutationList){
     if(mutation.type == "attributes") {
@@ -22,10 +33,15 @@ $.initSession = () => {
         $('session-onload').css('display','inline')
       }, error:function(err) {
         $(window).trigger("sessionLoaded",[new Error("Session failed to load")])
+        $(window).trigger("sessionError")
       }
     })
   })
 }
+$(window).on('sessionError',() => {
+  $('session-error').dissolve()
+  l('error in session')
+})
 $(() => {
   $.fn.arr = function(){
     return Array.from(this)
@@ -55,7 +71,7 @@ $(() => {
     let form = $(this);
     let IS_VALID = true;
     for (let k of form.find('[required]')) {
-      let validationElement = $((typeof form.attr("required-element") == 'undefined') ?  '<span class="red-prompt">': form.attr('required-element'));
+      let validationElement = $((typeof form.attr("validation-element") == 'undefined') ?  '<span class="red-prompt">': form.attr('required-element'));
       k = $(k)
       let valid = true;
       if (k.val() == null) valid = false;
@@ -85,11 +101,11 @@ $(() => {
           break;
         } else if(k.next().attr('class') == validationElement.attr('class')) k.next().remove();
       }
-      for (let k of form.find("input[type=text][minlength],input[type=password][minlength]")) {
+      for (let k of form.find("input[type=text][min-length],input[type=password][min-length]")) {
         k = $(k);
-        // l("minlength handler called")
+        // l("min-length handler called")
         let validationElement = $((typeof form.attr("required-element") == 'undefined') ?  '<span class="red-prompt">': form.attr('required-element'));
-        let length = (isNaN(k.attr("minlength"))) ? 0 : Number(k.attr("minlength"));
+        let length = (isNaN(k.attr("min-length"))) ? 0 : Number(k.attr("min-length"));
         let valid = true
         if(k.val() == null) valid=false;
         else if(k.val().length < length) valid=false;
@@ -155,7 +171,7 @@ $(() => {
   })
   $('.form').on('success',function(event,response){
     let form = $(this);
-
+    l('why is this a success')
     eval(`(function(response){${form.attr('on-success')}})`).call(form,response);
     if(form.attr("on-success-redirect") != undefined){
       window.location.href = form.attr("on-success-redirect")

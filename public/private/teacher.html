@@ -112,17 +112,20 @@
           <b>Classes</b>
           <hr/>
           <div class="truncate">
-            <div class="class_text">
-              <a href="/class/"><li class="truncate">Chemistry HL</li></a>
-              <a href="/class/"><li class="truncate">Physics HL</li></a>
-              <a href="/class/"><li class="truncate">Mathematics AA HL</li></a>
-              <a href="/class/"><li class="truncate">Spanish Ab HL</li></a>
-              <a href="/class/"><li class="truncate">Language and Literature SL</li></a>
-              <a href="/class/"><li class="truncate">Economics SL</li></a>
+            <div class="class_text" id="class-list">
+              <session-error>
+                <a href="/class/"><li class="truncate">Chemistry HL</li></a>
+                <a href="/class/"><li class="truncate">Physics HL</li></a>
+                <a href="/class/"><li class="truncate">Mathematics AA HL</li></a>
+                <a href="/class/"><li class="truncate">Spanish Ab HL</li></a>
+                <a href="/class/"><li class="truncate">Language and Literature SL</li></a>
+                <a href="/class/"><li class="truncate">Economics SL</li></a>
+              </session-error>
             </div>
           </div>
           <hr />
           <a href="#joinClass" class="joinclass modal-trigger"><i class="material-icons tiny">add</i><b>Join Class</b></a>
+          <a href="#createClass" class="joinclass modal-trigger"><i class="material-icons tiny">add</i><b>Create Class</b></a>
           <br style="font-size: 50%"/>
           <!-- <a href="#createClass" class="joinclass modal-trigger"><i class="material-icons tiny">add</i><b>Create Class</b></a>
           <br style="font-size: 50%"/> -->
@@ -131,10 +134,25 @@
 
         <div id="joinClass" class="modal">
           <div class="modal-content">
-            <div class="form">
+            <div class="form" method="POST" on-success-reload="true" action="/api/class/join" on-error-prompt-selector="#invalidClass" on-error="console.log(response)">
               <h4>Enter Group Code</h4>
-              <input type="text" name="groupcode" id="groupcode" data-length="5"/>
-              <label for="groupcode">Enter 6 character group code (case insensitive)</label>
+              <input type="text" name="classCode" id="groupcode" data-length="5"/>
+              <label for="groupcode">Enter 6 character group code (case insensitive)</label><br>
+              <span id="invalidClass" style="color:red"></span>
+              <div class="modal-footer">
+                <button type="submit" name="button" class="btn-flat nord-darkblue-text">Submit</button>
+                <a href="#!" class="modal-close waves-effect waves-red btn-flat nord-red" style="color:white">Cancel</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="createClass" class="modal">
+          <div class="modal-content">
+            <div class="form" method="POST" validation-element="<span style='color:red'></span>" on-success-reload="true" action="/api/class/create" on-error-prompt-selector="#invalidClass" on-error="console.log(response)">
+              <h4>Enter class name</h4>
+              <input type="text" name="className" id="groupcode" min-length="4"/><br>
+              <label for="groupcode">Enter name of the class</label><br>
+              <span id="invalidClass" style="color:red"></span>
               <div class="modal-footer">
                 <button type="submit" name="button" class="btn-flat nord-darkblue-text">Submit</button>
                 <a href="#!" class="modal-close waves-effect waves-red btn-flat nord-red" style="color:white">Cancel</a>
@@ -192,6 +210,21 @@
 
 
         /////AUTOCOMPLETE/////
+        $.ajax({
+          url:"/api/class/list/classes",
+          type:"GET",
+          success:function(e){
+            // <a href="/class/"><li class="truncate">Chemistry HL</li></a>
+            // l(e)
+            for(let classGroup of e){
+              let classElem = $(`<a href="/class/${classGroup._id}"><li class="truncate">${classGroup.name}</li></a>`);
+              let classList = $('#class-list');
+              classList.append(classElem)
+            }
+          }, error:function(e){
+            console.error(e)
+          }
+        })
          $(document).ready(function(){
            $('input.autocomplete').autocomplete({
              data: {

@@ -220,20 +220,21 @@ a{
   /* margin-left: 50px; */
   color: #fff;
 }
-teacher-container,session-data, session-onload, student-container {
+teacher-container,session, session-onload, student-container,session-error {
   display:none;
 }
 
 .joinclass{
   margin: 10px;
   bottom: 10px !important;
-  padding: 5px;
+  padding: 2px;
   border-radius: 5px;
   transition: .5s ease;
   background-color: #F28650;
   color: #003255;
-  padding-left: 5px;
-  padding-right: 5px;
+  /* padding-left: 5px; */
+  font-size:12px;
+  /* padding-right: 5px; */
 }
 
 .joinclass:hover{
