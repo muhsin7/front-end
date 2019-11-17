@@ -66,8 +66,13 @@
             </ul>
         </li>
           <li class="class_options"><a href="#!">Leave class</a></li>
-          <li class="warn class_options"><a href="#!"><i class="material-icons">edit</i>Rename</a></li>
-          <li class="warn class_options"><a href="#!"><i class="material-icons">delete</i>Delete class</a></li>
+          <student-container>
+            <li class="class_options"><a href="#!">something with class</a></li>
+          </student-container>
+          <teacher-container>
+            <li class="warn class_options"><a href="#!"><i class="material-icons">edit</i>Rename</a></li>
+            <li class="warn class_options"><a href="#!"><i class="material-icons">delete</i>Delete class</a></li>
+          </teacher-container>
     </ul>
     <div class="container">
         <div class="row col s12">
@@ -100,31 +105,31 @@
     <script type="text/javascript" src="../js/events.js"></script>
     <!-- /////////////////////////////////////////////////////// -->
     <script>
-      $('div.color').click(function(){
-        var class = this.className;
-        alert(class);
-      }
-      )
-
-      function show(){
-        if this.hasClass("class_members"){
-          this.css("visibility", "visible");
-          $('.class_posts').css("visibility", "hidden");
-          $('.class_assignments').css("visibility", "hidden");
+      /*$('div.color').click(function(){
+        var classColor = this.className;
+        alert(classColor);
         }
-
-        else if this.hasClass("class_posts"){
-          this.css("visibility", "visible");
-          $('.class_members').css("visibility", "hidden");
-          $('.class_assignments').css("visibility", "hidden");
-        }
-
-        else if this.hasClass("class_assignments"){
-          this.css("visibility", "visible");
-          $('.class_posts').css("visibility", "hidden");
-          $('.class_members').css("visibility", "hidden");
-        }
-      }
+      )*/
+      $.initSession()
+      // function show(){
+      //   if this.hasClass("class_members"){
+      //     this.css("visibility", "visible");
+      //     $('.class_posts').css("visibility", "hidden");
+      //     $('.class_assignments').css("visibility", "hidden");
+      //   }
+      //
+      //   else if this.hasClass("class_posts"){
+      //     this.css("visibility", "visible");
+      //     $('.class_members').css("visibility", "hidden");
+      //     $('.class_assignments').css("visibility", "hidden");
+      //   }
+      //
+      //   else if this.hasClass("class_assignments"){
+      //     this.css("visibility", "visible");
+      //     $('.class_posts').css("visibility", "hidden");
+      //     $('.class_members').css("visibility", "hidden");
+      //   }
+      // }
     </script>
 
   </body>

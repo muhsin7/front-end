@@ -112,7 +112,7 @@
           <b>Classes</b>
           <hr/>
           <div class="truncate">
-            <div class="class_text">
+            <div class="class_text" id="class-list">
               <session-error>
                 <a href="/class/"><li class="truncate">Chemistry HL<a href="#" class="dropdown-trigger" data-target="classDropdown"><i class="material-icons class_menu">more_horiz</i></a></li></a>
                 <a href="/class/"><li class="truncate">Physics HL<a href="#" class="dropdown-trigger" data-target="classDropdown"><i class="material-icons class_menu">more_horiz</i></a></li></a>
@@ -139,10 +139,11 @@
 
         <div id="joinClass" class="modal">
           <div class="modal-content">
-            <div class="form">
+            <div class="form" method="POST" on-success-reload="true" action="/api/class/join" on-error-prompt-selector="#invalidClass" on-error="console.log(response)">
               <h4>Enter Group Code</h4>
-              <input type="text" name="groupcode" id="groupcode" data-length="5"/>
-              <label for="groupcode">Enter 6 character group code (case insensitive)</label>
+              <input type="text" name="classCode" id="groupcode" data-length="5"/>
+              <label for="groupcode">Enter 6 character group code (case insensitive)</label><br>
+              <span id="invalidClass" style="color:red"></span>
               <div class="modal-footer">
                 <button type="submit" name="button" class="btn-flat nord-darkblue-text">Submit</button>
                 <a href="#!" class="modal-close waves-effect waves-red btn-flat nord-red" style="color:white">Cancel</a>
@@ -197,7 +198,21 @@
             $('select').formSelect();
           });
         ////////////////////
-
+        $.ajax({
+          url:"/api/class/list/classes",
+          type:"GET",
+          success:function(e){
+            // <a href="/class/"><li class="truncate">Chemistry HL</li></a>
+            // l(e)
+            for(let classGroup of e){
+              let classElem = $(`<a href="/class/"><li class="truncate">${classGroup.name}</li></a>`);
+              let classList = $('#class-list');
+              classList.append(classElem)
+            }
+          }, error:function(e){
+            console.error(e)
+          }
+        })
 
         /////AUTOCOMPLETE/////
          $(document).ready(function(){
