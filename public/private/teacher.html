@@ -224,7 +224,7 @@
             // <a href="/class/"><li class="truncate">Chemistry HL</li></a>
             // l(e)
             for(let classGroup of e){
-              let classElem = $(`<a href="/class/${classGroup._id}"><li class="truncate">${classGroup.name}</li></a>`);
+              let classElem = $(`<a href="/class/"><li class="truncate">${classGroup.name}</li></a>`);
               let classList = $('#class-list');
               classList.append(classElem)
             }
