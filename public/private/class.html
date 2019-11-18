@@ -40,8 +40,8 @@
 
     <div class="container class-header">
       <div class="row">
-        <h3>Class name</h3>
-        <h5>Teacher</h5>
+        <h3>${class}</h3>
+        <h5>${teacher}</h5>
         <a href="#" data-target="class_page_menu" class="dropdown-trigger"><i class="right-align material-icons medium class_menu">more_horiz</i></a>
       </div>
     </div>
@@ -65,21 +65,18 @@
               <div href="#" class="color nord-yellow"></div>
             </ul>
         </li>
-          <li class="class_options"><a href="#!">Leave class</a></li>
-          <student-container>
-            <li class="class_options"><a href="#!">something with class</a></li>
-          </student-container>
+          <li class="class_options"><a href="#!" id="leaveClass">Leave class</a></li>
           <teacher-container>
-            <li class="warn class_options"><a href="#!"><i class="material-icons">edit</i>Rename</a></li>
-            <li class="warn class_options"><a href="#!"><i class="material-icons">delete</i>Delete class</a></li>
+            <li class="warn class_options"><a href="#!" id="renameClass"><i class="material-icons">edit</i>Rename</a></li>
+            <li class="warn class_options"><a href="#!" id="deleteClass"><i class="material-icons">delete</i>Delete class</a></li>
           </teacher-container>
     </ul>
     <div class="container">
         <div class="row col s12">
           <div class="col s2">
-            <a href="#" onclick="show(this);"><div class="tab">Members</div></a>
-            <a href="#" onclick="show(this);"><div class="tab">Posts</div></a>
-            <a href="#" onclick="show(this);"><div class="tab">Assignments</div></a>
+            <a onclick="activateTab('postsTab');"><div class="tab">Posts</div></a>
+            <a onclick="activateTab('membersTab');"><div class="tab">Members</div></a>
+            <a onclick="activateTab('assignmentsTab');"><div class="tab">Assignments</div></a>
           </div>
           <div class="class_members col s8 offset-s1">
             <h3>Members</h3>
@@ -96,9 +93,103 @@
                 </div>
             <hr />
           </div>
+        </div>
+      </div>
           <div class="class_assignments col s9 offset-s1">
             <h3>Assignments</h3>
             <hr />
+          <div class="tab-container">
+            <div class="tab-panel col s8 offset-s1" tab-id="membersTab">
+              <h3>Members</h3>
+              <hr />
+              muh-chan-insert-here.herokuapp.com
+            </div>
+            <div class="tab-panel activeTab col s9 offset-s1" tab-id="postsTab">
+              <h3>Posts</h3>
+              <hr />
+              <div class="container col offset-s1 s8">
+                <div class="row">
+                  <div class="post">
+                    <a href="#" class="assignment-subject">Class</a>
+                    <h5>Title for teacher</h5>
+                    <h7>User</h7>
+                    <h6>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h6>
+                    <a href="#"><i class="tiny material-icons">attach_file</i> attached_file.png</a>
+                  </div>
+                  </div>
+              </div>
+            </div>
+            <div class="tab-panel col s9 offset-s1" tab-id="assignmentsTab">
+              <h3>Assignments</h3>
+              <hr />
+              <div class="col s10 offset-s1">
+                  <div class="row">
+                    <h4>All</h4>
+                    <hr />
+                  </div>
+                  <div class="row">
+
+                    <div class=" col s2 assignment-item">
+                      <div class="assignment-content">
+                        <div class="assignment-name">Math stuff</div>
+                        <div class="assignment-subject">Math</div>
+                        <div class="due">Due Wednesday<br>October 16, 2019</div>
+                        <center><div class="submitted btn submit">Submitted</div></center>
+                      </div>
+                    </div>
+
+
+                  <div class="col s2 assignment-item">
+                    <div class="assignment-content">
+                      <div class="assignment-name">Chemistry stuff</div>
+                      <div class="assignment-subject">Chemistry</div>
+                      <div class="due">Due Tomorrow<br>October 15, 2019</div>
+                      <center><div class="not-submitted btn submit"><div id="submit">Not Submitted</div></div></center>
+                    </div>
+                  </div>
+
+                </div>
+
+                <br>
+                <br>
+
+                <div class="row">
+                  <h4>Due Soon</h4>
+                  <hr />
+                </div>
+                <div class="row">
+                  <div class="col s2 assignment-item">
+                    <div class="assignment-content">
+                      <div class="assignment-name">Chemistry stuff</div>
+                      <div class="assignment-subject">Chemistry</div>
+                      <div class="due">Due Tomorrow<br>October 15, 2019</div>
+                      <center><div class="not-submitted btn submit"><div id="submit">Not Submitted</div></div></center>
+                    </div>
+                  </div>
+                </div>
+
+                <br>
+                <br>
+
+                <div class="row">
+                  <h4>Submitted</h4>
+                  <hr />
+                </div>
+                <div class="row">
+                  <div class="col s2 assignment-item">
+                    <div class="assignment-content">
+                      <div class="assignment-name">Math stuff</div>
+                      <div class="assignment-subject">Math</div>
+                      <div class="due">Due Wednesday<br>October 16, 2019</div>
+                      <center><div class="submitted btn submit">Submitted</div></center>
+                    </div>
+                  </div>
+                </div>
+
+
+
+              </div>
+            </div>
           </div>
         </div>
     </div>
@@ -117,7 +208,38 @@
         alert(classColor);
         }
       )*/
-      $.initSession()
+      $.initSession();
+      $('#leaveClass').on("click",(event) => {
+        $.ajax({
+          url:"/api/class/leave",
+          type:"POST",
+          data:{classID:splitUrl().lastElem()},
+          success:function(e){
+            window.location.href = "/home"
+          }, error:function(e){
+            alert("Error occured in operation")
+            console.log(e)
+          }
+        })
+      })
+      $('#deleteClass').on("click",(event) => {
+        $.ajax({
+          url:"/api/class/disband",
+          type:"POST",
+          data:{classID:splitUrl().lastElem()},
+          success:function(response){
+            window.location.href = "/home"
+          }, error:function(error){
+            alert("Error occured in operation");
+            console.log(error)
+          }
+        })
+      })
+      function activateTab(tabId){
+        let mainElem = $(`[tab-id=${tabId}]`);
+        mainElem.parent().children(".activeTab").removeClass('activeTab');
+        mainElem.addClass('activeTab')
+      }
       // function show(){
       //   if this.hasClass("class_members"){
       //     this.css("visibility", "visible");

@@ -51,3 +51,10 @@ $(window).on("sessionLoaded",(event,error,response) => {
 
 
 // NON MATERIALISE STUFF:
+
+window.splitUrl = function(){
+  return window.location.href.split("/")
+}
+Array.prototype.lastElem = function(){
+  return this[this.length-1]
+}
