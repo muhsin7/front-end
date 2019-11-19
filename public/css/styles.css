@@ -326,26 +326,22 @@ teacher-container,session, session-onload, student-container,session-error {
   margin: 5px;
   border-radius: 5px;
   transition: .5s ease;
-  border:rgba(0,0,0,0) solid 3px;
-  cursor:pointer;
 }
 
 .tab:hover{
   color: #722C8A;
   background-color: #fff;
-  border: #722C8A 3px solid;
+  border: solid;
+  border-color: #722C8A;
 }
 
 .row .col{
   padding: 0 0;
 }
-.tab-panel {
-  display: none;
-}
-.tab-panel.activeTab {
-  display:initial
-}
 
+.class_members, .class_posts, .class_assignments{
+  visibility: hidden;
+}
 
 #classDropdown{
   width: 150px !important;
