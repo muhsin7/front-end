@@ -40,8 +40,8 @@
 
     <div class="container class-header">
       <div class="row">
-        <h3>Class name</h3>
-        <h5>Teacher</h5>
+        <h3>${class}</h3>
+        <h5>${teacher}</h5>
         <a href="#" data-target="class_page_menu" class="dropdown-trigger"><i class="right-align material-icons medium class_menu">more_horiz</i></a>
       </div>
     </div>
@@ -65,21 +65,18 @@
               <div href="#" class="color nord-yellow"></div>
             </ul>
         </li>
-          <li class="class_options"><a href="#!">Leave class</a></li>
-          <student-container>
-            <li class="class_options"><a href="#!">something with class</a></li>
-          </student-container>
+          <li class="class_options"><a href="#!" id="leaveClass">Leave class</a></li>
           <teacher-container>
-            <li class="warn class_options"><a href="#!"><i class="material-icons">edit</i>Rename</a></li>
-            <li class="warn class_options"><a href="#!"><i class="material-icons">delete</i>Delete class</a></li>
+            <li class="warn class_options"><a href="#!" id="renameClass"><i class="material-icons">edit</i>Rename</a></li>
+            <li class="warn class_options"><a href="#!" id="deleteClass"><i class="material-icons">delete</i>Delete class</a></li>
           </teacher-container>
     </ul>
     <div class="container">
         <div class="row col s12">
           <div class="col s2">
-            <a href="#" onclick="show(this);"><div class="tab">Members</div></a>
-            <a href="#" onclick="show(this);"><div class="tab">Posts</div></a>
-            <a href="#" onclick="show(this);"><div class="tab">Assignments</div></a>
+            <a onclick="activateTab('postsTab');"><div class="tab">Posts</div></a>
+            <a onclick="activateTab('membersTab');"><div class="tab">Members</div></a>
+            <a onclick="activateTab('assignmentsTab');"><div class="tab">Assignments</div></a>
           </div>
           <div class="class_members col s8 offset-s1">
             <h3>Members</h3>
@@ -87,7 +84,6 @@
           </div>
           <div class="class_posts col s9 offset-s1">
             <h3>Posts</h3>
-<<<<<<< HEAD
                 <div class="post">
                   <a href="#" class="assignment-subject">Class</a>
                   <h5>Title for teacher</h5>
@@ -194,13 +190,6 @@
 
               </div>
             </div>
-=======
-            <hr />
-          </div>
-          <div class="class_assignments col s9 offset-s1">
-            <h3>Assignments</h3>
-            <hr />
->>>>>>> parent of 73e9210... Optimised class.html
           </div>
         </div>
     </div>
@@ -219,7 +208,38 @@
         alert(classColor);
         }
       )*/
-      $.initSession()
+      $.initSession();
+      $('#leaveClass').on("click",(event) => {
+        $.ajax({
+          url:"/api/class/leave",
+          type:"POST",
+          data:{classID:splitUrl().lastElem()},
+          success:function(e){
+            window.location.href = "/home"
+          }, error:function(e){
+            alert("Error occured in operation")
+            console.log(e)
+          }
+        })
+      })
+      $('#deleteClass').on("click",(event) => {
+        $.ajax({
+          url:"/api/class/disband",
+          type:"POST",
+          data:{classID:splitUrl().lastElem()},
+          success:function(response){
+            window.location.href = "/home"
+          }, error:function(error){
+            alert("Error occured in operation");
+            console.log(error)
+          }
+        })
+      })
+      function activateTab(tabId){
+        let mainElem = $(`[tab-id=${tabId}]`);
+        mainElem.parent().children(".activeTab").removeClass('activeTab');
+        mainElem.addClass('activeTab')
+      }
       // function show(){
       //   if this.hasClass("class_members"){
       //     this.css("visibility", "visible");
