@@ -29,14 +29,9 @@
               <input type="text" id="autocomplete-input" class="autocomplete" placeholder="Enter class name">
             </div>
             <div class="input-field col s6">
-              <select>
+              <select id="classSelect">
                 <option value="" disabled selected class="disabled">Select a class to post in</option>
-                <option value="1">Chemistry HL</option>
-                <option value="2">Physics HL</option>
-                <option value="3">Mathematics AA HL</option>
-                <option value="4">Spanish Ab HL</option>
-                <option value="5">Language and Literature SL</option>
-                <option value="6">Economics SL</option>
+                
               </select>
             </div>
           </div>
@@ -195,6 +190,7 @@
     <script type="text/javascript" src="../js/initializing.js"></script>
     <script type="text/javascript" src="../js/script.js"></script>
     <script type="text/javascript" src="../js/events.js"></script>
+    <script src="../js/home.js" charset="utf-8"></script>
     <!-- /////////////////////////////////////////////////////// -->
     <script>
     //////DROPDOWN//////
@@ -217,33 +213,7 @@
 
 
         /////AUTOCOMPLETE/////
-        $.ajax({
-          url:"/api/class/list/classes",
-          type:"GET",
-          success:function(e){
-            // <a href="/class/"><li class="truncate">Chemistry HL</li></a>
-            // l(e)
-            for(let classGroup of e){
-              let classElem = $(`<a href="/class/"><li class="truncate">${classGroup.name}</li></a>`);
-              let classList = $('#class-list');
-              classList.append(classElem)
-            }
-          }, error:function(e){
-            console.error(e)
-          }
-        })
-         $(document).ready(function(){
-           $('input.autocomplete').autocomplete({
-             data: {
-               "Chemistry HL": null,
-               "Physics HL": null,
-               "Mathematics AA HL": null,
-               "Spanish Ab HL": null,
-               "Language and Literature SL": null,
-               "Economics SL": null
-             },
-           });
-         });
+
         //////////////////////
 
 

@@ -19,10 +19,14 @@ $(document).ready(function(){
 
 $(window).on("sessionLoaded",(event,error,response) => {
   // l(response)
-  let {type} = response;
-  $(`${type}-container`).dissolve();
-  containerArray.splice(containerArray.indexOf(type),1)
-  for(let container of containerArray) $(`${container}-container`).remove()
+  if (error) {
+    $(window).trigger("sessionError")
+  } else {
+    let {type} = response;
+    $(`${type}-container`).dissolve();
+    containerArray.splice(containerArray.indexOf(type),1)
+    for(let container of containerArray) $(`${container}-container`).remove()
+  }
 })
 
 //////SELECT//////

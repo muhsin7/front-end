@@ -1,4 +1,10 @@
 var l = console.log;
+$.fn.toArr = function(){
+  return Array.from(this)
+}
+$.fn.tojQArr = function(){
+  return this.toArr().map(e=>$(e))
+}
 $.fn.dissolve = function(){
   let elem = $(this);
   let parent = elem.parent();
