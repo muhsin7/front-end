@@ -15,7 +15,7 @@
 </head>
 
   <body>
-    <div class="fixed-action-btn">
+    <div class="fixed-action-btn" id="writePostButton">
       <a class="btn-floating btn-large nord-red modal-trigger" href="#post">
         <i class="large material-icons">mode_edit</i>
       </a>
@@ -167,15 +167,16 @@
           <br />
         </div>
         <div class="container col offset-s1 s8">
-          <div class="row">
-            <div class="post">
+          <div class="row" id="postContainer">
+            <div class="post hidden" id="samplePost">
               <a href="#" class="assignment-subject">Class</a>
               <h5>Title for teacher</h5>
-              <h7>User</h7>
+              <h7>User</h7><br>
+              <span class="grey-text small-text">Wednesday, October 15th, 2019</span>
               <h6>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h6>
               <a href="#"><i class="tiny material-icons">attach_file</i> attached_file.png</a>
             </div>
-            </div>
+          </div>
         </div>
       </div>
     </div>

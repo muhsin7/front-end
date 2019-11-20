@@ -178,6 +178,7 @@ a{
   border: solid;
   padding: 10px;
   border-radius: 10px;
+  margin-bottom:10px;
 }
 
 .post h5{
@@ -395,4 +396,24 @@ teacher-container,session, session-onload, student-container,session-error {
 .class_buttons a{
   font-size: 14px;
   bottom: 15px !important;
+}
+
+
+.hidden {
+  display:none
+}
+
+/* KIBIRA DEFINITIONS */
+
+.grey-text {
+  color:grey
+}
+.blue-text {
+  color:blue
+}
+.bold-text {
+  font-weight: bold;
+}
+.small-text {
+  font-size:10px
 }

@@ -10,6 +10,7 @@ $(() => {
         "Economics SL": null
       },
     });
+    $('#writePostButton').removeClass('hidden')
     let classList = $('#class-list').children("li.truncate").tojQArr().map(e=>e.children('a').eq(0).text());
     let classSelect = $('#classSelect');
     for(let i=0;i<classList.length;i++){
@@ -40,8 +41,39 @@ $(() => {
       $('input.autocomplete').autocomplete({
         data:autoCompleteObject
       })
+      if(e.length == 0){
+        classList.append(`<center><h6 class="grey-text">No classes, join one.</h6></center>`)
+        $('#writePostButton').remove()
+      }
     }, error:function(e){
       console.error(e)
+    }
+  })
+  $.ajax({
+    url:"/api/post/list/all",
+    type:"GET",
+    success:function(response){
+      // console.log(response)
+      let postContainer = $('#postContainer')
+      for(let post of response){
+        let {classID,className,content,title,posterName,dateCreated} = post;
+        dateCreated = new Date(dateCreated).getSemiSimpleTime();
+
+        let elem = $(`<div class="post">
+          <a href="/class/${classID}" class="assignment-subject bold-text blue-text">${className}</a>
+          <h5>${title}</h5>
+          <h7>${posterName}</h7><br>
+          <span class="grey-text small-text">${dateCreated}</span>
+          <h6>${content}</h6>
+        </div>`)
+        postContainer.append(elem)
+      }
+      if(response.length == 0){
+        postContainer.append($(`<center><h6 class="grey-text">No posts to be loaded</h6></center>`))
+      }
+    }, error:function(error){
+      $('#samplePost').removeClass("hidden")
+      console.error(error.responseText)
     }
   })
 })
