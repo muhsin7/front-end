@@ -18,21 +18,15 @@
    </div>
    <div class="modal modal-fixed-footer" id="post">
      <div class="modal-content">
+       <center>
+         <h4>Post to ${class}</h4>
+       </center>
         <form>
           <label>Class</label>
           <div class="row">
-            <div class="input-field col s6">
-              <input type="text" id="autocomplete-input" class="autocomplete" placeholder="Enter class name">
-            </div>
-            <div class="input-field col s6">
-              <select>
+            <div class="input-field col s12">
+              <select id="classSelect">
                 <option value="" disabled selected class="disabled">Select a class to post in</option>
-                <option value="1">Chemistry HL</option>
-                <option value="2">Physics HL</option>
-                <option value="3">Mathematics AA HL</option>
-                <option value="4">Spanish Ab HL</option>
-                <option value="5">Language and Literature SL</option>
-                <option value="6">Economics SL</option>
               </select>
             </div>
           </div>
@@ -44,7 +38,30 @@
               <!-- <label for="icon_prefix2">Enter Post</label> -->
             </div>
           </div>
+
+        <div class="row">
+
+          <div class="file-field input-field">
+
+            <a class="red-button btn">
+              <i class="material-icons">attach_file</i>
+              <span>Attach file</span>
+              <input type="file" multiple>
+            </a>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text" placeholder="Upload one or more files">
+            </div>
+          </div>
         </div>
+        </form>
+
+     </div>
+     <div class="modal-footer">
+       <center>
+         <a href="#" class="btn-flat postbutton waves-effect"><div class="post2">Post</div></a>
+       </center>
+     </div>
+   </div>
 
     <nav class="nord-darkblue" role="navigation">
       <ul id="profileDropdown" class="dropdown-content">
