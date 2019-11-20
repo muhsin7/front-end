@@ -403,8 +403,14 @@ teacher-container,session, session-onload, student-container,session-error {
   display:none
 }
 
-/* KIBIRA DEFINITIONS */
+textarea.materialize-textarea {
+  height: 100px !important;
+}
 
+/* KIBIRA DEFINITIONS */
+.red-prompt {
+  color:red
+}
 .grey-text {
   color:grey
 }

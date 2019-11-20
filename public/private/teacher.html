@@ -20,32 +20,38 @@
         <i class="large material-icons">mode_edit</i>
       </a>
    </div>
-   <div class="modal modal-fixed-footer" id="post">
+   <div class="modal modal-fixed-footer form" id="post" action="/dummy" method="POST" test-only="true">
      <div class="modal-content">
-       <center>
-         <h4>Create a post</h4>
-       </center>
-        <form>
+        <div>
           <label>Class</label>
           <div class="row">
-            <div class="input-field col s12">
-              <select id="classSelect">
+            <!-- <div class="input-field col s6">
+              <input type="text" id="autocomplete-input" class="autocomplete" placeholder="Enter class name">
+            </div> -->
+            <div class="input-field col s12" ignore-value-container>
+              <select id="classSelect" read-value-container read-value name="classID" required>
                 <option value="" disabled selected class="disabled">Select a class to post in</option>
               </select>
+            </div>
+          </div>
+          <label>Title</label>
+          <div class="row">
+            <div class="input-field col s12">
+              <input type="text" name="title" value="" placeholder="Enter title" required>
             </div>
           </div>
           <label>Content</label>
           <div class="row">
             <div class="input-field col s12">
-              <i class="material-icons prefix">mode_edit</i>
-              <textarea id="icon_prefix2" class="materialize-textarea" placeholder="Enter Post"></textarea>
+              <!-- <i class="material-icons prefix">mode_edit</i> -->
+              <textarea id="icon_prefix2" class="materialize-textarea" min-length="5" required placeholder="Enter Content" name="content"></textarea>
               <!-- <label for="icon_prefix2">Enter Post</label> -->
             </div>
           </div>
 
         <div class="row">
 
-          <div class="file-field input-field">
+          <!-- <div class="file-field input-field">
 
             <a class="red-button btn">
               <i class="material-icons">attach_file</i>
@@ -55,14 +61,14 @@
             <div class="file-path-wrapper">
               <input class="file-path validate" type="text" placeholder="Upload one or more files">
             </div>
-          </div>
+          </div> -->
         </div>
-        </form>
+        </div>
 
      </div>
      <div class="modal-footer">
        <center>
-         <a href="#" class="btn-flat postbutton waves-effect"><div class="post2">Post</div></a>
+         <button class="btn-flat postbutton" type='submit'><div class="post2">Post</div></button>
        </center>
      </div>
    </div>
