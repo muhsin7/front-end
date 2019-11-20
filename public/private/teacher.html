@@ -132,11 +132,59 @@
         </div>
 
         <ul class="dropdown-content" id="classDropdown" href="#">
-          <li class="class_options"><a href="#!">Open class</a></li>
-          <li class="class_options"><a href="#!">Leave class</a></li>
-          <li class="warn class_options"><a href="#!"><i class="material-icons">edit</i>Rename</a></li>
-          <li class="warn class_options"><a href="#!"><i class="material-icons">delete</i>Delete class</a></li>
+          <li class="class_options"><a href="/class/">Open class</a></li>
+          <li class="class_options modal-trigger" href="#leaveModal"><a id="leaveClass">Leave class</a></li>
+          <li class="warn class_options modal-trigger renameClass" href="#renameModal"><a id="renameClass"><i class="material-icons">edit</i>Rename</a></li>
+          <li class="warn class_options modal-trigger deleteClass" href="#deleteModal"><a id="deleteClass"><i class="material-icons">delete</i>Delete class</a></li>
         </ul>
+
+
+            <div class="modal" id="renameModal">
+              <div class="modal-content">
+                <center>
+                  <h4>Rename ${class}</h4>
+                </center>
+                <div class="form">
+                  <div class="input_field">
+                    <input type="text" name="newGroupName" id="newGroupName"/>
+                    <label for="newGroupName">Enter new group name</label>
+                  </div>
+                  <br />
+                  <center>
+                    <div class="nord-red btn-large modal-close">Cancel</div>
+                    <button type="submit" name="button" class="btn-large nord-darkblue">Rename</button>
+                  </center>
+                </div>
+              </div>
+            </div>
+
+            <div class="modal" id="deleteModal">
+              <div class="modal-content">
+                <center>
+                  <h4>Are you sure you want to delete ${class}?</h4>
+                  <h6><i>All data and posts from the group will be lost forever</i></h6>
+                </center>
+                <br />
+                <center>
+                  <div class="nord-red btn-large modal-close">Cancel</div>
+                  <div class="btn-large nord-darkblue">Delete</div>
+                </center>
+              </div>
+            </div>
+
+            <div class="modal" id="leaveModal">
+              <div class="modal-content">
+                <center>
+                  <h4>Are you sure you want to leave ${class}?</h4>
+                  <h6><i>You will not be able to access the data and posts in this group unless you rejoin the group.</i></h6>
+                </center>
+                <br />
+                <center>
+                  <div class="nord-red btn-large modal-close">Cancel</div>
+                  <div class="btn-large nord-darkblue">Leave Group</div>
+                </center>
+              </div>
+            </div>
 
         <div id="joinClass" class="modal">
           <div class="modal-content">
@@ -223,11 +271,21 @@
 
 
 
-      $('#classDropdown').mouseout(function(){
-          var isntance = M.Dropdown.getInstance('#classDropdown');
-          instance.close();
-        }
-      );
+      // $('#classDropdown').mouseout(function(){
+      //     var isntance = M.Dropdown.getInstance('#classDropdown');
+      //     instance.close();
+      //   }
+      // );
+
+      // $('.class_text a').on('contextmenu', function(){
+      //   var instance = M.Dropdown.getInstance('#classDropdown');
+      //   instance.open();
+      // });
+
+      $('.class_text a').on('contextmenu', function(){
+        var instance = M.Dropdown.getInstance($('#classDropdown')[0]); // You have to pass the full element itself, not just the id string
+        instance.open();
+      })
   </script>
   </body>
 

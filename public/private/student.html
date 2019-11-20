@@ -132,11 +132,23 @@
         </div>
 
         <ul class="dropdown-content" id="classDropdown" href="#">
-          <li class="class_options"><a href="#!">Open class</a></li>
-          <li class="class_options"><a href="#!">Leave class</a></li>
-          <li class="warn class_options"><a href="#!"><i class="material-icons">edit</i>Rename</a></li>
-          <li class="warn class_options"><a href="#!"><i class="material-icons">delete</i>Delete class</a></li>
+          <li class="class_options"><a href="/class/">Open class</a></li>
+          <li class="class_options modal-trigger" href="#leaveModal"><a id="leaveClass">Leave class</a></li>
         </ul>
+
+        <div class="modal" id="leaveModal">
+          <div class="modal-content">
+            <center>
+              <h4>Are you sure you want to leave ${class}?</h4>
+              <h6><i>You will not be able to access the data and posts in this group unless you rejoin the group.</i></h6>
+            </center>
+            <br />
+            <center>
+              <div class="nord-red btn-large modal-close">Cancel</div>
+              <div class="btn-large nord-darkblue">Leave Group</div>
+            </center>
+          </div>
+        </div>
 
         <div id="joinClass" class="modal">
           <div class="modal-content">
