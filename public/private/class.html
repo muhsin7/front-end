@@ -92,7 +92,8 @@
     <div class="container class-header">
       <div class="row">
         <h3>${class}</h3>
-        <h5>${teacher}</h5>
+        <h5>${teachers}</h5>
+        <h6>Class code:<span class="grey-text">${classCode}</span></h6>
         <a href="#" data-target="class_page_menu" class="dropdown-trigger"><i class="right-align material-icons medium class_menu">more_horiz</i></a>
       </div>
     </div>
@@ -139,8 +140,8 @@
               <h3>Posts</h3>
               <hr />
               <div class="container col offset-s1 s8">
-                <div class="row">
-                  <div class="post">
+                <div class="row" id="postContainer">
+                  <div class="post hidden">
                     <a href="#" class="assignment-subject">Class</a>
                     <h5>Title for teacher</h5>
                     <h7>User</h7>
@@ -271,6 +272,33 @@
         mainElem.parent().children(".activeTab").removeClass('activeTab');
         mainElem.addClass('activeTab')
       }
+      $.ajax({
+        url:"/api/post/list",
+        type:"POST",
+        data:{classID:splitUrl().lastElem()},
+        success:function(response){
+          // console.log(response)
+          let postContainer = $('#postContainer')
+          for(let post of response){
+            let {classID,content,title,posterName,dateCreated} = post;
+            dateCreated = new Date(dateCreated).getSemiSimpleTime();
+
+            let elem = $(`<div class="post">
+              <h5>${title}</h5>
+              <h7>${posterName}</h7><br>
+              <span class="grey-text small-text">${dateCreated}</span>
+              <h6>${content}</h6>
+            </div>`)
+            postContainer.append(elem)
+          }
+          if(response.length == 0){
+            postContainer.append($(`<center><h6 class="grey-text">No posts to be loaded</h6></center>`))
+          }
+        }, error:function(error){
+          $('#samplePost').removeClass("hidden")
+          console.error(error.responseText)
+        }
+      })
       // function show(){
       //   if this.hasClass("class_members"){
       //     this.css("visibility", "visible");

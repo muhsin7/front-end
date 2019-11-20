@@ -15,37 +15,43 @@
 </head>
 
   <body>
-    <div class="fixed-action-btn hidden" id="writePostButton">
+    <div class="fixed-action-btn" id="writePostButton">
       <a class="btn-floating btn-large nord-red modal-trigger" href="#post">
         <i class="large material-icons">mode_edit</i>
       </a>
    </div>
-   <div class="modal modal-fixed-footer" id="post">
+   <div class="modal modal-fixed-footer form" id="post" action="/api/post/create" method="POST" on-success-reload="true">
      <div class="modal-content">
-       <center>
-         <h4>Create a post</h4>
-       </center>
-        <form>
+        <div>
           <label>Class</label>
           <div class="row">
-            <div class="input-field col s12">
-              <select id="classSelect">
+            <!-- <div class="input-field col s6">
+              <input type="text" id="autocomplete-input" class="autocomplete" placeholder="Enter class name">
+            </div> -->
+            <div class="input-field col s12" ignore-value-container>
+              <select id="classSelect" read-value-container read-value name="classID" required>
                 <option value="" disabled selected class="disabled">Select a class to post in</option>
               </select>
+            </div>
+          </div>
+          <label>Title</label>
+          <div class="row">
+            <div class="input-field col s12">
+              <input type="text" name="title" value="" placeholder="Enter title" required>
             </div>
           </div>
           <label>Content</label>
           <div class="row">
             <div class="input-field col s12">
-              <i class="material-icons prefix">mode_edit</i>
-              <textarea id="icon_prefix2" class="materialize-textarea" placeholder="Enter Post"></textarea>
+              <!-- <i class="material-icons prefix">mode_edit</i> -->
+              <textarea id="icon_prefix2" class="materialize-textarea" min-length="5" required placeholder="Enter Content" name="content"></textarea>
               <!-- <label for="icon_prefix2">Enter Post</label> -->
             </div>
           </div>
 
         <div class="row">
 
-          <div class="file-field input-field">
+          <!-- <div class="file-field input-field">
 
             <a class="red-button btn">
               <i class="material-icons">attach_file</i>
@@ -55,18 +61,17 @@
             <div class="file-path-wrapper">
               <input class="file-path validate" type="text" placeholder="Upload one or more files">
             </div>
-          </div>
+          </div> -->
         </div>
-        </form>
+        </div>
 
      </div>
      <div class="modal-footer">
        <center>
-         <a href="#" class="btn-flat postbutton waves-effect"><div class="post2">Post</div></a>
+         <button class="btn-flat postbutton" type='submit'><div class="post2">Post</div></button>
        </center>
      </div>
    </div>
-
 
 
    <nav class="nord-darkblue" role="navigation">
@@ -106,7 +111,7 @@
           <b>Classes</b>
           <hr/>
           <div class="truncate">
-            <div class="class_text" id="class-list">
+            <ul class="class_text" id="class-list">
               <session-error>
                 <a href="/class/"><li class="truncate">Chemistry HL<a href="#" class="dropdown-trigger" data-target="classDropdown"><i class="material-icons class_menu">more_horiz</i></a></li></a>
                 <a href="/class/"><li class="truncate">Physics HL<a href="#" class="dropdown-trigger" data-target="classDropdown"><i class="material-icons class_menu">more_horiz</i></a></li></a>
@@ -115,21 +120,23 @@
                 <a href="/class/"><li class="truncate">Language and Literature SL<a href="#" class="dropdown-trigger" data-target="classDropdown"><i class="material-icons class_menu">more_horiz</i></a></li></a>
                 <a href="/class/"><li class="truncate">Economics SL<a href="#" class="dropdown-trigger" data-target="classDropdown"><i class="material-icons class_menu">more_horiz</i></a></li></a>
               </session-error>
-            </div>
+            </ul>
           </div>
           <hr />
-          <ul class="dropdown-content" id="classDropdown" href="#">
-            <li class="class_options"><a href="#!">Open class</a></li>
-            <li class="class_options"><a href="#!">Leave class</a></li>
-          </ul>
-          <br />
           <center class="class_buttons">
             <a href="#joinClass" class="joinclass modal-trigger"><i class="material-icons tiny">add</i><b>Join Class</b></a>
+            <br   /><br />
+            <a href="#createClass" class="joinclass modal-trigger"><i class="material-icons tiny">add</i><b>Create Class</b></a>
           </center>
-          <!-- <a href="#createClass" class="joinclass modal-trigger"><i class="material-icons tiny">add</i><b>Create Class</b></a>
-          <br style="font-size: 50%"/> -->
-          <br />
+          <!-- <br /> -->
         </div>
+
+        <ul class="dropdown-content" id="classDropdown" href="#">
+          <li class="class_options"><a href="#!">Open class</a></li>
+          <li class="class_options"><a href="#!">Leave class</a></li>
+          <li class="warn class_options"><a href="#!"><i class="material-icons">edit</i>Rename</a></li>
+          <li class="warn class_options"><a href="#!"><i class="material-icons">delete</i>Delete class</a></li>
+        </ul>
 
         <div id="joinClass" class="modal">
           <div class="modal-content">
@@ -145,6 +152,20 @@
             </div>
           </div>
         </div>
+        <div id="createClass" class="modal">
+          <div class="modal-content">
+            <div class="form" method="POST" validation-element="<span style='color:red'></span>" on-success-reload="true" action="/api/class/create" on-error-prompt-selector="#invalidClass" on-error="console.log(response)">
+              <h4>Enter class name</h4>
+              <input type="text" name="className" id="groupcode" min-length="4"/><br>
+              <label for="groupcode">Enter name of the class</label><br>
+              <span id="invalidClass" style="color:red"></span>
+              <div class="modal-footer">
+                <button type="submit" name="button" class="btn-flat nord-darkblue-text">Submit</button>
+                <a href="#!" class="modal-close waves-effect waves-red btn-flat nord-red" style="color:white">Cancel</a>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <div class="col offset-s1 s8">
           <h2>Posts</h2>
@@ -152,15 +173,16 @@
           <br />
         </div>
         <div class="container col offset-s1 s8">
-          <div class="row">
+          <div class="row" id="postContainer">
             <div class="post hidden" id="samplePost">
               <a href="#" class="assignment-subject">Class</a>
-              <h5>Title</h5>
-              <h7>User</h7>
+              <h5>Title for teacher</h5>
+              <h7>User</h7><br>
+              <span class="grey-text small-text">Wednesday, October 15th, 2019</span>
               <h6>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h6>
               <a href="#"><i class="tiny material-icons">attach_file</i> attached_file.png</a>
             </div>
-            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -179,11 +201,8 @@
     //////DROPDOWN//////
     $('.dropdown-trigger').dropdown();
     ///////////////////
-    try {
-      $.initSession()
-    } catch (e) {
 
-    }
+    $.initSession()
     //////MODALS///////
     $(document).ready(function(){
       $('.modal').modal();
@@ -196,7 +215,19 @@
             $('select').formSelect();
           });
         ////////////////////
+
+
+        /////AUTOCOMPLETE/////
+
         //////////////////////
+
+
+
+      $('#classDropdown').mouseout(function(){
+          var isntance = M.Dropdown.getInstance('#classDropdown');
+          instance.close();
+        }
+      );
   </script>
   </body>
 
