@@ -1,21 +1,5 @@
 var l = console.log;
-$.fn.toArr = function(){
-  return Array.from(this)
-}
-$.fn.tojQArr = function(){
-  return this.toArr().map(e=>$(e))
-}
-$.fn.dissolve = function(){
-  let elem = $(this);
-  let parent = elem.parent();
-  let sibling = elem.prev();
-  elem.detach();
-  for(let child of elem.children()) {
-    if(sibling[0] == undefined) parent.prepend(child)
-    else sibling.after(child)
-  }
-  elem.remove()
-}
+
 let observer = new MutationObserver((mutationList) => {
   for(let mutation of mutationList){
     if(mutation.type == "attributes") {
@@ -198,3 +182,54 @@ $(() => {
     l(response)
   })
 })
+
+
+
+
+$.fn.toArr = function(){
+  return Array.from(this)
+}
+$.fn.tojQArr = function(){
+  return this.toArr().map(e=>$(e))
+}
+$.fn.dissolve = function(){
+  let elem = $(this);
+  let parent = elem.parent();
+  let sibling = elem.prev();
+  elem.detach();
+  for(let child of elem.children()) {
+    if(sibling[0] == undefined) parent.prepend(child)
+    else sibling.after(child)
+  }
+  elem.remove()
+}
+Date.prototype.resolveDate = function(){
+  let date = this.getDate();
+  let lastDigit = date%10;
+  let concatString = ""
+  switch (lastDigit) {
+    case 1:
+      concatString = "st"
+      break;
+    case 2:
+      concatString = "nd"
+      break;
+    case 3:
+      concatString = "rd"
+      break;
+    default:
+      concatString = "th"
+      break
+  }
+  return date+concatString
+}
+Date.prototype.getSemiSimpleTime = function() {
+  return `${this.getSimpleTime()}  ${this.getHours()}:${this.getMinutes()}:${this.getSeconds()}`  
+}
+Date.prototype.getSimpleTime = function(){
+  let days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  let months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  let day = days[this.getDay()];
+  let month = months[this.getMonth()];
+  return `${day}, ${month} ${this.resolveDate()}, ${this.getFullYear()}`
+}
