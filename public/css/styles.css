@@ -396,3 +396,13 @@ teacher-container,session, session-onload, student-container,session-error {
   font-size: 14px;
   bottom: 15px !important;
 }
+
+.membername{
+  font-size: 15px;
+  text-align: left;
+}
+
+.membertype{
+  font-size: 15px;
+  text-align: right;
+}
