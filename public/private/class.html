@@ -16,32 +16,30 @@
         <i class="large material-icons">mode_edit</i>
       </a>
    </div>
-   <div class="modal modal-fixed-footer" id="post">
+   <div class="modal modal-fixed-footer form" id="post" action="/api/post/create" method="POST" test-only="true">
      <div class="modal-content">
        <center>
          <h4>Post to ${class}</h4>
        </center>
-        <form>
-          <label>Class</label>
+        <div>
+          <label>Title</label>
+          <input type="text" name="classID" value="${classID}" class="hidden">
           <div class="row">
             <div class="input-field col s12">
-              <select id="classSelect">
-                <option value="" disabled selected class="disabled">Select a class to post in</option>
-              </select>
+              <input type="text" name="title" value="" placeholder="Enter title">
             </div>
           </div>
           <label>Content</label>
           <div class="row">
             <div class="input-field col s12">
-              <i class="material-icons prefix">mode_edit</i>
-              <textarea id="icon_prefix2" class="materialize-textarea" placeholder="Enter Post"></textarea>
+              <textarea id="icon_prefix2" class="materialize-textarea" placeholder="Enter Content of post"></textarea>
               <!-- <label for="icon_prefix2">Enter Post</label> -->
             </div>
           </div>
 
         <div class="row">
 
-          <div class="file-field input-field">
+          <!-- <div class="file-field input-field">
 
             <a class="red-button btn">
               <i class="material-icons">attach_file</i>
@@ -51,9 +49,9 @@
             <div class="file-path-wrapper">
               <input class="file-path validate" type="text" placeholder="Upload one or more files">
             </div>
-          </div>
+          </div> -->
         </div>
-        </form>
+        </div>
 
      </div>
      <div class="modal-footer">
@@ -185,7 +183,7 @@
               <hr />
               <div class="container col offset-s1 s8">
                 <div class="row" id="postContainer">
-                  <div class="post hidden">
+                  <div class="post hidden" id="samplePost">
                     <a href="#" class="assignment-subject">Class</a>
                     <h5>Title for teacher</h5>
                     <h7>User</h7>
