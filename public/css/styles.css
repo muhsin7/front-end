@@ -354,6 +354,15 @@ teacher-container,session, session-onload, student-container,session-error {
   border-radius: 5px;
 }
 
+.removestudentbutton{
+  width: inherit;
+  padding: 4%;
+  color: red;
+  border-radius: 7px;
+  border-width: 2px !important;
+  border: solid black;
+}
+
 .class_options{
   min-height: 15px !important;
   margin-top: 0px !important;
@@ -399,12 +408,13 @@ teacher-container,session, session-onload, student-container,session-error {
 }
 
 .membername{
-  font-size: 15px;
+  font-size: 17px;
   text-align: left;
+  margin-left: 4%;
 }
 
 .membertype{
-  font-size: 15px;
+  font-size: 17px;
   text-align: right;
 }
 
