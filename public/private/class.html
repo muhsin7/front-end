@@ -11,6 +11,57 @@
 
   </head>
   <body>
+    <div class="fixed-action-btn">
+      <a class="btn-floating btn-large nord-red modal-trigger" href="#post">
+        <i class="large material-icons">mode_edit</i>
+      </a>
+   </div>
+   <div class="modal modal-fixed-footer" id="post">
+     <div class="modal-content">
+       <center>
+         <h4>Post to ${class}</h4>
+       </center>
+        <form>
+          <label>Class</label>
+          <div class="row">
+            <div class="input-field col s12">
+              <select id="classSelect">
+                <option value="" disabled selected class="disabled">Select a class to post in</option>
+              </select>
+            </div>
+          </div>
+          <label>Content</label>
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">mode_edit</i>
+              <textarea id="icon_prefix2" class="materialize-textarea" placeholder="Enter Post"></textarea>
+              <!-- <label for="icon_prefix2">Enter Post</label> -->
+            </div>
+          </div>
+
+        <div class="row">
+
+          <div class="file-field input-field">
+
+            <a class="red-button btn">
+              <i class="material-icons">attach_file</i>
+              <span>Attach file</span>
+              <input type="file" multiple>
+            </a>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text" placeholder="Upload one or more files">
+            </div>
+          </div>
+        </div>
+        </form>
+
+     </div>
+     <div class="modal-footer">
+       <center>
+         <a href="#" class="btn-flat postbutton waves-effect"><div class="post2">Post</div></a>
+       </center>
+     </div>
+   </div>
 
     <nav class="nord-darkblue" role="navigation">
       <ul id="profileDropdown" class="dropdown-content">
@@ -41,7 +92,8 @@
     <div class="container class-header">
       <div class="row">
         <h3>${class}</h3>
-        <h5>${teacher}</h5>
+        <h5>${teachers}</h5>
+        <h6>Class code: <span class="grey-text">${classCode}</span></h6>
         <a href="#" data-target="class_page_menu" class="dropdown-trigger"><i class="right-align material-icons medium class_menu">more_horiz</i></a>
       </div>
     </div>
@@ -49,13 +101,6 @@
     <ul class="dropdown-content" id="class_page_menu">
       <li class="color_list_item">
             <ul class="color-picker">
-              <!-- <li><div class="color nord-lightblue"></div></li>
-              <li><div class="color nord-darkblue"></div></li>
-              <li><div class="color nord-darkgrey"></div></li>
-              <li><div class="color nord-red"></div></li>
-              <li><div class="color nord-orange"></div></li>
-              <li><div class="color nord-purple"></div></li>
-              <li><div class="color nord-yellow"></div></li> -->
               <div href="#" class="color nord-lightblue"></div>
               <div href="#" class="color nord-darkblue"></div>
               <div href="#" class="color nord-darkgrey"></div>
@@ -65,12 +110,61 @@
               <div href="#" class="color nord-yellow"></div>
             </ul>
         </li>
-          <li class="class_options"><a href="#!" id="leaveClass">Leave class</a></li>
+          <li class="class_options modal-trigger" href="#leaveModal"><a id="leaveClass">Leave class</a></li>
           <teacher-container>
-            <li class="warn class_options"><a href="#!" id="renameClass"><i class="material-icons">edit</i>Rename</a></li>
-            <li class="warn class_options"><a href="#!" id="deleteClass"><i class="material-icons">delete</i>Delete class</a></li>
+            <li class="warn class_options modal-trigger renameClass" href="#renameModal"><a id="renameClass"><i class="material-icons">edit</i>Rename</a></li>
+            <li class="warn class_options modal-trigger deleteClass" href="#deleteModal"><a id="deleteClass"><i class="material-icons">delete</i>Delete class</a></li>
           </teacher-container>
     </ul>
+
+    <div class="modal" id="renameModal">
+      <div class="modal-content">
+        <center>
+          <h4>Rename ${class}</h4>
+        </center>
+        <div class="form">
+          <div class="input_field">
+            <input type="text" name="newGroupName" id="newGroupName"/>
+            <label for="newGroupName">Enter new group name</label>
+          </div>
+          <br />
+          <center>
+            <div class="nord-red btn-large modal-close">Cancel</div>
+            <button type="submit" name="button" class="btn-large nord-darkblue">Rename</button>
+          </center>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="deleteModal">
+      <div class="modal-content">
+        <center>
+          <h4>Are you sure you want to delete ${class}?</h4>
+          <h6><i>All data and posts from the group will be lost forever</i></h6>
+        </center>
+        <br />
+        <center>
+          <div class="nord-red btn-large modal-close">Cancel</div>
+          <div class="btn-large nord-darkblue">Delete</div>
+        </center>
+      </div>
+    </div>
+
+    <div class="modal" id="leaveModal">
+      <div class="modal-content">
+        <center>
+          <h4>Are you sure you want to leave ${class}?</h4>
+          <h6><i>You will not be able to access the data and posts in this group unless you rejoin the group.</i></h6>
+        </center>
+        <br />
+        <center>
+          <div class="nord-red btn-large modal-close">Cancel</div>
+          <div class="btn-large nord-darkblue">Leave Group</div>
+        </center>
+      </div>
+    </div>
+
+
     <div class="container">
         <div class="row col s12">
           <div class="col s2">
@@ -90,8 +184,8 @@
               <h3>Posts</h3>
               <hr />
               <div class="container col offset-s1 s8">
-                <div class="row">
-                  <div class="post">
+                <div class="row" id="postContainer">
+                  <div class="post hidden">
                     <a href="#" class="assignment-subject">Class</a>
                     <h5>Title for teacher</h5>
                     <h7>User</h7>
@@ -222,6 +316,33 @@
         mainElem.parent().children(".activeTab").removeClass('activeTab');
         mainElem.addClass('activeTab')
       }
+      $.ajax({
+        url:"/api/post/list",
+        type:"POST",
+        data:{classID:splitUrl().lastElem()},
+        success:function(response){
+          // console.log(response)
+          let postContainer = $('#postContainer')
+          for(let post of response){
+            let {classID,content,title,posterName,dateCreated} = post;
+            dateCreated = new Date(dateCreated).getSemiSimpleTime();
+
+            let elem = $(`<div class="post">
+              <h5>${title}</h5>
+              <h7>${posterName}</h7><br>
+              <span class="grey-text small-text">${dateCreated}</span>
+              <h6>${content}</h6>
+            </div>`)
+            postContainer.append(elem)
+          }
+          if(response.length == 0){
+            postContainer.append($(`<center><h6 class="grey-text">No posts to be loaded</h6></center>`))
+          }
+        }, error:function(error){
+          $('#samplePost').removeClass("hidden")
+          console.error(error.responseText)
+        }
+      })
       // function show(){
       //   if this.hasClass("class_members"){
       //     this.css("visibility", "visible");
@@ -241,6 +362,11 @@
       //     $('.class_members').css("visibility", "hidden");
       //   }
       // }
+
+      $(".renameModal").on("click", function(){
+        var instance = M.Modal.getInstance("#renameModal");
+        instace.open();
+      })
     </script>
 
   </body>

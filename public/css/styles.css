@@ -178,6 +178,7 @@ a{
   border: solid;
   padding: 10px;
   border-radius: 10px;
+  margin-bottom:10px;
 }
 
 .post h5{
@@ -405,4 +406,34 @@ teacher-container,session, session-onload, student-container,session-error {
 .membertype{
   font-size: 15px;
   text-align: right;
+}
+
+.hidden {
+  display:none
+}
+
+textarea.materialize-textarea {
+  height: 100px !important;
+}
+
+/* KIBIRA DEFINITIONS */
+.red-prompt {
+  color:red
+} /* hmm yes this red text is made out of red */
+.grey-text {
+  color:grey
+} /* hmm yes this grey text is made out of grey */
+.blue-text {
+  color:blue
+} /* hmm yes this blue text is made out of blue */
+.bold-text {
+  font-weight: bold;
+} /* hmm yes this bold text is made out of bold */
+.small-text {
+  font-size:10px
+}
+
+
+#deleteModal, #renameModal, #leaveModal{
+  top: 225px !important;
 }
