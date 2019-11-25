@@ -74,7 +74,6 @@ $(".comment-input").on("blur", function(){
 $('.dropdown-trigger').dropdown();
 ///////////////////
 
-$.initSession()
 //////MODALS///////
 $(document).ready(function(){
   $('.modal').modal();
