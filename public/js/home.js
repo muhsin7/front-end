@@ -102,19 +102,7 @@ $(() => {
         </div>`)
         postContainer.append(elem)
       }
-      for(let post of response){
-        let {classID,className,content,title,posterName,dateCreated} = post;
-        dateCreated = new Date(dateCreated).getSemiSimpleTime();
 
-        let elem = $(`<div class="post">
-          <a href="/class/${classID}" class="assignment-subject bold-text blue-text">${className}</a>
-          <h5>${title}</h5>
-          <h7>${posterName}</h7><br>
-          <span class="grey-text small-text">${dateCreated}</span>
-          <h6>${content}</h6>
-        </div>`)
-        postContainer.append(elem)
-      }
       if(response.length == 0){
         postContainer.append($(`<center><h6 class="grey-text">No posts to be loaded</h6></center>`))
       }
