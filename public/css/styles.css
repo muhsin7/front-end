@@ -179,6 +179,12 @@ a{
   padding: 10px;
   border-radius: 10px;
   margin-bottom:10px;
+  /* webkit-transition: webkit-box-shadow .25s; */
+}
+
+.post-active-comment{
+  -webkit-box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+          box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
 }
 
 .post h5{
@@ -374,9 +380,13 @@ teacher-container,session, session-onload, student-container,session-error {
   background: #F28650 !important;
 }
 
-.dropdown-content li > a{
+.class_options .dropdown-content li > a{
   padding: 5px !important;
   color: #722C8A;
+}
+
+.dropdown-content li > a{
+  color: #722C8A !important;
 }
 
 .warn{
@@ -446,4 +456,127 @@ textarea.materialize-textarea {
 
 #deleteModal, #renameModal, #leaveModal{
   top: 225px !important;
+}
+
+.morecontent span {
+    display: none;
+}
+.morelink {
+    /* display: block; */
+    color: #722C8A;
+}
+
+.morelink:hover{
+  text-decoration: underline;
+}
+
+.post-pfp{
+  height: 50px;
+  border-radius: 50%;
+  border: solid 2px #722C8A;
+  float: left;
+  margin-right: 10px;
+}
+
+.post-btn{
+  background-color: #EA3056 !important;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.post-btn b{
+  display: inline-flex;
+}
+input[name="comment"]{
+  width: 100%;
+  margin-bottom: 5px;
+  margin-right: 20px !important;
+  border-radius: 20px !important;
+  border: 0.75px solid #9e9e9e !important;
+  padding: 5px !important;
+  padding-left: 10px !important;
+  padding-right: 0px !important;
+  box-sizing: border-box !important;
+}
+
+.comment-pfp{
+  height: 40px;
+  border-radius: 50%;
+  float: left;
+  border: solid 2px #F28650;
+  margin-right: 10px;
+}
+
+.comment-marker{
+  background-color: #003255;
+  display: inline-block;
+  width: 7.5px;
+  height: 40px;
+  float: left;
+  border-radius: 10px;
+  margin-right: 5px;
+}
+
+.comment-poster{
+  font-weight: bold;
+}
+.comment-text{
+  margin-left: 62.5px;
+}
+
+.comment{
+  margin-bottom: 10px;
+}
+
+button[name="comment-btn"]{
+  border-radius: 5px;
+}
+
+.poster{
+  font-size: 20px;
+}
+
+.post-class{
+  color: #FDC02D;
+  font-weight: bold;
+}
+
+.date-text{
+  color: grey;
+  font-size: 10px;
+}
+
+.load-more-comments{
+  color:#722C8A !important;
+  font-weight: bold;
+  transition:.5s ease;
+}
+
+.load-more-comments:hover{
+  text-decoration: underline;
+}
+
+.post-options{
+  float: right;
+  color: #722C8A;
+  border-radius: 50%;
+  transition: .5s ease;
+}
+
+.post-options:hover{
+  background-color: rgba(242, 134, 80, 0.5);
+}
+
+#post-dropdown{
+  float: right !important;
+  border-radius: 5px;
+  position:  inherit;
+}
+
+#editModal{
+  top: 150px !important;
+}
+
+#deletePostModal{
+  top: 200px !important;
 }

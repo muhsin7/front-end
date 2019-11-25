@@ -7,7 +7,9 @@
         "student":"student.html"
       },
       "/profile": "profile.html",
-      "/assignments": "assignments.html"
+      "/assignments": "assignments.html",
+      "/post": "post.html",
+      "/class": "class.html"
     },
     "no-session":{
       "/":"index.html"
