@@ -1,3 +1,4 @@
+<!-- ~SessionRequired~ -->
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -6,11 +7,11 @@
     <title>Profile</title>
 
     <!-- /////////////////////////////////////////////////////// -->
-    <link rel="stylesheet" href="../css/icons.css">
-    <link rel="stylesheet" href="../css/materialize.css">
-    <link rel="stylesheet" href="../css/materialize.css">
-    <link rel="stylesheet" href="../css/nord-colours.css">
-    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="css/icons.css">
+    <link rel="stylesheet" href="css/materialize.css">
+    <link rel="stylesheet" href="css/materialize.css">
+    <link rel="stylesheet" href="css/nord-colours.css">
+    <link rel="stylesheet" href="css/styles.css">
     <!-- /////////////////////////////////////////////////////// -->
 </head>
 
@@ -18,22 +19,22 @@
 
     <nav class="nord-darkblue" role="navigation">
       <ul id="profileDropdown" class="dropdown-content">
-        <li class="active"><a href="/profile/" class="modal-trigger">Profile</a></li>
-        <li><a href="/auth/logout" class="modal-trigger">Log out</a></li>
+        <li class="active"><a href="profile.html" class="modal-trigger">Profile</a></li>
+        <li><a href="index.html" class="modal-trigger">Log out</a></li>
       </ul>
       <div class="nav-wrapper container">
-        <a id="logo-container" href="/home/" class="brand-logo"><img src="../images/cisco.png" height="50px" width="auto" style="padding-top:5px;" /></a>
+        <a id="logo-container" href="home.html" class="brand-logo"><img src="images/cisco.png" height="50px" width="auto" style="padding-top:5px;" /></a>
         <ul class="right hide-on-med-and-down">
-          <li><a href="/home/">Home</a></li>
-          <li><a href="/assignments/">Assignments</a></li>
+          <li><a href="home.html">Home</a></li>
+          <li><a href="assignments.html">Assignments</a></li>
           <li><a class="dropdown-trigger" href="#!" data-target="profileDropdown"><i class="material-icons">person arrow_drop_down</i></a></li>
         </ul>
 
         <ul id="nav-mobile" class="sidenav">
-          <li><a href="/home/">Home</a></li>
-          <li><a href="/assignments/">Assignments</a></li>
-          <li class="active"><a href="/profile/" class="modal-trigger">Profile</a></li>
-          <li><a href="/auth/logout" class="modal-trigger">Log out</a></li>
+          <li><a href="home.html">Home</a></li>
+          <li><a href="assignments.html">Assignments</a></li>
+          <li class="active"><a href="profile.html" class="modal-trigger">Profile</a></li>
+          <li><a href="logout.html" class="modal-trigger">Log out</a></li>
         </ul>
         <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       </div>
@@ -42,11 +43,11 @@
     <div class="profile_banner">
           <div class="parallax-container">
             <div class="parallax">
-
+				<img src = "public/images/cisco.png">
             </div>
             <div class="row">
-                <img src="../images/default.jpg" class="pfp"/>
-                <div class="profile_info col s2">
+                <div class = "col s2 offset-s1"> <img src="images/default.jpg" class="pfp col s2" style = "width: 122%; height: 122%;"></div>
+                <div class="profile_info col s2 offset-s1">
                   <h5>{name}</h5>
                   <h6>{school}</h6>
                   <h8>{class}</h8>
@@ -54,14 +55,41 @@
             </div>
       </div>
     </div>
+
+	<!--yeah all that man all that-->
+	<div>
+		<div class = "row">
+			<u><h3 class = "col offset-s1">User Details</h3></u>
+		</div>
+		<div class = "row" style = "margin-left: 8.3333333%">
+			<div id = "tab_button" class = "col s12"><a onclick = "document.getElementById('profile-posts').styles.display = 'block'">Posts</a></div>
+		</div>
+	</div>
+
+	<div class = "container">
+		<div id = "profile-posts">
+			<div class="container col offset-s1 s8">
+			  <div class="row">
+				<div class="post">
+				  <a href="#" class="assignment-subject">Class</a>
+				  <h5>Title</h5>
+				  <h7>User</h7>
+				  <h6>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h6>
+				  <a href="#"><i class="tiny material-icons">attach_file</i> attached_file.png</a>
+				</div>
+				</div>
+		</div>
+			</div>
+	</div>
+
     <!-- /////////////////////////////////////////////////////// -->
-    <script type="text/javascript" src="../js/angular.min.js"></script>
-    <script type="text/javascript" src="../js/jquery.js"></script>
-    <script type="text/javascript" src="../js/materialize.js"></script>
-    <script type="text/javascript" src="../js/materialize.min.js"></script>
-    <script type="text/javascript" src="../js/initializing.js"></script>
-    <script type="text/javascript" src="../js/script.js"></script>
-    <script type="text/javascript" src="../js/events.js"></script>
+    <script type="text/javascript" src="/js/angular.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/materialize.js"></script>
+    <script type="text/javascript" src="/js/materialize.min.js"></script>
+    <script type="text/javascript" src="/js/initializing.js"></script>
+    <script type="text/javascript" src="/js/script.js"></script>
+    <script type="text/javascript" src="/js/events.js"></script>
     <!-- /////////////////////////////////////////////////////// -->
     <script>
     //////DROPDOWN//////
@@ -73,4 +101,3 @@
 
 
 </html>
-/
