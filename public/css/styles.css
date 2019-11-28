@@ -227,7 +227,7 @@ a{
   /* margin-left: 50px; */
   color: #fff;
 }
-teacher-container,session, session-onload, student-container,session-error,backend-data {
+teacher-container,session, session-onload, student-container,session-error {
   display:none;
 }
 
@@ -437,13 +437,6 @@ textarea.materialize-textarea {
 }
 
 /* KIBIRA DEFINITIONS */
-.pointer {
-  cursor:pointer
-}
-.side-margins {
-  margin-right:5px;
-  margin-left: 5px
-}
 .red-prompt {
   color:red
 } /* hmm yes this red text is made out of red */
