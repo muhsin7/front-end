@@ -7,11 +7,11 @@
     <title>Profile</title>
 
     <!-- /////////////////////////////////////////////////////// -->
-    <link rel="stylesheet" href="css/icons.css">
-    <link rel="stylesheet" href="css/materialize.css">
-    <link rel="stylesheet" href="css/materialize.css">
-    <link rel="stylesheet" href="css/nord-colours.css">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="../css/icons.css">
+    <link rel="stylesheet" href="../css/materialize.css">
+    <link rel="stylesheet" href="../css/materialize.css">
+    <link rel="stylesheet" href="../css/nord-colours.css">
+    <link rel="stylesheet" href="../css/styles.css">
     <!-- /////////////////////////////////////////////////////// -->
 </head>
 
@@ -23,7 +23,7 @@
         <li><a href="index.html" class="modal-trigger">Log out</a></li>
       </ul>
       <div class="nav-wrapper container">
-        <a id="logo-container" href="home.html" class="brand-logo"><img src="images/cisco.png" height="50px" width="auto" style="padding-top:5px;" /></a>
+        <a id="logo-container" href="home.html" class="brand-logo"><img src="../images/cisco.png" height="50px" width="auto" style="padding-top:5px;" /></a>
         <ul class="right hide-on-med-and-down">
           <li><a href="home.html">Home</a></li>
           <li><a href="assignments.html">Assignments</a></li>
@@ -46,7 +46,7 @@
 				<img src = "public/images/cisco.png">
             </div>
             <div class="row">
-                <div class = "col s2 offset-s1"> <img src="images/default.jpg" class="pfp col s2" style = "width: 122%; height: 122%;"></div>
+                <div class = "col s2 offset-s1"> <img src="../images/default.jpg" class="pfp col s2" style = "width: 122%; height: 122%;"></div>
                 <div class="profile_info col s2 offset-s1">
                   <h5>{name}</h5>
                   <h6>{school}</h6>
@@ -61,25 +61,76 @@
 		<div class = "row">
 			<u><h3 class = "col offset-s1">User Details</h3></u>
 		</div>
-		<div class = "row" style = "margin-left: 8.3333333%">
-			<div id = "tab_button" class = "col s12"><a onclick = "document.getElementById('profile-posts').styles.display = 'block'">Posts</a></div>
-		</div>
+    <div class = "row">
+  		<div class = "row col s6 " style = "margin-left: 30.79%;">
+  			<div id = "tab_button" class = "col s3 tab" style = "text-align: center; border-radius: 0px; margin: 1px; " onclick = "document.getElementById('profile-posts').style.display = 'block'; document.getElementById('profile-extras').style.display = 'none'; document.getElementById('profile-details').style.display = 'none';">Posts</div>
+        <div id = "tab_button" class = "col s3 tab" style = "text-align: center; border-radius: 0px; margin: 1px;" onclick = "document.getElementById('profile-details').style.display = 'block'; document.getElementById('profile-extras').style.display = 'none'; document.getElementById('profile-posts').style.display = 'none';">User Details</div>
+        <div id = "tab_button" class = "col s3 tab" style = "text-align: center; border-radius: 0px; margin: 1px;" onclick = "document.getElementById('profile-extras').style.display = 'block'; document.getElementById('profile-details').style.display = 'none'; document.getElementById('profile-posts').style.display = 'none';">Extra tab in case</div>
+  		</div>
+    </div>
 	</div>
 
 	<div class = "container">
-		<div id = "profile-posts">
-			<div class="container col offset-s1 s8">
-			  <div class="row">
-				<div class="post">
-				  <a href="#" class="assignment-subject">Class</a>
-				  <h5>Title</h5>
-				  <h7>User</h7>
-				  <h6>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h6>
-				  <a href="#"><i class="tiny material-icons">attach_file</i> attached_file.png</a>
-				</div>
-				</div>
+		<div id = "profile-posts" style = "display: none;">
+      <div class="container col offset-s1 s8">
+        <div class="row" id="postContainer">
+          <div class="post hoverable" id="samplePost">
+            <div class="post-header">
+              <img class="post-pfp" src="../images/default.jpg" />
+            </div>
+            <div class="poster">Kabir De Sarkar<a href="#" class="dropdown-trigger" data-target="post-dropdown"><i class="material-icons post-options">more_horiz</i></a></div>
+            <a href="#" class="post-class">IBDP1 Chemistry</a>
+            <span class="date-text">3:45PM, Wednesday, October 15th, 2019</span>
+            <div class="more">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+            <a href="#"><i class="tiny material-icons">attach_file</i> attached_file.png</a>
+            <hr />
+            <h6><b>Comments</b></h6>
+            <div class="form">
+              <input name="comment" type="text" class="comment-input"/>
+              <button name="comment-btn" type="submit" name="button" class="right-align btn nord-red">Comment</button>
+              <br /><br />
+            </div>
+            <div class="comments">
+              <div class="comment">
+                <div class="comment-marker nord-darkblue"></div>
+                <img class="comment-pfp" src="../images/default.jpg"/>
+                <div class="comment-poster">Kabir</div><span class="date-text">3:45PM, Wednesday, October 15th, 2019</span>
+                <div class="comment-text more">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+              </div>
+              <div class="comment">
+                <div class="comment-marker nord-darkblue"></div>
+                <img class="comment-pfp" src="../images/default.jpg"/>
+                <div class="comment-poster">Kabir</div><span class="date-text">3:45PM, Wednesday, October 15th, 2019</span>
+                <div class="comment-text more">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+              </div>
+              <div class="comment">
+                <div class="comment-marker nord-darkblue"></div>
+                <img class="comment-pfp" src="../images/default.jpg"/>
+                <div class="comment-poster">Kabir</div><span class="date-text">3:45PM, Wednesday, October 15th, 2019</span>
+                <div class="comment-text more">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+              </div>
+            </div>
+            <div class="load-more-comments">
+              <a href="/post/">[Load more comments...]</a>
+            </div>
+          </div>
+        </div>
+      </div>
 		</div>
-			</div>
+
+    <div id = "profile-details" style = "display: none;">
+			<div class="container col offset-s1 s8">
+        <span style = "margin-right: 0px;"><b>Username: </b></span><span>{USERNAME}</span>
+        <hr>
+        <span><b>First Name: </b><span>{FIRST NAME}</span></span>
+        <span><b>Last Name: </b><span>{LAST NAME}</span></span>
+        <hr>
+        <span><b>Posts created: </b><span>{Number of posts}</span></span>
+        <span><b>Comments:</b><span>{Number of comments}</span></span>
+        
+		  </div>
+		</div>
+
 	</div>
 
     <!-- /////////////////////////////////////////////////////// -->
