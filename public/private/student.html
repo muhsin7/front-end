@@ -34,12 +34,6 @@
               </select>
             </div>
           </div>
-          <label>Title</label>
-          <div class="row">
-            <div class="input-field col s12">
-              <input type="text" name="title" value="" placeholder="Enter title" required>
-            </div>
-          </div>
           <label>Content</label>
           <div class="row">
             <div class="input-field col s12">
@@ -50,18 +44,22 @@
           </div>
 
         <div class="row">
-
-          <!-- <div class="file-field input-field">
-
-            <a class="red-button btn">
-              <i class="material-icons">attach_file</i>
-              <span>Attach file</span>
+          <div class="file-field input-field">
+            <a class="btn nord-red">
+              <span class="valign-wrapper"><i class="material-icons">attach_file</i>Attach file</span>
               <input type="file" multiple>
             </a>
             <div class="file-path-wrapper">
               <input class="file-path validate" type="text" placeholder="Upload one or more files">
             </div>
-          </div> -->
+          </div>
+        </div>
+        <div class="row">
+          <ul class="collection files">
+            <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-red remove_file tiny">close</i></a></div></li>
+            <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-red remove_file tiny">close</i></a></div></li>
+            <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-red remove_file tiny">close</i></a></div></li>
+          </ul>
         </div>
         </div>
 
@@ -192,6 +190,11 @@
                   <i class="material-icons prefix">mode_edit</i>
                   <textarea class="materialize-textarea">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
                 </div>
+                <ul class="collection files">
+                  <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-red remove_file tiny">close</i></a></div></li>
+                  <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-red remove_file tiny">close</i></a></div></li>
+                  <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-red remove_file tiny">close</i></a></div></li>
+                </ul>
                 <button type="submit" name="button" class="btn-large nord-darkblue">Post</button>
                 <div class="btn-large nord-red modal-close">Cancel</div>
               </div>
@@ -230,8 +233,11 @@
               <a href="#" class="post-class">IBDP1 Chemistry</a>
               <span class="date-text">3:45PM, Wednesday, October 15th, 2019</span>
               <div class="more">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-              <a href="#"><i class="tiny material-icons">attach_file</i> attached_file.png</a>
-              <hr />
+              <ul class="collection files">
+                <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-purple download_file tiny">file_download</i></a></div></li>
+                <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-purple download_file tiny">file_download</i></a></div></li>
+                <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-purple download_file tiny">file_download</i></a></div></li>
+              </ul>              <hr />
               <h6><b>Comments</b></h6>
               <div class="form">
                 <input name="comment" type="text" class="comment-input"/>
