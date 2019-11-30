@@ -180,6 +180,7 @@ a{
   border-radius: 10px;
   margin-bottom:10px;
   /* webkit-transition: webkit-box-shadow .25s; */
+  /* width: 100% !important; */
 }
 
 .post-active-comment{
@@ -417,17 +418,6 @@ teacher-container,session, session-onload, student-container,session-error {
   bottom: 15px !important;
 }
 
-.membername{
-  font-size: 17px;
-  text-align: left;
-  margin-left: 4%;
-}
-
-.membertype{
-  font-size: 17px;
-  text-align: right;
-}
-
 .hidden {
   display:none
 }
@@ -581,13 +571,33 @@ button[name="comment-btn"]{
   top: 200px !important;
 }
 
-.remove_file, .download_file{
+.remove_file, .download_file, .remove_student{
   color: white !important;
   border-radius: 50%;
   padding: 2.5px;
-  margin:
+  /* margin:5px;; */
 }
 
 .file{
   background-color: #E3E1DC !important;
+}
+
+.member_name{
+  font-size: 20px;
+}
+
+.remove_student{
+  font-size: 20px;
+}
+
+.member_item{
+  transition: .5s ease;
+}
+
+.member_item:hover{
+  background-color: #E3E1DC;
+}
+
+#kickModal{
+  top: 200px !important;
 }
