@@ -6,6 +6,9 @@ let observer = new MutationObserver((mutationList) => {
     }
   }
 })
+$.splitUrl = function(){
+  return window.location.href.split("/")
+}
 $.randGen = function(len=5){
   let alphabets = "abcdefghijklmnopqrstuvwxyz";
   let allowed = alphabets+alphabets.toUpperCase()+"0123456789";

@@ -59,11 +59,11 @@ $(".comment-input").on("blur", function(){
 
 ///////////////////////MISC./////////////////////////////////
 
-  $('#classDropdown').mouseout(function(){
-      var isntance = M.Dropdown.getInstance('#classDropdown');
-      instance.close();
-    }
-  );
+  // $('#classDropdown').mouseout(function(){
+  //     var isntance = M.Dropdown.getInstance('#classDropdown');
+  //     instance.close();
+  //   }
+  // );
 /////////////////////////////////////////////////////////////
 
 
@@ -71,10 +71,12 @@ $(".comment-input").on("blur", function(){
 
 ///////////////////MATERIALIZE///////////////////////////////
 //////DROPDOWN//////
-$('.dropdown-trigger').dropdown();
+$(() => {
+
+  $('.dropdown-trigger').dropdown();
+})
 ///////////////////
 
-$.initSession()
 //////MODALS///////
 $(document).ready(function(){
   $('.modal').modal();

@@ -188,10 +188,13 @@
             <div class="tab-panel col s8 offset-s1" tab-id="membersTab">
               <h3>Members</h3>
               <hr />
-                <ul class="collection">
-                  <li class="collection-item member_item"><div><a href="/profile/" class="member_name">Member name</a><a href="#kickModal" class="modal-trigger secondary-content"><i class="material-icons remove_student nord-red valign-wrapper">close</i></a></div></li>
-                  <li class="collection-item member_item"><div><a href="/profile/" class="member_name">Member name</a><a href="#kickModal" class="modal-trigger secondary-content"><i class="material-icons remove_student nord-red valign-wrapper">close</i></a></div></li>
-                  <li class="collection-item member_item"><div><a href="/profile/" class="member_name">Member name</a><a href="#kickModal" class="modal-trigger secondary-content"><i class="material-icons remove_student nord-red valign-wrapper">close</i></a></div></li>
+                <ul class="collection" id="membersList">
+
+                  <session-error>
+                    <li class="collection-item member_item"><div><a href="/profile/" class="member_name">Member name</a><!--<a href="#kickModal" class="modal-trigger secondary-content"><i class="material-icons remove_student nord-red valign-wrapper">close</i></a>--></div></li>
+                    <li class="collection-item member_item"><div><a href="/profile/" class="member_name">Member name</a><!--<a href="#kickModal" class="modal-trigger secondary-content"><i class="material-icons remove_student nord-red valign-wrapper">close</i></a>--></div></li>
+                    <li class="collection-item member_item"><div><a href="/profile/" class="member_name">Member name</a><!--<a href="#kickModal" class="modal-trigger secondary-content"><i class="material-icons remove_student nord-red valign-wrapper">close</i></a>--></div></li>
+                  </session-error>
                 </ul>
             </div>
             <div class="tab-panel activeTab col offset-s1 s8" tab-id="postsTab">
@@ -366,25 +369,40 @@
         data:{classID:splitUrl().lastElem()},
         success:function(response){
           // console.log(response)
-          let postContainer = $('#postContainer')
-          for(let post of response){
-            let {classID,content,title,posterName,dateCreated} = post;
-            dateCreated = new Date(dateCreated).getSemiSimpleTime();
-
-            let elem = $(`<div class="post">
-              <h5>${title}</h5>
-              <h7>${posterName}</h7><br>
-              <span class="grey-text small-text">${dateCreated}</span>
-              <h6>${content}</h6>
-            </div>`)
-            postContainer.append(elem)
-          }
-          if(response.length == 0){
-            postContainer.append($(`<center><h6 class="grey-text">No posts to be loaded</h6></center>`))
-          }
+          // let postContainer = $('#postContainer')
+          // for(let post of response){
+          //   let {classID,content,title,posterName,dateCreated} = post;
+          //   dateCreated = new Date(dateCreated).getSemiSimpleTime();
+          //
+          //   let elem = $(`<div class="post">
+          //     <h5>${title}</h5>
+          //     <h7>${posterName}</h7><br>
+          //     <span class="grey-text small-text">${dateCreated}</span>
+          //     <h6>${content}</h6>
+          //   </div>`)
+          //   postContainer.append(elem)
+          // }
+          // if(response.length == 0){
+          //   postContainer.append($(`<center><h6 class="grey-text">No posts to be loaded</h6></center>`))
+          // }
         }, error:function(error){
           $('#samplePost').removeClass("hidden")
           console.error(error.responseText)
+        }
+      })
+      $.ajax({
+        url:"/api/class/"+$.splitUrl()[$.splitUrl().length-1]+"/list/members",
+        success:function(data){
+          // console.log(data)
+          for(let person of data){
+            $('#membersList').append(
+              $(
+                `<li class="collection-item member_item"><div><a href="/profile/" class="member_name">${person.username}</a><!--<a href="#kickModal" class="modal-trigger secondary-content"><i class="material-icons remove_student nord-red valign-wrapper">close</i></a>--></div></li>`
+              )
+            )
+          }
+        },error:function(err){
+          console.log(err)
         }
       })
       // function show(){
@@ -407,10 +425,10 @@
       //   }
       // }
 
-      $(".renameModal").on("click", function(){
-        var instance = M.Modal.getInstance("#renameModal");
-        instace.open();
-      })
+      // $(".renameModal").on("click", function(){
+      //   var instance = M.Modal.getInstance("#renameModal");
+      //   instance.open();
+      // })
     </script>
 
   </body>

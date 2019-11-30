@@ -425,8 +425,23 @@ teacher-container,session, session-onload, student-container,session-error {
 textarea.materialize-textarea {
   height: 100px !important;
 }
+textarea.materialize-textarea.comment-readonly {
+  border-bottom:none;
+  padding-top:10px;
+  height: 30px !important;
+}
 
 /* KIBIRA DEFINITIONS */
+.pointer-cursor {
+  cursor:pointer
+}
+textarea[readonly="readonly"], textarea[readonly] {
+  color:black !important;
+}
+.small-side-margin {
+  margin-right:5px;
+  margin-left:5px;
+}
 .red-prompt {
   color:red
 } /* hmm yes this red text is made out of red */
@@ -442,7 +457,9 @@ textarea.materialize-textarea {
 .small-text {
   font-size:10px
 }
-
+backend-data {
+  display:none
+}
 
 #deleteModal, #renameModal, #leaveModal{
   top: 225px !important;
