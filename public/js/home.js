@@ -392,7 +392,7 @@ $(() => {
         processData:false,
         cache:false,
         success:function(data){
-          console.log(data)
+          window.location.reload(true)
         },error:function(data){
           console.error(data)
         }
