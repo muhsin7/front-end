@@ -9,7 +9,11 @@ $(document).ready(function(){
 //////DROPDOWN//////
 
   $(() => {
-    $('.dropdown-trigger').dropdown();
+    try {
+      $('.dropdown-trigger').dropdown();
+    } catch (e) {
+      console.warn("Lol dropdowns don't work soz")
+    }
   })
 ///////////////////
 

@@ -72,8 +72,11 @@ $(".comment-input").on("blur", function(){
 ///////////////////MATERIALIZE///////////////////////////////
 //////DROPDOWN//////
 $(() => {
-
-  $('.dropdown-trigger').dropdown();
+  try {
+    $('.dropdown-trigger').dropdown();
+  } catch (e) {
+    console.warn("Lol dropdowns don't really work, soz")
+  }
 })
 ///////////////////
 

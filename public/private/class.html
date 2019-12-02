@@ -180,11 +180,11 @@
     <div class="container">
         <div class="row col s12">
           <div class="col s2">
-            <a onclick="activateTab('postsTab');"><div class="tab">Posts</div></a>
-            <a onclick="activateTab('membersTab');"><div class="tab">Members</div></a>
-            <a onclick="activateTab('assignmentsTab');"><div class="tab">Assignments</div></a>
+            <a onclick="activateTab('postsTab','main');"><div class="tab">Posts</div></a>
+            <a onclick="activateTab('membersTab','main');"><div class="tab">Members</div></a>
+            <a onclick="activateTab('assignmentsTab','main');"><div class="tab">Assignments</div></a>
           </div>
-          <div class="tab-container">
+          <div class="tab-container" tab-container-id="main">
             <div class="tab-panel col s8 offset-s1" tab-id="membersTab">
               <h3>Members</h3>
               <hr />

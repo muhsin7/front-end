@@ -6,6 +6,7 @@ let observer = new MutationObserver((mutationList) => {
     }
   }
 })
+
 $.splitUrl = function(){
   return window.location.href.split("/")
 }
@@ -43,6 +44,11 @@ $(window).on('sessionError',() => {
   l('error in session');
   sessionStorage.clear()
 })
+window.activateTab = function(tabId,tabContainerId){
+  let tabContainer = $(`[tab-container-id=${tabContainerId}]`);
+  tabContainer.find(`.tab-panel.activeTab`).removeClass('activeTab');
+  tabContainer.find(`.tab-panel[tab-id=${tabId}]`).addClass("activeTab")
+}
 $(() => {
   $.fn.arr = function(){
     return Array.from(this)
