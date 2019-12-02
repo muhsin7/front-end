@@ -64,15 +64,15 @@
 		</div>
     <div class = "row">
   		<div class = "row col s6 " style = "margin-left: 30.79%;">
-  			<div id = "tab_button" class = "col s3 tab" style = "text-align: center; border-radius: 0px; margin: 1px; " onclick = "document.getElementById('profile-posts').style.display = 'block'; document.getElementById('profile-extras').style.display = 'none'; document.getElementById('profile-details').style.display = 'none';">Posts</div>
-        <div id = "tab_button" class = "col s3 tab" style = "text-align: center; border-radius: 0px; margin: 1px;" onclick = "document.getElementById('profile-details').style.display = 'block'; document.getElementById('profile-extras').style.display = 'none'; document.getElementById('profile-posts').style.display = 'none';">User Details</div>
-        <div id = "tab_button" class = "col s3 tab" style = "text-align: center; border-radius: 0px; margin: 1px;" onclick = "document.getElementById('profile-extras').style.display = 'block'; document.getElementById('profile-details').style.display = 'none'; document.getElementById('profile-posts').style.display = 'none';">Extra tab in case</div>
+  			<div id = "tab_button" class = "col s3 tab" style = "text-align: center; border-radius: 0px; margin: 1px; " onclick="activateTab('profile-posts','main')">Posts</div>
+        <div id = "tab_button" class = "col s3 tab" style = "text-align: center; border-radius: 0px; margin: 1px;" onclick="activateTab('profile-details','main')">User Details</div>
+        <div id = "tab_button" class = "col s3 tab" style = "text-align: center; border-radius: 0px; margin: 1px;" onclick="activateTab('')">Extra tab in case</div>
   		</div>
     </div>
 	</div>
 
-	<div class = "container">
-		<div id = "profile-posts" style = "display: none;">
+	<div class = "container" tab-container-id="main">
+		<div id = "profile-posts" class="tab-panel" tab-id="profile-posts">
       <div class="container col offset-s1 s8">
         <div class="row" id="postContainer">
           <div class="post hoverable" id="samplePost">
@@ -158,13 +158,13 @@
   </div>
 
     <!-- /////////////////////////////////////////////////////// -->
-    <script type="text/javascript" src="/js/angular.min.js"></script>
-    <script type="text/javascript" src="/js/jquery.js"></script>
-    <script type="text/javascript" src="/js/materialize.js"></script>
-    <script type="text/javascript" src="/js/materialize.min.js"></script>
-    <script type="text/javascript" src="/js/initializing.js"></script>
-    <script type="text/javascript" src="/js/script.js"></script>
-    <script type="text/javascript" src="/js/events.js"></script>
+    <script type="text/javascript" src="../js/angular.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/events.js"></script>
+    <script type="text/javascript" src="../js/materialize.js"></script>
+    <script type="text/javascript" src="../js/materialize.min.js"></script>
+    <script type="text/javascript" src="../js/initializing.js"></script>
+    <script type="text/javascript" src="../js/script.js"></script>
     <!-- /////////////////////////////////////////////////////// -->
     <script>
     //////DROPDOWN//////

@@ -20,7 +20,53 @@
         <i class="large material-icons">mode_edit</i>
       </a>
    </div>
-   <div class="modal modal-fixed-footer form" id="post" action="/api/post/create" method="POST" on-success-reload="true">
+   <!-- <div class="modal modal-fixed-footer form" id="post" action="/api/post/create" method="POST" on-success-reload="true">
+     <div class="modal-content">
+        <div>
+          <label>Class</label>
+          <div class="row">
+            <div class="input-field col s12" ignore-value-container>
+              <select id="classSelect" read-value-container read-value name="classID" required>
+                <option value="" disabled selected class="disabled">Select a class to post in</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <textarea id="icon_prefix2" class="materialize-textarea" min-length="5" required placeholder="Enter content of post..." name="content"></textarea>
+            </div>
+          </div>
+
+        <div class="row">
+          <div class="file-field input-field">
+            <a class="btn nord-red">
+              <span class="valign-wrapper"><i class="material-icons">attach_file</i>Attach file</span>
+              <input type="file" multiple>
+            </a>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text" placeholder="Upload one or more files">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <ul class="collection files">
+            <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-red remove_file tiny">close</i></a></div></li>
+            <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-red remove_file tiny">close</i></a></div></li>
+            <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-red remove_file tiny">close</i></a></div></li>
+          </ul>
+        </div>
+        </div>
+
+     </div>
+     <div class="modal-footer">
+       <center>
+         <button class="btn-flat postbutton" type='submit' style="font-style:none !important">Post</button>
+       </center>
+     </div>
+   </div> -->
+   <div class="modal modal-fixed-footer" id="post">
      <div class="modal-content">
         <div>
           <label>Class</label>
@@ -29,50 +75,47 @@
               <input type="text" id="autocomplete-input" class="autocomplete" placeholder="Enter class name">
             </div> -->
             <div class="input-field col s12" ignore-value-container>
-              <select id="classSelect" read-value-container read-value name="classID" required>
+              <select id="classSelect" read-value-container read-value name="classID" required >
                 <option value="" disabled selected class="disabled">Select a class to post in</option>
               </select>
             </div>
           </div>
-          <label>Title</label>
-          <div class="row">
-            <div class="input-field col s12">
-              <input type="text" name="title" value="" placeholder="Enter title" required>
-            </div>
-          </div>
-          <label>Content</label>
           <div class="row">
             <div class="input-field col s12">
               <!-- <i class="material-icons prefix">mode_edit</i> -->
-              <textarea id="icon_prefix2" class="materialize-textarea" min-length="5" required placeholder="Enter Content" name="content"></textarea>
+              <textarea class="materialize-textarea" min-length="5" required placeholder="Enter content of post" name="content" id="post-content"></textarea>
               <!-- <label for="icon_prefix2">Enter Post</label> -->
             </div>
           </div>
+          <div class="row">
+            <div id="post-error" style="color:red">
 
-        <div class="row">
-
-          <!-- <div class="file-field input-field">
-
-            <a class="red-button btn">
-              <i class="material-icons">attach_file</i>
-              <span>Attach file</span>
-              <input type="file" multiple>
-            </a>
-            <div class="file-path-wrapper">
-              <input class="file-path validate" type="text" placeholder="Upload one or more files">
             </div>
-          </div> -->
-        </div>
+          </div>
+          <div class="row">
+              <a class="btn nord-red">
+                <span class="valign-wrapper" id="post-attach-files-button"><i class="material-icons">attach_file</i>Attach file</span>
+                <input type="file" class="hidden" multiple id="post-files">
+              </a>
+          </div>
+          <div class="row">
+            <ul class="collection files" id="post-file-collection">
+              <session-error>
+                <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-red remove_file tiny">close</i></a></div></li>
+                <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-red remove_file tiny">close</i></a></div></li>
+                <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-red remove_file tiny">close</i></a></div></li>
+              </session-error>
+            </ul>
+          </div>
         </div>
 
      </div>
      <div class="modal-footer">
        <center>
-         <button class="btn-flat postbutton" type='submit'><div class="post2">Post</div></button>
+         <button class="btn-flat postbutton" type='submit' id="post-submit">Post<!--<div class="post2">Post</div>--></button>
        </center>
      </div>
    </div>
-
 
    <nav class="nord-darkblue" role="navigation">
      <ul id="profileDropdown" class="dropdown-content">
@@ -184,7 +227,7 @@
             <li class="warn modal-trigger" href="#deletePostModal"><a>Delete Post</a></li>
           </ul>
 
-          <div class="modal" id="editModal">
+          <!-- <div class="modal" id="editModal">
             <div class="modal-content">
               <div class="form">
                 <h5>Edit post</h5>
@@ -192,19 +235,71 @@
                   <i class="material-icons prefix">mode_edit</i>
                   <textarea class="materialize-textarea">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
                 </div>
+                <ul class="collection files">
+                  <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-red remove_file tiny">close</i></a></div></li>
+                  <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-red remove_file tiny">close</i></a></div></li>
+                  <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-red remove_file tiny">close</i></a></div></li>
+                </ul>
                 <button type="submit" name="button" class="btn-large nord-darkblue">Post</button>
+                <div class="btn-large nord-red modal-close">Cancel</div>
+              </div>
+            </div>
+          </div> -->
+          <div class="modal" id="editModal">
+            <div class="modal-content">
+              <div>
+                <h5>Edit post</h5>
+                <input type="hidden" name="postID" id="edit-postID">
+                <div class="input-field">
+                  <i class="material-icons prefix">mode_edit</i>
+                  <textarea class="materialize-textarea" id="editPostContent">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
+                </div>
+                <div class="row">
+                  <ul class="collection files" id="edit-old-file-container">
+                    <session-error>
+                      <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-red remove_file tiny">close</i></a></div></li>
+                      <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-red remove_file tiny">close</i></a></div></li>
+                      <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-red remove_file tiny">close</i></a></div></li>
+                    </session-error>
+                  </ul>
+                </div>
+                <div class="row">
+                  <a class="btn nord-red">
+                    <span class="valign-wrapper" id="edit-attach-file-button"><i class="material-icons">attach_file</i>Attach (more) files</span>
+                    <input type="file" multiple id="edit-attach-file" class="hidden">
+                  </a>
+                </div>
+                <div class="row">
+                  <ul class="collection files" id="edit-new-file-container">
+
+                  </ul>
+                </div>
+                <button type="submit" name="button" class="btn-large nord-darkblue" id="edit-submit">Post</button>
                 <div class="btn-large nord-red modal-close">Cancel</div>
               </div>
             </div>
           </div>
 
-          <div class="modal" id="deletePostModal">
+          <div class="modal form" action="/api/post/delete" method="post" on-success-reload="true" id="deletePostModal">
             <div class="modal-content">
               <center>
                 <h5>Are you sure you want to delete this post?</h5>
                 <br />
-                <div class="btn-large nord-red">Delete post</div>
+                <input type="hidden" name="postID" value="" id="deletePostId">
+                <button class="btn-large nord-red" type="submit">Delete post</button>
                 <div class="btn-large nord-darkblue modal-close">Cancel</div>
+              </center>
+            </div>
+          <div class="modal" id="deleteCommentModal">
+            <div class="modal-content">
+              <center>
+                <div class="form" method="POST" action="/api/post/comment/delete" on-success-reload="true" on-error="console.error(response)">
+                  <input type="text" class='hidden' name="commentID" value="" id="deleteCommentId">
+                  <h5>Are you sure you want to delete this comment?</h5>
+                  <br />
+                  <button class="btn-large nord-red" type="submit">Delete comment</button>
+                  <div class="btn-large nord-darkblue modal-close">Cancel</div>
+                </div>
               </center>
             </div>
           </div>
@@ -230,8 +325,11 @@
               <a href="#" class="post-class">IBDP1 Chemistry</a>
               <span class="date-text">3:45PM, Wednesday, October 15th, 2019</span>
               <div class="more">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-              <a href="#"><i class="tiny material-icons">attach_file</i> attached_file.png</a>
-              <hr />
+              <ul class="collection files">
+                <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-purple download_file tiny">file_download</i></a></div></li>
+                <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-purple download_file tiny">file_download</i></a></div></li>
+                <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-purple download_file tiny">file_download</i></a></div></li>
+              </ul>              <hr />
               <h6><b>Comments</b></h6>
               <div class="form">
                 <input name="comment" type="text" class="comment-input"/>
