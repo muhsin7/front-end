@@ -16,6 +16,7 @@
 </head>
 
   <body>
+  <!-- <body onclick = "window.open('https://bitlylink.com/N27Gi')"> -->
 
     <nav class="nord-darkblue" role="navigation">
       <ul id="profileDropdown" class="dropdown-content">
@@ -119,7 +120,7 @@
 		</div>
 
     <div id = "profile-details" style = "display: none;">
-			<div class="container col offset-s1 s8">
+			<div id = "set-details" class="container col offset-s1 s8">
         <span style = "margin-right: 0px;"><b>Username: </b></span><span>{USERNAME}</span>
         <hr>
         <span><b>First Name: </b><span>{FIRST NAME}</span></span>
@@ -128,12 +129,33 @@
         <span><b>Posts created: </b><span>{Number of posts}</span></span>
         <span><b>Comments:</b><span>{Number of comments}</span></span>
 		  </div>
+
+      <div id = "edit-details" style = "display: none" class = "container col offset-s1 s8">
+        <form>
+          <span style = "margin-right: 0px;"><b>Username: </b></span><span>{USERNAME}</span>
+          <hr>
+          <span><b>First Name: </b><input value = "{FIRST NAME}"></span>
+          <span><b>Last Name: </b><input value = "{LAST NAME}"></span>
+          <hr>
+          <span><b>Posts created: </b><span>{Number of posts}</span></span>
+          <span><b>Comments:</b><span>{Number of comments}</span></span>
+          <button type = "submit" href = "public\private\profile.html">Save</button>
+      </form>
+      </div>
+
 		</div>
 
     <div id = "profile-extras" style = "display: none;">
     </div>
 
 	</div>
+
+  <div class = "assignment-subject" style = "border: solid; max-width: 5%;">
+    <a onclick = "
+    document.getElementById('edit-details').style.display = 'block';
+    document.getElementById('set-details').style.display = 'none';
+    ">Edit</a>
+  </div>
 
     <!-- /////////////////////////////////////////////////////// -->
     <script type="text/javascript" src="/js/angular.min.js"></script>
