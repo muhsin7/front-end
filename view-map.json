@@ -6,6 +6,7 @@
         "teacher":"teacher.html",
         "student":"student.html"
       },
+      "/profile": "profile.html",
       "/assignments": "assignments.html",
       "/post": "post.html",
       "/class": "class.html"
