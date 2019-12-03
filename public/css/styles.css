@@ -1,4 +1,4 @@
-  html{
+x`  html{
     height: 100%;
   }
   .assignment-item{
@@ -181,7 +181,6 @@ a{
   border-radius: 10px;
   margin-bottom:10px;
   /* webkit-transition: webkit-box-shadow .25s; */
-  /* width: 100% !important; */
 }
 
 .post-active-comment{
@@ -419,6 +418,17 @@ teacher-container,session, session-onload, student-container,session-error {
 .class_buttons a{
   font-size: 14px;
   bottom: 15px !important;
+}
+
+.membername{
+  font-size: 17px;
+  text-align: left;
+  margin-left: 4%;
+}
+
+.membertype{
+  font-size: 17px;
+  text-align: right;
 }
 
 .hidden {

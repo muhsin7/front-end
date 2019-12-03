@@ -16,6 +16,7 @@
 </head>
 
   <body>
+  <!-- <body onclick = "window.open('https://bitlylink.com/N27Gi')"> -->
 
     <nav class="nord-darkblue" role="navigation">
       <ul id="profileDropdown" class="dropdown-content">
@@ -66,8 +67,8 @@
     </div>
 	</div>
 
-	<div class = "container" tab-container-id="main">
-		<div id = "profile-posts" class="tab-panel" tab-id="profile-posts">
+	<div class = "container">
+		<div id = "profile-posts" style = "display: none;">
       <div class="container col offset-s1 s8">
         <div class="row" id="postContainer">
           <div class="post hoverable" id="samplePost">
@@ -153,23 +154,46 @@
         <!-- <hr>
         <span><b>First Name: </b><span>{FIRST NAME}</span></span>
         <span><b>Last Name: </b><span>{LAST NAME}</span></span>
-        <hr> -->
-        <!-- <span><b>Posts created: </b><span>{Number of posts}</span></span>
-        <span><b>Comments:</b><span>{Number of comments}</span></span> -->
-
+        <hr>
+        <span><b>Posts created: </b><span>{Number of posts}</span></span>
+        <span><b>Comments:</b><span>{Number of comments}</span></span>
 		  </div>
+
+      <div id = "edit-details" style = "display: none" class = "container col offset-s1 s8">
+        <form>
+          <span style = "margin-right: 0px;"><b>Username: </b></span><span>{USERNAME}</span>
+          <hr>
+          <span><b>First Name: </b><input value = "{FIRST NAME}"></span>
+          <span><b>Last Name: </b><input value = "{LAST NAME}"></span>
+          <hr>
+          <span><b>Posts created: </b><span>{Number of posts}</span></span>
+          <span><b>Comments:</b><span>{Number of comments}</span></span>
+          <button type = "submit" href = "public\private\profile.html">Save</button>
+      </form>
+      </div>
+
 		</div>
+
+    <div id = "profile-extras" style = "display: none;">
+    </div>
 
 	</div>
 
+  <div class = "assignment-subject" style = "border: solid; max-width: 5%;">
+    <a onclick = "
+    document.getElementById('edit-details').style.display = 'block';
+    document.getElementById('set-details').style.display = 'none';
+    ">Edit</a>
+  </div>
+
     <!-- /////////////////////////////////////////////////////// -->
-    <script type="text/javascript" src="../js/angular.min.js"></script>
-    <script type="text/javascript" src="../js/jquery.js"></script>
-    <script type="text/javascript" src="../js/events.js"></script>
-    <script type="text/javascript" src="../js/materialize.js"></script>
-    <script type="text/javascript" src="../js/materialize.min.js"></script>
-    <script type="text/javascript" src="../js/initializing.js"></script>
-    <script type="text/javascript" src="../js/script.js"></script>
+    <script type="text/javascript" src="/js/angular.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/materialize.js"></script>
+    <script type="text/javascript" src="/js/materialize.min.js"></script>
+    <script type="text/javascript" src="/js/initializing.js"></script>
+    <script type="text/javascript" src="/js/script.js"></script>
+    <script type="text/javascript" src="/js/events.js"></script>
     <!-- /////////////////////////////////////////////////////// -->
     <script>
     //////DROPDOWN//////
