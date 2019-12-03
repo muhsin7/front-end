@@ -431,15 +431,27 @@ teacher-container,session, session-onload, student-container,session-error {
   text-align: right;
 }
 
+
+/* KIBIRA DEFINITIONS */
 .hidden {
   display:none
 }
 
 textarea.materialize-textarea {
-  height: 100px !important;
+  height: 70px !important;
+  border-bottom:0 !important;
+  padding-bottom:3px;
+  margin:0 !important;
 }
-
-/* KIBIRA DEFINITIONS */
+textarea.materialize-textarea[readonly] {
+  height: 50px !important;
+}
+backend-data {
+  display:none !important
+}
+.small-side-margin {
+  margin-right:5px
+}
 .red-prompt {
   color:red
 } /* hmm yes this red text is made out of red */
@@ -452,11 +464,13 @@ textarea.materialize-textarea {
 .bold-text {
   font-weight: bold;
 } /* hmm yes this bold text is made out of bold */
+/* 👍 */
 .small-text {
   font-size:10px
 }
-
-
+.pointer-cursor {
+  cursor:pointer
+}
 #deleteModal, #renameModal, #leaveModal{
   top: 225px !important;
 }
@@ -592,7 +606,8 @@ button[name="comment-btn"]{
 }
 
 .file{
-  background-color: #E3E1DC !important;
+  background-color: white !important;
+  /* background-color: #E3E1DC !important; */
 }
 
 .member_name{
