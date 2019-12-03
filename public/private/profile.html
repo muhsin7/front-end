@@ -40,32 +40,28 @@
       </div>
     </nav>
 
-    <div class="profile_banner">
-          <div class="parallax-container">
-            <div class="parallax">
-				<img src = "public/images/cisco.png">
-            </div>
-            <div class="row">
-                <div class = "col s2 offset-s1"> <img src="../images/default.jpg" class="pfp col s2" style = "width: 122%; height: 122%;"></div>
-                <div class="profile_info col s2 offset-s1">
-                  <h5>{name}</h5>
-                  <h6>{school}</h6>
-                  <h8>{class}</h8>
-                </div>
-            </div>
-      </div>
-    </div>
+  <div class="container profile-header">
+              <div class="row">
+                  <div> <img src="../images/default.jpg" class="profile-pfp"></div>
+                  <!-- <div class="profile_info col s2 offset-s1"> -->
+                  <div class="profile_info">
+                    <h1>${name}</h1>
+                    <i><h6 class="valign-wrapper"><i class="material-icons">place</i>${school}</h6></i>
+                    <h8><b>${class}</b></h8>
+                  </div>
+              </div>
+  </div>
 
 	<!--yeah all that man all that-->
 	<div>
-		<div class = "row">
+		<!-- <div class = "row">
 			<u><h3 class = "col offset-s1">User Details</h3></u>
-		</div>
+		</div> -->
     <div class = "row">
-  		<div class = "row col s6 " style = "margin-left: 30.79%;">
-  			<div id = "tab_button" class = "col s3 tab" style = "text-align: center; border-radius: 0px; margin: 1px; " onclick="activateTab('profile-posts','main')">Posts</div>
-        <div id = "tab_button" class = "col s3 tab" style = "text-align: center; border-radius: 0px; margin: 1px;" onclick="activateTab('profile-details','main')">User Details</div>
-        <div id = "tab_button" class = "col s3 tab" style = "text-align: center; border-radius: 0px; margin: 1px;" onclick="activateTab('')">Extra tab in case</div>
+  		<div class = "col s6 offset-s3 center-align">
+  			<div id = "tab_button" class = "col s5 tab" onclick="activateTab('profile-posts','main')">Posts</div>
+        <div id = "tab_button" class = "col s5 tab" onclick="activateTab('profile-details','main')">User Details</div>
+        <!-- <div id = "tab_button" class = "col s3 tab" style = "text-align: center; border-radius: 0px; margin: 1px;" onclick="activateTab('')">Extra tab in case</div> -->
   		</div>
     </div>
 	</div>
@@ -118,9 +114,42 @@
       </div>
 		</div>
 
+    <div class="modal" id="usernameEditModal">
+      <div class="modal-content">
+        <div class="form">
+          <center>
+            <h2>Edit your username</h2>
+            <h4><input type="text" value="${username}"/></h4>
+            <div class="btn-large nord-darkblue modal-close">Cancel</div>
+            <button type="submit" class="btn-large nord-red">Submit</button>
+          </center>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="passwordChangeModal">
+      <div class="modal-content">
+        <div class="form">
+          <center>
+            <h2>Change your password</h2>
+            <h4><input type="text" placeholder="Enter your current password"/></h4>
+            <h4><input type="text" placeholder="Enter your new password"/></h4>
+            <h4><input type="text" placeholder="Enter your new password again"/></h4>
+            <div class="btn-large nord-darkblue modal-close">Cancel</div>
+            <button type="submit" class="btn-large nord-red">Submit</button>
+          </center>
+        </div>
+      </div>
+    </div>
+
     <div id = "profile-details"  class="tab-panel activeTab" tab-id="profile-details">
 			<div class="container col offset-s1 s8">
-        <span style = "margin-right: 0px;"><b>Username: </b></span><span>{username}</span>
+        <div><h4><span><b>Username: </b></span><span>${username}</span><a href="#usernameEditModal" class="edit modal-trigger"><i class="material-icons">edit</i></a></h4></div>
+        <div><h4><span><b>Password: </b></span><span>&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;</span><a href="#passwordChangeModal" class="edit modal-trigger"><i class="material-icons">edit</i></a></h4></div>
+        <div><h4><span><b>Posts: </b></span><span>${numOfPosts}</span></h4></div>
+        <div><h4><span><b>Comments: </b></span><span>${numOfComments}</span></h4></div>
+        <div><h4><span><b>Groups: </b></span><span>${numOfComments}</span></h4></div>
+        <div><h4><span><b>Account Created On: </b></span><span>${accCreationDate}</span></h4></div>
         <!-- <hr>
         <span><b>First Name: </b><span>{FIRST NAME}</span></span>
         <span><b>Last Name: </b><span>{LAST NAME}</span></span>

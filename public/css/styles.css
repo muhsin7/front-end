@@ -140,6 +140,7 @@
 
 a{
   color: #F28650;
+  transition: .5s ease;
 }
 
 .postbutton{
@@ -209,23 +210,25 @@ a{
   background: #003255 !important;
 }
 
-.parallax-container{
+.profile_banner{
     background-color: #722C8A;
     height: 300px;
     width: 100%;
 }
 
-.pfp{
-  height: 100px;
+.profile-pfp{
+  height: 150px;
   width: auto;
-  border-radius: 10px;
+  border-radius: 50%;
   margin-top: 50px;
+  margin-bottom: 50px;
   margin-left: 50px;
+  float: left;
 }
 
 .profile_info{
   margin-top: 50px;
-  /* margin-left: 50px; */
+  margin-left: 250px !important;
   color: #fff;
 }
 teacher-container,session, session-onload, student-container,session-error {
@@ -276,14 +279,14 @@ teacher-container,session, session-onload, student-container,session-error {
 }
 
 
-.class-header{
+.class-header, .profile-header{
   border-radius: 10px;
   background-color: #722C8A;
   color: white;
   margin-top: 20px;
 }
 
-.class-header .row{
+.class-header .row, .profile-header .row{
   padding: 10px;
   padding-left: 20px;
 }
@@ -425,23 +428,8 @@ teacher-container,session, session-onload, student-container,session-error {
 textarea.materialize-textarea {
   height: 100px !important;
 }
-textarea.materialize-textarea.comment-readonly {
-  border-bottom:none;
-  padding-top:10px;
-  height: 30px !important;
-}
 
 /* KIBIRA DEFINITIONS */
-.pointer-cursor {
-  cursor:pointer
-}
-textarea[readonly="readonly"], textarea[readonly] {
-  color:black !important;
-}
-.small-side-margin {
-  margin-right:5px;
-  margin-left:5px;
-}
 .red-prompt {
   color:red
 } /* hmm yes this red text is made out of red */
@@ -457,9 +445,7 @@ textarea[readonly="readonly"], textarea[readonly] {
 .small-text {
   font-size:10px
 }
-backend-data {
-  display:none
-}
+
 
 #deleteModal, #renameModal, #leaveModal{
   top: 225px !important;
@@ -617,4 +603,21 @@ button[name="comment-btn"]{
 
 #kickModal{
   top: 200px !important;
+}
+
+.tab_button{
+  border-radius: 0px;
+  margin: 1px;
+}
+
+.edit:hover a{
+  text-decoration: underline !important;
+}
+
+#usernameEditModal{
+  top: 200px !important;
+}
+
+#passwordChangeModal{
+  top: 150px !important;
 }

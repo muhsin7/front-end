@@ -162,97 +162,50 @@
       </div>
     </div>
 
-    <div class="modal" id="kickModal">
-      <div class="modal-content">
-        <center>
-          <h4>Are you sure you want to remove ${student_name} from ${class}?</h4>
-          <h6><i>The student will not be able to access the data and posts in this group unless they rejoin the group.</i></h6>
-        </center>
-        <br />
-        <center>
-          <div class="nord-darkblue btn-large modal-close">Cancel</div>
-          <div class="btn-large nord-red">Remove</div>
-        </center>
-      </div>
-    </div>
-
 
     <div class="container">
         <div class="row col s12">
           <div class="col s2">
-            <a onclick="activateTab('postsTab','main');"><div class="tab">Posts</div></a>
-            <a onclick="activateTab('membersTab','main');"><div class="tab">Members</div></a>
-            <a onclick="activateTab('assignmentsTab','main');"><div class="tab">Assignments</div></a>
+            <a onclick="activateTab('postsTab');"><div class="tab">Posts</div></a>
+            <a onclick="activateTab('membersTab');"><div class="tab">Members</div></a>
+            <a onclick="activateTab('assignmentsTab');"><div class="tab">Assignments</div></a>
           </div>
-          <div class="tab-container" tab-container-id="main">
+          <div class="tab-container">
             <div class="tab-panel col s8 offset-s1" tab-id="membersTab">
               <h3>Members</h3>
               <hr />
-                <ul class="collection" id="membersList">
+              <div class = "membercontainer row">
+                <div class = "col 4 membername">Chad</div>
+                <div class = "col 4 offset-s9 membertype"><span>Student</span><a class = "removestudentbutton"><b>Remove</b></a></div>
 
-                  <session-error>
-                    <li class="collection-item member_item"><div><a href="/profile/" class="member_name">Member name</a><!--<a href="#kickModal" class="modal-trigger secondary-content"><i class="material-icons remove_student nord-red valign-wrapper">close</i></a>--></div></li>
-                    <li class="collection-item member_item"><div><a href="/profile/" class="member_name">Member name</a><!--<a href="#kickModal" class="modal-trigger secondary-content"><i class="material-icons remove_student nord-red valign-wrapper">close</i></a>--></div></li>
-                    <li class="collection-item member_item"><div><a href="/profile/" class="member_name">Member name</a><!--<a href="#kickModal" class="modal-trigger secondary-content"><i class="material-icons remove_student nord-red valign-wrapper">close</i></a>--></div></li>
-                  </session-error>
-                </ul>
-            </div>
-            <div class="tab-panel activeTab col offset-s1 s8" tab-id="postsTab">
-              <!-- <div class="col offset-s1 s8"> -->
-          <h2>Posts</h2>
-          <hr />
-          <!-- <br /> -->
-          <a href="#post" class="modal-trigger"><div class="post-btn btn"><center><b class="valign-wrapper"><i class="material-icons small">mode_edit</i>CREATE A POST</b></center></div></a>
-          <br />
-          <br />
-        <!-- </div> -->
-        <div>
-          <div class="" id="postContainer">
-            <div class="post hoverable" id="samplePost">
-              <div class="post-header">
-                <img class="post-pfp" src="../images/default.jpg" />
-              </div>
-              <div class="poster">Kabir De Sarkar<a href="#" class="dropdown-trigger" data-target="post-dropdown"><i class="material-icons post-options">more_horiz</i></a></div>
-              <a href="#" class="post-class">IBDP1 Chemistry</a>
-              <span class="date-text">3:45PM, Wednesday, October 15th, 2019</span>
-              <div class="more">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-              <ul class="collection files">
-                <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-purple download_file tiny">file_download</i></a></div></li>
-                <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-purple download_file tiny">file_download</i></a></div></li>
-                <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-purple download_file tiny">file_download</i></a></div></li>
-              </ul>              <hr />
-              <h6><b>Comments</b></h6>
-              <div class="form">
-                <input name="comment" type="text" class="comment-input"/>
-                <button name="comment-btn" type="submit" name="button" class="right-align btn nord-red">Comment</button>
-                <br /><br />
-              </div>
-              <div class="comments">
-                <div class="comment">
-                  <div class="comment-marker nord-darkblue"></div>
-                  <img class="comment-pfp" src="../images/default.jpg"/>
-                  <div class="comment-poster">Kabir</div><span class="date-text">3:45PM, Wednesday, October 15th, 2019</span>
-                  <div class="comment-text more">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-                </div>
-              </div>
-              <div class="load-more-comments">
-                <a href="/post/">[Load more comments...]</a>
               </div>
             </div>
-          </div>
-        </div>
+            <div class="tab-panel activeTab col s9 offset-s1" tab-id="postsTab">
+              <h3>Posts</h3>
+              <hr />
+              <div class="container col offset-s1 s8">
+                <div class="row" id="postContainer">
+                  <div class="post hidden" id="samplePost">
+                    <a href="#" class="assignment-subject">Class</a>
+                    <h5>Title for teacher</h5>
+                    <h7>User</h7>
+                    <h6>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h6>
+                    <a href="#"><i class="tiny material-icons">attach_file</i> attached_file.png</a>
+                  </div>
+                  </div>
+              </div>
             </div>
             <div class="tab-panel col s9 offset-s1" tab-id="assignmentsTab">
               <h3>Assignments</h3>
               <hr />
-              <div>
+              <div class="col s11 offset-s1">
                   <div class="row">
                     <h4>All</h4>
                     <hr />
                   </div>
                   <div class="row">
 
-                    <div class="col s3 assignment-item">
+                    <div class=" col s3 assignment-item">
                       <div class="assignment-content">
                         <div class="assignment-name">Math stuff</div>
                         <div class="assignment-subject">Math</div>
@@ -299,7 +252,7 @@
                   <hr />
                 </div>
                 <div class="row">
-                  <div class="col s3 assignment-item">
+                  <div class="col s2 assignment-item">
                     <div class="assignment-content">
                       <div class="assignment-name">Math stuff</div>
                       <div class="assignment-subject">Math</div>
@@ -369,40 +322,25 @@
         data:{classID:splitUrl().lastElem()},
         success:function(response){
           // console.log(response)
-          // let postContainer = $('#postContainer')
-          // for(let post of response){
-          //   let {classID,content,title,posterName,dateCreated} = post;
-          //   dateCreated = new Date(dateCreated).getSemiSimpleTime();
-          //
-          //   let elem = $(`<div class="post">
-          //     <h5>${title}</h5>
-          //     <h7>${posterName}</h7><br>
-          //     <span class="grey-text small-text">${dateCreated}</span>
-          //     <h6>${content}</h6>
-          //   </div>`)
-          //   postContainer.append(elem)
-          // }
-          // if(response.length == 0){
-          //   postContainer.append($(`<center><h6 class="grey-text">No posts to be loaded</h6></center>`))
-          // }
+          let postContainer = $('#postContainer')
+          for(let post of response){
+            let {classID,content,title,posterName,dateCreated} = post;
+            dateCreated = new Date(dateCreated).getSemiSimpleTime();
+
+            let elem = $(`<div class="post">
+              <h5>${title}</h5>
+              <h7>${posterName}</h7><br>
+              <span class="grey-text small-text">${dateCreated}</span>
+              <h6>${content}</h6>
+            </div>`)
+            postContainer.append(elem)
+          }
+          if(response.length == 0){
+            postContainer.append($(`<center><h6 class="grey-text">No posts to be loaded</h6></center>`))
+          }
         }, error:function(error){
           $('#samplePost').removeClass("hidden")
           console.error(error.responseText)
-        }
-      })
-      $.ajax({
-        url:"/api/class/"+$.splitUrl()[$.splitUrl().length-1]+"/list/members",
-        success:function(data){
-          // console.log(data)
-          for(let person of data){
-            $('#membersList').append(
-              $(
-                `<li class="collection-item member_item"><div><a href="/profile/" class="member_name">${person.username}</a><!--<a href="#kickModal" class="modal-trigger secondary-content"><i class="material-icons remove_student nord-red valign-wrapper">close</i></a>--></div></li>`
-              )
-            )
-          }
-        },error:function(err){
-          console.log(err)
         }
       })
       // function show(){
@@ -425,10 +363,10 @@
       //   }
       // }
 
-      // $(".renameModal").on("click", function(){
-      //   var instance = M.Modal.getInstance("#renameModal");
-      //   instance.open();
-      // })
+      $(".renameModal").on("click", function(){
+        var instance = M.Modal.getInstance("#renameModal");
+        instace.open();
+      })
     </script>
 
   </body>
