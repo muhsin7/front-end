@@ -150,8 +150,9 @@
 
   <div class="container profile-header">
               <div class="row">
-                  <div> <img src="../images/default.jpg" class="profile-pfp"></div>
-                  <!-- <div class="profile_info col s2 offset-s1"> -->
+                  <div>
+                    <img src="/api/session/image" class="profile-pfp">
+                  </div>
                   <div class="profile_info">
                     <h1>${username}</h1>
                   </div>
@@ -222,27 +223,43 @@
 
     <div class="modal" id="usernameEditModal">
       <div class="modal-content">
-        <div class="form">
+        <div class="form" method="POST" action="/auth/change/username" on-error-prompt-selector=".red-prompt" on-success-reload="true">
           <center>
             <h2>Edit your username</h2>
-            <h4><input type="text" value="${username}"/></h4>
+            <h4><input type="text" name="username" placeholder="Enter new username" value="${username}"/></h4>
+            <h4><input type="password" name="password" placeholder="Enter password to confirm" value=""/></h4>
+            <h6 class="red-prompt"></h6>
             <div class="btn-large nord-darkblue modal-close">Cancel</div>
             <button type="submit" class="btn-large nord-red">Submit</button>
           </center>
         </div>
       </div>
     </div>
-
+    <div class="modal" id="profilePictureChangeModal">
+      <div class="modal-content">
+        <div>
+          <center>
+            <h2>Change your profile picture</h2>
+            <button class="btn-large nord-red" onclick="$('#attachProfilePicture').click()">Attach image</button>
+            <input type="file" value="" class="hidden" id="attachProfilePicture" accept="image/*"><br />
+            <img src="/api/session/image" height="220px" id="previewImage" alt="" style="display:block;margin-top:20px;margin-bottom:20px">
+            <div class="btn-large nord-darkblue modal-close">Cancel</div>
+            <button type="submit" class="btn-large nord-red" id="profileSubmit">Submit</button>
+          </center>
+        </div>
+      </div>
+    </div>
     <div class="modal" id="passwordChangeModal">
       <div class="modal-content">
-        <div class="form">
+        <div>
           <center>
             <h2>Change your password</h2>
-            <h4><input type="text" placeholder="Enter your current password"/></h4>
-            <h4><input type="text" placeholder="Enter your new password"/></h4>
-            <h4><input type="text" placeholder="Enter your new password again"/></h4>
+            <h4><input type="password" name="oldPassword" id="oldPassword" required placeholder="Enter your current password"/></h4>
+            <h4><input type="password" name="newPassword" id="newPassword" required placeholder="Enter your new password"/></h4>
+            <h4><input type="password" id="confirmPassword" required placeholder="Enter your new password again"/></h4>
+            <h6 class="red-prompt" id="passwordPrompt"></h6>
             <div class="btn-large nord-darkblue modal-close">Cancel</div>
-            <button type="submit" class="btn-large nord-red">Submit</button>
+            <button type="submit" class="btn-large nord-red" id="submitChangePassword">Submit</button>
           </center>
         </div>
       </div>
@@ -251,11 +268,10 @@
     <div id = "profile-details"  class="tab-panel activeTab" tab-id="profile-details">
 			<div class="container col offset-s1 s8">
         <div><h4><span><b>Username: </b></span><span>${username}</span><a href="#usernameEditModal" class="edit modal-trigger"><i class="material-icons">edit</i></a></h4></div>
-        <div><h4><span><b>Password: </b></span><span>&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;&#x2022;</span><a href="#passwordChangeModal" class="edit modal-trigger"><i class="material-icons">edit</i></a></h4></div>
-        <div><h4><span><b>Posts: </b></span><span>${numOfPosts}</span></h4></div>
-        <div><h4><span><b>Comments: </b></span><span>${numOfComments}</span></h4></div>
-        <div><h4><span><b>Groups: </b></span><span>${numOfComments}</span></h4></div>
-        <div><h4><span><b>Account Created On: </b></span><span>${accCreationDate}</span></h4></div>
+        <div><h4><span><b>Password: </b></span>[<a href="#passwordChangeModal" class="edit modal-trigger">Change password</a>]</h4></div>
+        <div><h4><span><b>Profile picture: </b></span>[<a href="#profilePictureChangeModal" class="edit modal-trigger">Edit profile picture</a>]</h4></div>
+        <div><h4><span><b>Posts: </b></span><span id="numberOfPosts"></span></h4></div>
+        <div><h4><span><b>Comments: </b></span><span id="numberOfComments"></span></h4></div>
         <!-- <hr>
         <span><b>First Name: </b><span>{FIRST NAME}</span></span>
         <span><b>Last Name: </b><span>{LAST NAME}</span></span>
@@ -302,16 +318,53 @@
     <!-- /////////////////////////////////////////////////////// -->
     <script>
     $.initSession()
-    $(window).on('sessionLoaded',(event,error,sessionData) => {
+    $('#attachProfilePicture').on('change',function(){
+      let fileReader = new FileReader();
+      fileReader.addEventListener("load",() => {
+        $('#previewImage').attr("src",fileReader.result)
+      })
+      fileReader.readAsDataURL($(this)[0].files[0])
+    })
+    $("#profileSubmit").on('click',function(){
+      let file = $('#attachProfilePicture')[0].files[0];
+      let formData = new FormData();
+      formData.append("file",new Blob([file],{type:"image/jpeg"}));
       $.ajax({
-        url:"/api/users/"+sessionData.id+"/getAllPosts",
-        type:"GET",
+        url:"/api/session/upload",
+        type:'POST',
+        data:formData,
+        processData:false,
+        contentType:false,
+        cache:false,
         success:function(data){
           console.log(data)
-        }, error:function(data){
-          console.error(data)
+          window.location.reload(true)
+        },error:function(err){
+          console.error(err.responseText)
         }
       })
+    })
+    $(window).on('sessionLoaded',(event,error,sessionData) => {
+      $.ajax({
+        url:`/api/users/${sessionData.id}/stats`,
+        type:'GET',
+        success:function(data){
+          // console.log(data)
+          $('#numberOfPosts').html(data.posts)
+          $('#numberOfComments').html(data.comments)
+        }, error:function(err){
+          console.log(err.responseText)
+        }
+      })
+      // $.ajax({
+      //   url:"/api/users/"+sessionData.id+"/getAllPosts",
+      //   type:"GET",
+      //   success:function(data){
+      //     console.log(data);
+      //   }, error:function(data){
+      //     console.error(data)
+      //   }
+      // })
       $.ajax({
       url:"/api/users/"+sessionData.id+"/getAllPosts",
       type:"GET",
@@ -336,7 +389,7 @@
         // let dropDownHTML = ""
         response = response.reverse()
         for(let post of response){
-          console.log(post)
+          // console.log(post)
           let {classID,className,content,title,posterName,dateCreated,poster} = post;
           let postID = post.id;
           dateCreated = new Date(dateCreated).getSemiSimpleTime();
@@ -388,7 +441,7 @@
             }
           }
           let attachmentContent = ""
-          l(post.attachments)
+          // l(post.attachments)
           for(let attachment of post.attachments){
             attachmentContent+=
             `<a href="/class/${classID}/attachment/${attachment.fileName}"><i class="tiny material-icons">attach_file</i> ${attachment.originalName}</a><br>`
@@ -433,14 +486,14 @@
           </div>`)
           postContainer.append(elem)
         }
-        console.log(postContainer)
+        // console.log(postContainer)
         if(response.length == 0){
           postContainer.append($(`<center><h6 class="grey-text">No posts to be loaded</h6></center>`))
         }
         try {
           $('.dropdown-trigger').dropdown();
         } catch (e) {
-          console.log("lol, dropdowns do not work sir")
+          console.warn("Lol, dropdowns do not work sir")
         }
         // $('#dropdown-container').html(dropDownHTML);
         $('#deleteProxy').on('click',() => {
@@ -630,7 +683,7 @@
           if(file.name == button.attr("file-name")) elem.fileList.splice(i,1)
         }
         button.parents('.collection-item').eq(0).remove()
-        l(elem.fileList)
+        // l(elem.fileList)
       })
     })
     $('#edit-submit').on('click',() => {
@@ -690,7 +743,7 @@
             if(file.name == $(this).attr('file-name')) elem.fileList.splice(i,1)
           }
           $(this).parents(".collection-item").eq(0).remove();
-          l(elem.fileList)
+          // l(elem.fileList)
         })
         elem.fileList.push(file)
       }
@@ -734,7 +787,28 @@
       $(elem).parent().children(".activeTabButton").removeClass(".activeTabButton")
       $(elem).addClass(".activeTabButton")
     }
-
+    $('#submitChangePassword').on("click",() => {
+      if ($('#newPassword').val() != $('#confirmPassword').val()) {
+        $('#passwordPrompt').text("Confirm password and the new password need to match")
+      } else {
+        $.ajax({
+          url:"/auth/change/password",
+          type:"POST",
+          data:{
+            oldPassword:$('#oldPassword').val(),
+            newPassword:$('#newPassword').val()
+          },
+          success:function(data){
+            // console.log(data);
+            $('#passwordPrompt').text('');
+            window.location.reload(true)
+          },error:function(err){
+            $('#passwordPrompt').text(err.responseText)
+            console.error(err.responseText);
+          }
+        })
+      }
+    })
     </script>
   </body>
 

@@ -455,6 +455,9 @@ backend-data {
 .red-prompt {
   color:red
 } /* hmm yes this red text is made out of red */
+.red-prompt.small {
+  font-size:15px;
+}
 .grey-text {
   color:grey
 } /* hmm yes this grey text is made out of grey */
