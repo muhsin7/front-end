@@ -144,21 +144,6 @@
               <!-- <label for="icon_prefix2">Enter Post</label> -->
             </div>
           </div>
-
-        <div class="row">
-
-          <!-- <div class="file-field input-field">
-
-            <a class="red-button btn">
-              <i class="material-icons">attach_file</i>
-              <span>Attach file</span>
-              <input type="file" multiple>
-            </a>
-            <div class="file-path-wrapper">
-              <input class="file-path validate" type="text" placeholder="Upload one or more files">
-            </div>
-          </div> -->
-        </div>
         </div>
 
      </div>
@@ -350,9 +335,36 @@
           </div>
         </div>
             </div>
+
+            <div class="modal" id="assignmentModal">
+              <div class="modal-content">
+                <center>
+                  <h2>Create an assignment</h2>
+                </center>
+                <div>
+                    <div class="input-field col s12">
+                      <input type="text"id="assignment_title" name="title" value="" placeholder="Enter title">
+                      <label for="assignment_title">Assignment title</label>
+                    </div>
+                    <div class="input-field col s12">
+                      <textarea id="icon_prefix2" class="materialize-textarea" placeholder="Enter Content of post"></textarea>
+                      <label for="icon_prefix2">Content</label>
+                    </div>
+                  <input type="text" class="datepicker" id="due_date">
+                  <label for="due_date">Due date</label>
+                </div>
+                <center>
+                  <div class="btn-large modal-close nord-red">Cancel</div>
+                  <button type="submit" class="btn-large nord-darkblue">Post</button>
+                </center>
+              </div>
+
+            </div>
+
             <div class="tab-panel col s9 offset-s1" tab-id="assignmentsTab">
               <h3>Assignments</h3>
               <hr />
+              <a href="#assignmentModal" class="modal-trigger"><div class="assignment-btn btn"><center><b class="valign-wrapper"><i class="material-icons small">mode_edit</i>CREATE AN ASSIGNMENT</b></center></div></a>
               <div>
                   <div class="row">
                     <h4>All</h4>
@@ -930,6 +942,9 @@
       //   var instance = M.Modal.getInstance("#renameModal");
       //   instance.open();
       // })
+      $(document).ready(function(){
+        $('.datepicker').datepicker();
+      });
     </script>
 
   </body>

@@ -498,15 +498,16 @@ backend-data {
   margin-right: 10px;
 }
 
-.post-btn{
+.post-btn, .assignment-btn{
   background-color: #EA3056 !important;
   width: 100%;
   border-radius: 10px;
 }
 
-.post-btn b{
+.post-btn, .assignment-btn b{
   display: inline-flex;
 }
+
 input[name="comment"]{
   width: 100%;
   margin-bottom: 5px;
