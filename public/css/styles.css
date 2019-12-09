@@ -504,7 +504,7 @@ backend-data {
   border-radius: 10px;
 }
 
-.post-btn, .assignment-btn b{
+.post-btn b, .assignment-btn b{
   display: inline-flex;
 }
 
@@ -541,6 +541,9 @@ input[name="comment"]{
 .comment-poster{
   font-weight: bold;
 }
+.comment-poster a {
+  color:#722C8A
+}
 .comment-text{
   margin-left: 62.5px;
 }
@@ -556,7 +559,10 @@ button[name="comment-btn"]{
 .poster{
   font-size: 20px;
 }
-
+.poster a {
+  color:#722C8A;
+  font-weight: bold
+}
 .post-class{
   color: #FDC02D;
   font-weight: bold;

@@ -95,8 +95,8 @@ $(() => {
             let dateCommented = new Date(dateCreated).getSemiSimpleTime()
             comments+=`<div class="comment">
             <div class="comment-marker nord-darkblue"></div>
-            <img class="comment-pfp" src="../images/default.jpg"/>
-            <div class="comment-poster">${commenterName}</div><span class="date-text">${dateCommented}
+            <img class="comment-pfp" src="/api/users/${commenter}/image"/>
+            <div class="comment-poster"><a href="/user/${commenter}">${commenterName}</a></div><span class="date-text">${dateCommented}
             ${(isOwnerOfComment)?
               `
               <span class="date-text small-side-margin edit-comment pointer-cursor" post-id="${id}"><a>Edit  </a></span>
@@ -125,6 +125,7 @@ $(() => {
           }
         }
         let attachmentContent = ""
+        post.attachments = post.attachments || []
         for(let attachment of post.attachments){
           attachmentContent+=
           // `<a href="/class/${classID}/attachment/${attachment.fileName}"><i class="tiny material-icons">attach_file</i> ${attachment.originalName}</a><br>`
@@ -137,12 +138,12 @@ $(() => {
         </div>` : ''
         let elem = $(`<div class="post hoverable">
           <div class="post-header">
-            <img class="post-pfp" src="../images/default.jpg" />
+            <img class="post-pfp" src="/api/users/${poster}/image" />
           </div>
           <!--
           <a post-id="${postID}" owner="${isOwnerOfPost}" class="dropdown-trigger" data-target="post-dropdown-${postID}"><i class="material-icons post-options">more_horiz</i></a>
           -->
-          <div class="poster">${posterName}</div>
+          <div class="poster"><a href="/user/${poster}">${posterName}</a></div>
           ${ifTeacherAccountAddElementHere}
           <a href="/class/${classID}" class="post-class">${className}</a>
           <span class="date-text">${dateCreated}</span>
@@ -259,7 +260,7 @@ $(() => {
         let comment = $(`
           <div class="comment">
             <div class="comment-marker nord-darkblue"></div>
-            <img class="comment-pfp" src="../images/default.jpg"/>
+            <img class="comment-pfp" src="/api/users/${commenter}/image"/>
             <div class="comment-poster">${user}</div><span class="date-text">${new Date().getSemiSimpleTime()}</span>
             <span class="date-text small-side-margin edit-comment pointer-cursor"><a>Edit  </a></span>
             <span class="date-text modal-trigger small-side-margin delete-comment pointer-cursor" comment-id="${commentID}" href="#deleteCommentModal"><a>Delete</a></span>
