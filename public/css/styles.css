@@ -656,3 +656,113 @@ button[name="comment-btn"]{
 #passwordChangeModal{
   top: 150px !important;
 }
+/*
+#writePostButton i{
+  transition: .5s ease;
+  width: 200px !important;
+}
+#writePostButton:hover i{
+  display: flex !important;
+  border-radius: 25% !important;
+  width: 200px !important;
+} */
+
+#notifications{
+  margin-top: 64px !important;
+  width: 400px !important;
+}
+
+#notifications li > a{
+  /* padding: 10px; */
+  /* height: 50px !important; */
+  /* max-height: 75px !important; */
+  /* line-height: 75px; */
+}
+
+
+
+.notif-pfp{
+  height: 40px !important;
+  width: auto;
+  float: left;
+  /* padding: 5px; */
+  border-radius: 50%;
+  padding-right: 10px;
+}
+
+.notif-title{
+  float: left;
+}
+
+.notif-content{
+  /* float: left; */
+  margin-right: 50px;
+  width: 80%;
+}
+
+#notificationsModal{
+  top: 20% !important;
+}
+
+#notificationsModal .modal-content{
+  padding: 0 !important;
+  padding-top: 10px;
+  /* display: inline; */
+}
+
+#notificationsModal .collection{
+  margin: 0 !important;
+  /* display: inline; */
+}
+
+.modal-notif-pfp{
+  border-radius: 50%;
+  height: 50px;
+  width: auto;
+  border: solid 2px #722C8A !important;
+  float: left;
+  margin-right: 10px;
+  /* margin-bottom: 20px; */
+}
+
+.modal-notification{
+  line-height: inherit !important;
+  max-height: 125px !important;
+  padding: 20px !important;
+  /* background-color: #E3E1DC; */
+  transition: .5s ease;
+}
+
+.modal-notification:hover{
+  /* background-color: #8F8B86; */
+  background-color: #E3E1DC;
+  cursor: pointer;
+}
+
+.modal{
+  border-radius: 25px;
+}
+
+.notification-collection{
+  border-radius: 25px !important;
+}
+
+.notification-collection a, .collection.collection-item:last-child{
+  border-bottom: 1px solid #e0e0e0 !important;
+}
+
+.collection .collection-item:last-child {
+  border-bottom: 1px solid #e0e0e0 !important;
+}
+
+.notif-arrow{
+  /* float: right; */
+  /* display: block; */
+  position: absolute;
+  text-align: right;
+}
+
+.assignment-notif{
+  font-style: italic;
+  background-color: #eb3056 !important !important;
+}
