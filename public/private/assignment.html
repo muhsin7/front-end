@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- /////////////////////////////////////////////////////// -->
+    <link rel="stylesheet" href="../css/icons.css">
+    <link rel="stylesheet" href="../css/materialize.css">
+    <link rel="stylesheet" href="../css/materialize.css">
+    <link rel="stylesheet" href="../css/nord-colours.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <!-- /////////////////////////////////////////////////////// -->
+
+  </head>
+  <body>
+
+    <nav class="nord-darkblue" role="navigation">
+      <ul id="profileDropdown" class="dropdown-content">
+        <li><a href="/profile/" class="modal-trigger">Profile</a></li>
+        <li><a href="/auth/logout" class="modal-trigger">Log out</a></li>
+      </ul>
+      <div class="nav-wrapper container">
+        <a id="logo-container" href="/home/" class="brand-logo"><img src="../images/cisco.png" height="50px" width="auto" style="padding-top:5px;" /></a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="/home/">Home</a></li>
+          <li><a href="/assignments/">Assignments</a></li>
+          <li><a class="modal-trigger nord-orange" href="#notificationsModal"><i class="material-icons">notifications</i></a></li>
+          <li><a class="dropdown-trigger" href="#!" data-target="profileDropdown"><i class="material-icons">person arrow_drop_down</i></a></li>
+        </ul>
+
+        <ul id="nav-mobile" class="sidenav">
+          <li><a href="/home/">Home</a></li>
+          <li><a href="/assignments/">Assignments</a></li>
+          <li><a class="modal-trigger nord-orange" href="#notificationsModal"><i class="material-icons">notifications</i></a></li
+          <li><a href="/profile/" class="modal-trigger">Profile</a></li>
+          <li><a href="/auth/logout" class="modal-trigger">Log out</a></li>
+        </ul>
+        <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      </div>
+    </nav>
+
+    <div class="modal" id="notificationsModal">
+      <div class="modal-content">
+        <center>
+          <i class='material-icons nord-orange-text medium'>notifications</i>
+        </center>
+        <ul class="collection notification-collection">
+          <a href="#">
+            <li class="collection-item modal-notification post-notif">
+              <img src="../images/default.jpg" class="modal-notif-pfp"/>
+              <div>
+                <div class="truncate nord-purple-text notif-content">
+                  <b>Name</b> posted a <b>thing</b> in <b>class</b>
+                </div>
+                <div class="truncate">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </div>
+              </div>
+            </li>
+          </a>
+          <a href="#">
+            <li class="collection-item modal-notification assignment-notif">
+              <img src="../images/default.jpg" class="modal-notif-pfp"/>
+              <div>
+                <div class="truncate nord-purple-text notif-content">
+                  <b>Teacher</b> posted an <b>assignment</b> in <b>class</b>
+                </div>
+                <div class="truncate">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </div>
+              </div>
+            </li>
+          </a>
+          <a href="#">
+            <li class="collection-item modal-notification comment-notif">
+              <img src="../images/default.jpg" class="modal-notif-pfp"/>
+              <div>
+                <div class="truncate nord-purple-text notif-content">
+                  <b>Name</b> replied to your comment in <b>class</b>
+                </div>
+                <div class="truncate">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </div>
+              </div>
+            </li>
+          </a>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container col s12">
+      <div class="row assignment-box hoverable">
+          <!-- <div class="assignment-box"> -->
+          <div>
+            <div class="assignment-title">Assignment Title</div>
+            <i>Posted by teacher on date</i>
+            <br />
+            <b class="nord-yellow-text">Class Name</b>
+            <div class="due_date">
+              <i class="material-icons nord-red-text due-icon">watch_later</i>
+              <span class="nord-red-text valign-wrapper"><i>Due on hh:mm pm/am dd/mm/yy</i></span>
+              </div>
+            <hr />
+
+            <div class="assignment-content">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </div>
+              <div class="row center-align submit_assignment col s12">
+                  <a class="btn nord-red">
+                    <span class="valign-wrapper" id="post-attach-files-button"><i class="material-icons">attach_file</i>Attach file</span>
+                    <input type="file" class="hidden" multiple id="post-files">
+                  </a>
+              </div>
+                <div class="row">
+                  <ul class="collection files" id="post-file-collection">
+                    <session-error>
+                      <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-red remove_file tiny">close</i></a></div></li>
+                      <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-red remove_file tiny">close</i></a></div></li>
+                      <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-red remove_file tiny">close</i></a></div></li>
+                    </session-error>
+                  </ul>
+                </div>
+          </div>
+      <!-- </div> -->
+    </div>
+
+    <!-- /////////////////////////////////////////////////////// -->
+    <script type="text/javascript" src="../js/angular.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/materialize.js"></script>
+    <script type="text/javascript" src="../js/materialize.min.js"></script>
+    <script type="text/javascript" src="../js/initializing.js"></script>
+    <script type="text/javascript" src="../js/script.js"></script>
+    <script type="text/javascript" src="../js/events.js"></script>
+    <!-- /////////////////////////////////////////////////////// -->
+  </body>
+</html>

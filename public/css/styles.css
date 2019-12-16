@@ -766,3 +766,38 @@ button[name="comment-btn"]{
   font-style: italic;
   background-color: #eb3056 !important !important;
 }
+
+.assignment-box{
+  background-color: white !important;
+  border-radius: 15px;
+  border: 2px solid #003255;
+  padding: 15px;
+  margin-top: 30px;
+}
+
+.due-icon{
+  float: left;
+  margin-right: 5px;
+  /* margin-left: -25px; */
+  font-weight: lighter;
+}
+
+.assignment-title{
+  font-size: 1.64rem;
+}
+
+.due_date{
+  float: right;
+}
+
+.submit_assignment{
+  /* border-style: dashed; */
+  /* height: 100px; */
+  /* border: dashed #8F8B86 2px; */
+  width: 100% !important
+}
+
+.assignment_upload{
+  left: 50%;
+  right: 50%;
+}
