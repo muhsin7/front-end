@@ -232,6 +232,12 @@ $.fn.dissolve = function(){
   }
   elem.remove()
 }
+Date.prototype.getDayName = function(){
+  return ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][this.getDay()]
+}
+Date.prototype.getMonthName = function(){
+  return ['January','February','March','April','May','June','July','August','September', 'October', 'November', 'December'][this.getMonth()]
+}
 Date.prototype.resolveDate = function(){
   let date = this.getDate();
   let lastDigit = date%10;

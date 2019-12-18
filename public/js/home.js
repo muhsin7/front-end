@@ -254,6 +254,7 @@ $(() => {
         let commentID = response.comment.id
         let commentInput = elem.children(`.comment-input`).eq(1);
         let commentValue = commentInput.val()
+        commenter = sessionStorage.id
         let user = sessionStorage.getItem("user")
         // l(elem.parent().children(".comments").eq(0));
         let commentElem = elem.parent().children('.comments').eq(0);
@@ -450,6 +451,7 @@ $(() => {
       let formData = new FormData();
       formData.append("classID",classID);
       formData.append("content",content);
+      postFiles[0].fileList = postFiles[0].fileList || []
       for(let file of postFiles[0].fileList) formData.append("additionalFiles",new Blob([file]),file.name)
       $.ajax({
         url:"/api/post/create?uploadingFile=true",

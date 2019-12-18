@@ -384,26 +384,42 @@
         </div>
             </div>
 
-            <div class="modal" id="assignmentModal">
+            <div class="modal" id="assignmentModal" on-student-remove>
               <div class="modal-content">
                 <center>
                   <h2>Create an assignment</h2>
                 </center>
                 <div>
+                  <form id="createAssignmentForm">
                     <div class="input-field col s12">
-                      <input type="text"id="assignment_title" name="title" value="" placeholder="Enter title">
+                      <input type="text"id="assignment_title" name="title" value="" placeholder="Enter title" required>
                       <label for="assignment_title">Assignment title</label>
                     </div>
                     <div class="input-field col s12">
-                      <textarea id="icon_prefix2" class="materialize-textarea" placeholder="Enter Content of post"></textarea>
+                      <textarea id="icon_prefix2" class="materialize-textarea" name="content" placeholder="Enter Content of post" required></textarea>
                       <label for="icon_prefix2">Content</label>
                     </div>
-                  <input type="text" class="datepicker" id="due_date">
+                  </form>
                   <label for="due_date">Due date</label>
+                  <input type="text" class="datepicker" id="due_date" required>
+                  <div class="row">
+                      <a class="btn nord-red">
+                        <span class="valign-wrapper" id="createAssignmentAttachButton"><i class="material-icons">attach_file</i>Attach file</span>
+                        <input type="file" class="hidden" multiple id="createAssignmentAttachments">
+                      </a>
+                  </div>
+                  <ul id="createAssignmentFileContainer" class="collection files">
+                    <session-error>
+                      <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-purple download_file tiny">file_download</i></a></div></li>
+                      <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-purple download_file tiny">file_download</i></a></div></li>
+                      <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-purple download_file tiny">file_download</i></a></div></li>
+                    </session-error>
+                  </ul>
                 </div>
                 <center>
+                  <h6 class='nord-red' id="createAssignmentError"></h6>
                   <div class="btn-large modal-close nord-red">Cancel</div>
-                  <button type="submit" class="btn-large nord-darkblue">Post</button>
+                  <button type="submit" class="btn-large nord-darkblue" id="createAssignmentSubmit">Post</button>
                 </center>
               </div>
 
@@ -412,14 +428,66 @@
             <div class="tab-panel col s9 offset-s1" tab-id="assignmentsTab">
               <h3>Assignments</h3>
               <hr />
-              <a href="#assignmentModal" class="modal-trigger"><div class="assignment-btn btn"><center><b class="valign-wrapper"><i class="material-icons small">mode_edit</i>CREATE AN ASSIGNMENT</b></center></div></a>
-              <div>
-                  <div class="row">
+              <a on-student-remove href="#assignmentModal" class="modal-trigger"><div class="assignment-btn btn"><center><b class="valign-wrapper"><i class="material-icons small">mode_edit</i>CREATE AN ASSIGNMENT</b></center></div></a>
+                <div>
+                  <div class="row hidden" id="allAssignments">
                     <h4>All</h4>
                     <hr />
                   </div>
-                  <div class="row">
+                  <div class="row" id="allAssignmentsContainer">
 
+                    <session-error>
+                      <div class="col s3 assignment-item">
+                        <div class="assignment-content">
+                          <div class="assignment-name">Math stuff</div>
+                          <div class="assignment-subject">Math</div>
+                          <div class="due">Due Wednesday<br>October 16, 2019</div>
+                          <center><div class="submitted btn submit">Submitted</div></center>
+                        </div>
+                      </div>
+
+
+                      <div class="col s3 assignment-item">
+                        <div class="assignment-content">
+                          <div class="assignment-name">Chemistry stuff</div>
+                          <div class="assignment-subject">Chemistry</div>
+                          <div class="due">Due Tomorrow<br>October 15, 2019</div>
+                          <center><div class="not-submitted btn submit"><div id="submit">Not Submitted</div></div></center>
+                        </div>
+                      </div>
+                    </session-error>
+
+                </div>
+
+                <br>
+                <br>
+
+                <div class="row hidden" id="dueAssignments">
+                  <h4>Due Soon</h4>
+                  <hr />
+                </div>
+                  <div class="row" id="dueAssignmentsContainer">
+                    <session-error>
+                    <div class="col s3 assignment-item">
+                      <div class="assignment-content">
+                        <div class="assignment-name">Chemistry stuff</div>
+                        <div class="assignment-subject">Chemistry</div>
+                        <div class="due">Due Tomorrow<br>October 15, 2019</div>
+                        <center><div class="not-submitted btn submit"><div id="submit">Not Submitted</div></div></center>
+                      </div>
+                    </div>
+                  </session-error>
+                  </div>
+
+                <br>
+                <br>
+
+                <div class="row hidden" id="submittedAssignments">
+                  <h4>Submitted</h4>
+                  <hr />
+                </div>
+                <div class="row" id="submittedAssignmentsContainer">
+                  <session-error>
                     <div class="col s3 assignment-item">
                       <div class="assignment-content">
                         <div class="assignment-name">Math stuff</div>
@@ -428,53 +496,7 @@
                         <center><div class="submitted btn submit">Submitted</div></center>
                       </div>
                     </div>
-
-
-                  <div class="col s3 assignment-item">
-                    <div class="assignment-content">
-                      <div class="assignment-name">Chemistry stuff</div>
-                      <div class="assignment-subject">Chemistry</div>
-                      <div class="due">Due Tomorrow<br>October 15, 2019</div>
-                      <center><div class="not-submitted btn submit"><div id="submit">Not Submitted</div></div></center>
-                    </div>
-                  </div>
-
-                </div>
-
-                <br>
-                <br>
-
-                <div class="row">
-                  <h4>Due Soon</h4>
-                  <hr />
-                </div>
-                <div class="row">
-                  <div class="col s3 assignment-item">
-                    <div class="assignment-content">
-                      <div class="assignment-name">Chemistry stuff</div>
-                      <div class="assignment-subject">Chemistry</div>
-                      <div class="due">Due Tomorrow<br>October 15, 2019</div>
-                      <center><div class="not-submitted btn submit"><div id="submit">Not Submitted</div></div></center>
-                    </div>
-                  </div>
-                </div>
-
-                <br>
-                <br>
-
-                <div class="row">
-                  <h4>Submitted</h4>
-                  <hr />
-                </div>
-                <div class="row">
-                  <div class="col s3 assignment-item">
-                    <div class="assignment-content">
-                      <div class="assignment-name">Math stuff</div>
-                      <div class="assignment-subject">Math</div>
-                      <div class="due">Due Wednesday<br>October 16, 2019</div>
-                      <center><div class="submitted btn submit">Submitted</div></center>
-                    </div>
-                  </div>
+                  </session-error>
                 </div>
 
 
@@ -531,8 +553,60 @@
         mainElem.parent().children(".activeTab").removeClass('activeTab');
         mainElem.addClass('activeTab')
       }
+
       $(window).on('sessionLoaded',(event,error,sessionData) => {
-      $.ajax({
+        let currentClass = window.splitUrl().lastElem();
+        $.ajax({
+          url:"/api/assignments/list",
+          type:'POST',
+          data:{classID:currentClass},
+          success:function(data){
+            // console.log(data)
+            let allAssignments = $('#allAssignments');
+            let dueAssignments = $('#dueAssignments');
+            let submittedAssignments = $('#submittedAssignments');
+            let allAssignmentsContainer = $('#allAssignmentsContainer');
+            let dueAssignmentsContainer = $('#dueAssignmentsContainer');
+            let submittedAssignmentsContainer = $('#submittedAssignmentsContainer');
+            let submissionsRequired = duesRequired = false;
+            if(data.length != 0) allAssignments.removeClass('hidden')
+            for(let assignment of data){
+              let {dueDate,id,content,title,attachments,status,className} = assignment;
+              dueDate = new Date(Number(dueDate));
+              let submittedBoolean = (status != 'due');
+              let isSubmitted = submittedBoolean ? '' : 'not-';
+              console.log(allAssignmentsContainer)
+              if(sessionData.type == 'student') isSubmittedText = submittedBoolean ? 'Submitted' : 'Not submitted';
+              else isSubmittedText = 'VIEW'
+              let elemString = `
+                <div class="col s3 assignment-item">
+                  <div class="assignment-content">
+                    <div class="assignment-name">${title}</div>
+                    <div class="assignment-subject">${className}</div>
+                    <div class="due">Due ${dueDate.getDayName()}<br>${dueDate.getMonthName()} ${dueDate.getDate()}, ${dueDate.getFullYear()}</div>
+                    <center><div onclick="window.location.href = '/assignment/${id}'" class="${isSubmitted}submitted btn submit">${isSubmittedText}</div></center>
+                  </div>
+                </div>
+                `
+              allAssignmentsContainer.append($(elemString));
+              if(sessionData.type == 'student'){
+                if (!submittedBoolean) {
+                  dueAssignmentsContainer.append($(elemString))
+                  if(!duesRequired) duesRequired = true
+                }
+                else {
+                  submittedAssignmentsContainer.append($(elemString))
+                  if(!submissionsRequired) submissionsRequired = true
+                }
+              }
+            }
+            if(duesRequired) dueAssignments.removeClass('hidden')
+            if(submissionsRequired) submittedAssignments.removeClass('hidden')
+          },error:function(err){
+            console.error(err)
+          }
+        })
+        $.ajax({
         url:"/api/post/list",
         type:"POST",
         data:{classID:splitUrl().lastElem()},
@@ -991,6 +1065,58 @@
       //   var instance = M.Modal.getInstance("#renameModal");
       //   instance.open();
       // })
+      let chooseFiles = $('#createAssignmentAttachments')[0];
+      chooseFiles.removedFiles = chooseFiles.removedFiles || []
+      chooseFiles.additionalFiles = chooseFiles.additionalFiles || []
+      $('#createAssignmentAttachButton').on('click',() => {
+        $(chooseFiles).click()
+      })
+      $(chooseFiles).on('change',() => {
+        for(let file of chooseFiles.files){
+          let elem = $(`
+            <li class="collection-item" class="file"><div><a>${file.name}</a><a class="secondary-content"><i class="white material-icons nord-red download_file tiny cross" file-name="${file.name}">delete</i></a></div></li>
+            `)
+          $('#createAssignmentFileContainer').append(elem)
+          chooseFiles.additionalFiles.push(file)
+        }
+        $('#createAssignmentFileContainer .cross').off('click')
+        $('#createAssignmentFileContainer .cross').on('click',function(){
+          let elem = $(this)
+          console.log("tests")
+          let fileName = elem.attr('file-name');
+          for(let i=0;i<chooseFiles.additionalFiles.length;i++){
+            if(chooseFiles.additionalFiles[i].name == fileName) {
+              console.log('yes?')
+              chooseFiles.additionalFiles.splice(i,1)
+            }
+          }
+          elem.parents(".collection-item").eq(0).remove()
+        })
+      })
+      $('#createAssignmentSubmit').on('click',() => {
+        let formData = new FormData($('#createAssignmentForm')[0]);
+        for(let input of $('#assignmentModal [required]')) if($(input).val().trim() == '' && $(input).next().attr('class') != 'red-text') $(input).after($('<span class="red-text">This field is required</span>'))
+        for(let input of $('#assignmentModal [required]')) if($(input).val().trim() != '' && $(input).next().attr('class')=='red-text') $(input).next().remove()
+        formData.append('dueDate',new Date($('#due_date').val()).getTime())
+        for(let file of chooseFiles.additionalFiles) formData.append("additionalFiles",new Blob([file]),file.name);
+        let classID = window.splitUrl().lastElem();
+        console.log(formData.get('dueDate'))
+        formData.append('classID',classID)
+        for(let item of formData.entries()) console.log(item)
+        $.ajax({
+          url:"/api/assignments/create?uploadingFiles=true",
+          type:'POST',
+          data:formData,
+          processData:false,
+          cache:false,
+          contentType:false,
+          success:function(data) {
+            console.log(data)
+          },error:function(err){
+            console.error(err.responseText)
+          }
+        })
+      })
       $(document).ready(function(){
         $('.datepicker').datepicker();
       });

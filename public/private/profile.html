@@ -285,6 +285,20 @@
         </div>
       </div>
     </div>
+    <div class="modal" id="emailEditModal">
+      <div class="modal-content">
+        <div class="form" method="POST" action="/auth/change/email" on-error-prompt-selector=".red-prompt" on-success-reload="true">
+          <center>
+            <h2>Edit your email</h2>
+            <h4><input type="text" name="email" placeholder="Enter new username" value="${email}"/></h4>
+            <h4><input type="password" name="password" placeholder="Enter password to confirm" value=""/></h4>
+            <h6 class="red-prompt"></h6>
+            <div class="btn-large nord-darkblue modal-close">Cancel</div>
+            <button type="submit" class="btn-large nord-red">Submit</button>
+          </center>
+        </div>
+      </div>
+    </div>
     <div class="modal" id="profilePictureChangeModal">
       <div class="modal-content">
         <div>
@@ -318,6 +332,7 @@
     <div id = "profile-details"  class="tab-panel activeTab" tab-id="profile-details">
 			<div class="container col offset-s1 s8">
         <div><h4><span><b>Username: </b></span><span>${username}</span><a href="#usernameEditModal" class="edit modal-trigger"><i class="material-icons">edit</i></a></h4></div>
+        <div><h4><span><b>Email: </b></span><span>${email}</span><a href="#emailEditModal" class="edit modal-trigger"><i class="material-icons">edit</i></a></h4></div>
         <div><h4><span><b>Password: </b></span>[<a href="#passwordChangeModal" class="edit modal-trigger">Change password</a>]</h4></div>
         <div><h4><span><b>Profile picture: </b></span>[<a href="#profilePictureChangeModal" class="edit modal-trigger">Edit profile picture</a>]</h4></div>
         <div><h4><span><b>Posts: </b></span><span id="numberOfPosts"></span></h4></div>

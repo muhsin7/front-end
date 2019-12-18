@@ -202,38 +202,53 @@
     </div>
 
     <div class="container col s12">
-      <div class="row assignment-box hoverable">
+      <div class="assignment-box hoverable">
           <!-- <div class="assignment-box"> -->
           <div>
-            <div class="assignment-title">Assignment Title</div>
-            <i>Posted by teacher on date</i>
+            <div class="assignment-title">${title}</div>
+            <i>Posted by ${initiatorName}</i>
             <br />
-            <b class="nord-yellow-text">Class Name</b>
+            <b class="nord-yellow-text">${className}</b>
             <div class="due_date">
               <i class="material-icons nord-red-text due-icon">watch_later</i>
-              <span class="nord-red-text valign-wrapper"><i>Due on hh:mm pm/am dd/mm/yy</i></span>
+              <span class="nord-red-text valign-wrapper"><i>Due on ${dueDate}</i></span>
               </div>
             <hr />
 
             <div class="assignment-content">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              <!-- Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. -->
+              ${content}
+              </div>
+              <div class="row">
+                <ul class="collection files" id="attachmentContainer" style="">
+
+                </ul>
               </div>
               <div class="row center-align submit_assignment col s12">
-                  <a class="btn nord-red">
-                    <span class="valign-wrapper" id="post-attach-files-button"><i class="material-icons">attach_file</i>Attach file</span>
-                    <input type="file" class="hidden" multiple id="post-files">
+                  <a class="hidden btn nord-blue" id="submissionsEditButton">
+                    <span class="valign-wrapper" id="">Edit submission</span>
                   </a>
               </div>
+              <div class="row center-align submit_assignment col s12">
+                  <a class="btn nord-red" id="submissionAttachmentsContainer">
+                    <span class="valign-wrapper" id="submissionsAttachmentsButton"><i class="material-icons">attach_file</i>Attach file</span>
+                    <input type="file" class="hidden" multiple id="submissionAttachments">
+                  </a>
+              </div>
+                </div>
                 <div class="row">
-                  <ul class="collection files" id="post-file-collection">
+                  <ul class="collection files" id="post-file-collection" style="display:block !important">
+                    <li class="collection-item file large hidden" id="fileAttachmentContainer"><div><a id="fileAttachmentName">file_name.mp3</a><a href="#" class="secondary-content"></a></div></li>
                     <session-error>
-                      <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-red remove_file tiny">close</i></a></div></li>
-                      <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-red remove_file tiny">close</i></a></div></li>
-                      <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-red remove_file tiny">close</i></a></div></li>
                     </session-error>
                   </ul>
                 </div>
-          </div>
+                <div class="row center">
+                  <div id="submissionContainer" class="hidden">
+                    <a id="submissionCancel" class="btn nord-blue">Cancel</a>
+                    <a class="btn nord-red submitPost" id="submissionPost">Submit</a>
+                  </div>
+                </div>
       <!-- </div> -->
     </div>
 
@@ -245,6 +260,97 @@
     <script type="text/javascript" src="../js/initializing.js"></script>
     <script type="text/javascript" src="../js/script.js"></script>
     <script type="text/javascript" src="../js/events.js"></script>
+    <script type="text/javascript">
+        $.initSession()
+        $('#submissionsAttachmentsButton').on('click',() => {
+          $('#submissionAttachments').click()
+        })
+        $('#submissionAttachments').on('change',function() {
+          let file = this.files[0];
+          console.log($('#fileAttachmentName'))
+          $('#fileAttachmentName').html(file.name)
+          $('#fileAttachmentContainer').removeClass('hidden')
+          $('#submissionContainer').removeClass('hidden')
+        })
+        $('#submissionCancel').on('click',() => {
+          $('#submissionContainer').addClass('hidden')
+          $('fileAttachmentNameContainer').addClass('hidden')
+        })
+        let assignmentID = window.splitUrl().lastElem();
+        $.ajax({
+          url:"/api/assignments/get",
+          type:'POST',
+          data:{assignmentID:assignmentID},
+          success:function(data){
+            console.log(data)
+            for(let attachment of data.attachments){
+              let elem = $(`
+                <li class="collection-item"><div><a href="#">${attachment.originalName}</a><a href="#" class="secondary-content"></a></div></li>
+                `);
+              $('attachmentContainer').append(elem);
+            }
+            console.log(data.isDue)
+            if(data.isDue == false){
+              $('#submissionAttachmentsContainer').addClass('hidden')
+              $('#submissionsEditButton').removeClass('hidden')
+              let validSubmission = {}
+              for(let submission of data.submissions) {
+                if(submission.owner == sessionStorage.getItem('id')) validSubmission = submission
+              }
+              $("#fileAttachmentName").html(validSubmission.originalName)
+              $("#fileAttachmentContainer").removeClass('hidden')
+              $('#submissionPost').removeClass('submitPost')
+              $('#submissionPost').removeClass('nord-red')
+              $('#submissionPost').addClass('editPost')
+              $('#submissionPost').addClass('nord-darkblue')
+              $('#submissionPost').html('EDIT')
+              $('#submissionsEditButton').on('click',() => {
+                $('#submissionAttachmentsContainer').removeClass('hidden')
+              })
+            }
+          }, error:function(data){
+            console.error(data)
+          }
+        })
+        $('#submissionPost.submitPost').on('click',() => {
+          let formData = new FormData();
+          formData.append("assignmentID",assignmentID)
+          let file = $('#submissionAttachments')[0].files[0]
+          formData.append("additionalFile",new Blob([file]),file.name)
+          $.ajax({
+            url:"/api/assignments/submission/edit",
+            type:'POST',
+            data:formData,
+            processData:false,
+            contentType:false,
+            cache:false,
+            success:function(data){
+              window.location.reload(true)
+            },error:function(err){
+              console.error(err.responseText)
+            }
+          })
+        })
+        $('#submissionPost.editPost').on('click',() => {
+          let formData = new FormData();
+          formData.append("assignmentID",assignmentID)
+          let file = $('#submissionAttachments')[0].files[0]
+          formData.append("additionalFile",new Blob([file]),file.name)
+          $.ajax({
+            url:"/api/assignments/submission/edit",
+            type:'POST',
+            data:formData,
+            processData:false,
+            contentType:false,
+            cache:false,
+            success:function(data){
+              window.location.reload(true)
+            },error:function(err){
+              console.error(err.responseText)
+            }
+          })
+        })
+    </script>
     <!-- /////////////////////////////////////////////////////// -->
   </body>
 </html>

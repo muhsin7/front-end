@@ -619,7 +619,9 @@ button[name="comment-btn"]{
   background-color: white !important;
   /* background-color: #E3E1DC !important; */
 }
-
+.file.large a{
+  font-size:20px !important
+}
 .member_name{
   font-size: 20px;
 }

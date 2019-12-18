@@ -80,6 +80,61 @@ $(() => {
 })
 ///////////////////
 
+
+
+
+
+// Notifications
+
+$(window).on('sessionLoaded',(event,error,response) => {
+  if(response.type != 'teacher') $('[on-student-remove]').remove()
+  $.ajax({
+    url:'/api/notifications/getAll',
+    type:'GET',
+    success:function(data){
+      let notificationsContainer = $('#notificationsContainer');
+      console.log(notificationsContainer)
+      for(let notification of data){
+        let {hook,content,message,id,initiator,type} = notification;
+        console.log(type)
+        let path = (type == 'assignment') ? `/assignment/${hook}` : `/post/${hook}`;
+        let elem = $(`
+          <a href="${path}" class="notificationAnchor" notification-id="id">
+          <li class="collection-item modal-notification ${type}-notif">
+          <img src="/api/users/${initiator}/image" class="modal-notif-pfp"/>
+          <div>
+          <div class="truncate nord-purple-text notif-content">
+          ${message}
+          </div>
+          <div class="truncate">
+          ${content}
+          </div>
+          </div>
+          </li>
+          </a>
+          `)
+          notificationsContainer.append(elem)
+          console.log('sdlkfjdskljfskdljdsfkljdklfsdjflkjsd')
+      }
+      $('.notificationAnchor').on('click',function(event){
+        $(this).trigger("click.customClick",[event])
+      })
+      $('.notificationAnchor').off('click.customClick')
+      $('.notificationAnchor').on('click',function(){
+        $.ajax({
+          url:"/api/notifications/markRead",
+          type:'post',
+          data:{id:$(this).attr('notification-id')},
+        })
+      })
+    },error:function(data){
+      console.error(data.reponseText)
+    }
+  })
+})
+
+
+
 //////MODALS///////
 $(document).ready(function(){
   $('.modal').modal();
