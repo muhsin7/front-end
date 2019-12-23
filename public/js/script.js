@@ -134,7 +134,6 @@ $(window).on('sessionLoaded',(event,error,response) => {
 })
 
 
-
 //////MODALS///////
 $(document).ready(function(){
   $('.modal').modal();
@@ -155,4 +154,16 @@ $(document).ready(function(){
 ///////////////////////////////////
 
 
-////////////////////////////////////////////////////////////
+
+$(.defaulter_name).on('click', function(){
+  $('.submission-box').css('visibility', 'hidden')
+  $('.hidden-defaulter-box').addClass('defaulter-box')
+  $('.defaulter-box').css("visibility", "visible")
+  $('#defaulter_name').text("Defaulter name")
+})
+
+$(.submittor_name).on('click', function(){
+  $('.submission-box').css('visibility', 'visible')
+  $('.hidden-defaulter-box').removeClass('defaulter-box')
+  $('.defaulter-box').css("visibility", "hidden")
+})

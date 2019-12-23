@@ -43,111 +43,52 @@
         <!-- <div class="user"></div> -->
         <div class="classes col s2">
           <br style="font-size: 50%"/>
-          <b>Classes</b>
+          <b>Students</b>
           <hr/>
           <div class="truncate">
             <ul class="class_text" id="class-list">
-              <session-error>
-                <a href="/class/"><li class="truncate">Chemistry HL<a href="#" class="dropdown-trigger" data-target="classDropdown"><i class="material-icons class_menu">more_horiz</i></a></li></a>
-                <a href="/class/"><li class="truncate">Physics HL<a href="#" class="dropdown-trigger" data-target="classDropdown"><i class="material-icons class_menu">more_horiz</i></a></li></a>
-                <a href="/class/"><li class="truncate">Mathematics AA HL<a href="#" class="dropdown-trigger" data-target="classDropdown"><i class="material-icons class_menu">more_horiz</i></a></li></a>
-                <a href="/class/"><li class="truncate">Spanish Ab HL<a href="#" class="dropdown-trigger" data-target="classDropdown"><i class="material-icons class_menu">more_horiz</i></a></li></a>
-                <a href="/class/"><li class="truncate">Language and Literature SL<a href="#" class="dropdown-trigger" data-target="classDropdown"><i class="material-icons class_menu">more_horiz</i></a></li></a>
-                <a href="/class/"><li class="truncate">Economics SL<a href="#" class="dropdown-trigger" data-target="classDropdown"><i class="material-icons class_menu">more_horiz</i></a></li></a>
-              </session-error>
+              <!-- <session-error> -->
+              <a href="#" class="submittor_name"><li>Student name</li></a>
+                <a href="#" class="defaulter_name"><li>Defaulter name</li></a>
+              <!-- </session-error> -->
             </ul>
           </div>
           <hr />
           <center class="class_buttons">
             <a href="#joinClass" class="joinclass modal-trigger"><i class="material-icons tiny">add</i><b>Join Class</b></a>
-            <br   /><br />
+            <br /><br />
             <a href="#createClass" class="joinclass modal-trigger"><i class="material-icons tiny">add</i><b>Create Class</b></a>
           </center>
           <!-- <br /> -->
         </div>
 
-        <ul class="dropdown-content" id="classDropdown" href="#">
-          <li class="class_options"><a href="/class/">Open class</a></li>
-          <li class="class_options modal-trigger" href="#leaveModal"><a id="leaveClass">Leave class</a></li>
-          <li class="warn class_options modal-trigger renameClass" href="#renameModal"><a id="renameClass"><i class="material-icons">edit</i>Rename</a></li>
-          <li class="warn class_options modal-trigger deleteClass" href="#deleteModal"><a id="deleteClass"><i class="material-icons">delete</i>Delete class</a></li>
-        </ul>
 
 
-            <div class="modal" id="renameModal">
-              <div class="modal-content">
-                <center>
-                  <h4>Rename ${class}</h4>
-                </center>
-                <div class="form">
-                  <div class="input_field">
-                    <input type="text" name="newGroupName" id="newGroupName"/>
-                    <label for="newGroupName">Enter new group name</label>
-                  </div>
-                  <br />
-                  <center>
-                    <div class="nord-red btn-large modal-close">Cancel</div>
-                    <button type="submit" name="button" class="btn-large nord-darkblue">Rename</button>
-                  </center>
-                </div>
-              </div>
-            </div>
+        <div class="no-assignment-selected valign-wrapper center-align hidden">
+          <i>Select a student to view their submission.</i>
+        </div>
 
-            <div class="modal" id="deleteModal">
-              <div class="modal-content">
-                <center>
-                  <h4>Are you sure you want to delete ${class}?</h4>
-                  <h6><i>All data and posts from the group will be lost forever</i></h6>
-                </center>
-                <br />
-                <center>
-                  <div class="nord-red btn-large modal-close">Cancel</div>
-                  <div class="btn-large nord-darkblue">Delete</div>
-                </center>
-              </div>
-            </div>
-
-            <div class="modal" id="leaveModal">
-              <div class="modal-content">
-                <center>
-                  <h4>Are you sure you want to leave ${class}?</h4>
-                  <h6><i>You will not be able to access the data and posts in this group unless you rejoin the group.</i></h6>
-                </center>
-                <br />
-                <center>
-                  <div class="nord-red btn-large modal-close">Cancel</div>
-                  <div class="btn-large nord-darkblue">Leave Group</div>
-                </center>
-              </div>
-            </div>
-
-        <div id="joinClass" class="modal">
-          <div class="modal-content">
-            <div class="form" method="POST" on-success-reload="true" action="/api/class/join" on-error-prompt-selector="#invalidClass" on-error="console.log(response)">
-              <h4>Enter Group Code</h4>
-              <input type="text" name="classCode" id="groupcode" data-length="5"/>
-              <label for="groupcode">Enter 6 character group code (case insensitive)</label><br>
-              <span id="invalidClass" style="color:red"></span>
-              <div class="modal-footer">
-                <button type="submit" name="button" class="btn-flat nord-darkblue-text">Submit</button>
-                <a href="#!" class="modal-close waves-effect waves-red btn-flat nord-red" style="color:white">Cancel</a>
-              </div>
-            </div>
+        <!-- <div class="defaulter-box col offset-s1 s8 hoverable hidden"> -->
+          <div class="hidden-defaulter-box col offset-s1 s8 hoverable hidden">
+          <div class="nord-red-text center-align">
+            <span id="defaulter_name">${name}</span> has not submitted this assignment.
           </div>
         </div>
-        <div id="createClass" class="modal">
-          <div class="modal-content">
-            <div class="form" method="POST" validation-element="<span style='color:red'></span>" on-success-reload="true" action="/api/class/create" on-error-prompt-selector="#invalidClass" on-error="console.log(response)">
-              <h4>Enter class name</h4>
-              <input type="text" name="className" id="groupcode" min-length="4"/><br>
-              <label for="groupcode">Enter name of the class</label><br>
-              <span id="invalidClass" style="color:red"></span>
-              <div class="modal-footer">
-                <button type="submit" name="button" class="btn-flat nord-darkblue-text">Submit</button>
-                <a href="#!" class="modal-close waves-effect waves-red btn-flat nord-red" style="color:white">Cancel</a>
-              </div>
-            </div>
+
+        <div class="submission-box col offset-s1 s9">
+          <h5>${name}'s submission'</h5>
+          <hr />
+          <div class="submission-date">
+            Submitted on hh:mm pm/am dd/mm/yy
           </div>
+          <div class="more">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </div>
+          <ul class="collection files">
+            <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-purple download_file tiny">file_download</i></a></div></li>
+            <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-purple download_file tiny">file_download</i></a></div></li>
+            <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-purple download_file tiny">file_download</i></a></div></li>
+          </ul>
         </div>
       </div>
     </div>
@@ -236,6 +177,82 @@
           </div>
       <!-- </div> -->
     </div>
+
+    <div class="modal" id="renameModal">
+      <div class="modal-content">
+        <center>
+          <h4>Rename ${class}</h4>
+        </center>
+        <div class="form">
+          <div class="input_field">
+            <input type="text" name="newGroupName" id="newGroupName"/>
+            <label for="newGroupName">Enter new group name</label>
+          </div>
+          <br />
+          <center>
+            <div class="nord-red btn-large modal-close">Cancel</div>
+            <button type="submit" name="button" class="btn-large nord-darkblue">Rename</button>
+          </center>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="deleteModal">
+      <div class="modal-content">
+        <center>
+          <h4>Are you sure you want to delete ${class}?</h4>
+          <h6><i>All data and posts from the group will be lost forever</i></h6>
+        </center>
+        <br />
+        <center>
+          <div class="nord-red btn-large modal-close">Cancel</div>
+          <div class="btn-large nord-darkblue">Delete</div>
+        </center>
+      </div>
+    </div>
+
+    <div class="modal" id="leaveModal">
+      <div class="modal-content">
+        <center>
+          <h4>Are you sure you want to leave ${class}?</h4>
+          <h6><i>You will not be able to access the data and posts in this group unless you rejoin the group.</i></h6>
+        </center>
+        <br />
+        <center>
+          <div class="nord-red btn-large modal-close">Cancel</div>
+          <div class="btn-large nord-darkblue">Leave Group</div>
+        </center>
+      </div>
+    </div>
+
+<div id="joinClass" class="modal">
+  <div class="modal-content">
+    <div class="form" method="POST" on-success-reload="true" action="/api/class/join" on-error-prompt-selector="#invalidClass" on-error="console.log(response)">
+      <h4>Enter Group Code</h4>
+      <input type="text" name="classCode" id="groupcode" data-length="5"/>
+      <label for="groupcode">Enter 6 character group code (case insensitive)</label><br>
+      <span id="invalidClass" style="color:red"></span>
+      <div class="modal-footer">
+        <button type="submit" name="button" class="btn-flat nord-darkblue-text">Submit</button>
+        <a href="#!" class="modal-close waves-effect waves-red btn-flat nord-red" style="color:white">Cancel</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="createClass" class="modal">
+  <div class="modal-content">
+    <div class="form" method="POST" validation-element="<span style='color:red'></span>" on-success-reload="true" action="/api/class/create" on-error-prompt-selector="#invalidClass" on-error="console.log(response)">
+      <h4>Enter class name</h4>
+      <input type="text" name="className" id="groupcode" min-length="4"/><br>
+      <label for="groupcode">Enter name of the class</label><br>
+      <span id="invalidClass" style="color:red"></span>
+      <div class="modal-footer">
+        <button type="submit" name="button" class="btn-flat nord-darkblue-text">Submit</button>
+        <a href="#!" class="modal-close waves-effect waves-red btn-flat nord-red" style="color:white">Cancel</a>
+      </div>
+    </div>
+  </div>
+</div>
 
     <!-- /////////////////////////////////////////////////////// -->
     <script type="text/javascript" src="../js/angular.min.js"></script>

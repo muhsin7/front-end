@@ -115,6 +115,7 @@ x`  html{
   border-color: #003255;
   margin-top: 50px;
   width: 200px;
+  float: left;
 }
 
 .classes b{
@@ -802,4 +803,39 @@ button[name="comment-btn"]{
 .assignment_upload{
   left: 50%;
   right: 50%;
+}
+
+.no-assignment-selected{
+  color: grey;
+  padding-top: 100px;
+  cursor: default;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  visibility: hidden !important;
+}
+
+.defaulter-box {
+  padding-top: 50px;
+  height: 250px;
+  border: solid 2px #eb3056;
+  width: 600px;
+  display: inline;
+  margin-top: 50px;
+  border-radius: 10px;
+}
+
+.submission-box{
+  padding: 10px !important;
+  margin-top: 50px;
+  border: #003255 solid 2px;
+  border-radius: 10px;
+}
+
+.submission-date{
+  color: grey;
+  font-style: italic;
+  font-size: 75%;
+  border:
 }
