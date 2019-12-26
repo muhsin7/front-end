@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- /////////////////////////////////////////////////////// -->
+    <link rel="stylesheet" href="../css/icons.css">
+    <link rel="stylesheet" href="../css/materialize.css">
+    <link rel="stylesheet" href="../css/materialize.css">
+    <link rel="stylesheet" href="../css/nord-colours.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <!-- /////////////////////////////////////////////////////// -->
+
+  </head>
+  <body>
+
+    <nav class="nord-darkblue" role="navigation">
+      <ul id="profileDropdown" class="dropdown-content">
+        <li><a href="/profile/" class="modal-trigger">Profile</a></li>
+        <li><a href="/auth/logout" class="modal-trigger">Log out</a></li>
+      </ul>
+      <div class="nav-wrapper container">
+        <a id="logo-container" href="/home/" class="brand-logo"><img src="../images/cisco.png" height="50px" width="auto" style="padding-top:5px;" /></a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="/home/">Home</a></li>
+          <li><a href="/assignments/">Assignments</a></li>
+          <li><a class="modal-trigger nord-orange" href="#notificationsModal"><i class="material-icons">notifications</i></a></li>
+          <li><a class="dropdown-trigger" href="#!" data-target="profileDropdown"><i class="material-icons">person arrow_drop_down</i></a></li>
+        </ul>
+
+        <ul id="nav-mobile" class="sidenav">
+          <li><a href="/home/">Home</a></li>
+          <li><a href="/assignments/">Assignments</a></li>
+          <li><a class="modal-trigger nord-orange" href="#notificationsModal"><i class="material-icons">notifications</i></a></li
+          <li><a href="/profile/" class="modal-trigger">Profile</a></li>
+          <li><a href="/auth/logout" class="modal-trigger">Log out</a></li>
+        </ul>
+        <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      </div>
+    </nav>
+
+    <div class="container col s12">
+
+      <div class="row">
+        <!-- <div class="user"></div> -->
+        <div class="classes col s2">
+          <br style="font-size: 50%"/>
+          <b>Students</b>
+          <hr/>
+          <div class="truncate">
+            <ul class="class_text" id="class-list">
+              <!-- <session-error> -->
+              <a href="#" class="submittor_name"><li>Student name</li></a>
+                <a href="#" class="defaulter_name"><li>Defaulter name</li></a>
+              <!-- </session-error> -->
+            </ul>
+          </div>
+          <hr />
+          <center class="class_buttons">
+            <a href="#joinClass" class="joinclass modal-trigger"><i class="material-icons tiny">add</i><b>Join Class</b></a>
+            <br /><br />
+            <a href="#createClass" class="joinclass modal-trigger"><i class="material-icons tiny">add</i><b>Create Class</b></a>
+          </center>
+          <!-- <br /> -->
+        </div>
+
+
+
+        <div class="no-assignment-selected valign-wrapper center-align hidden">
+          <i>Select a student to view their submission.</i>
+        </div>
+
+        <!-- <div class="defaulter-box col offset-s1 s8 hoverable hidden"> -->
+          <div class="hidden-defaulter-box col offset-s1 s8 hoverable hidden">
+          <div class="nord-red-text center-align">
+            <span id="defaulter_name">${name}</span> has not submitted this assignment.
+          </div>
+        </div>
+
+        <div class="submission-box col offset-s1 s9">
+          <h5>${name}'s submission'</h5>
+          <hr />
+          <div class="submission-date">
+            Submitted on hh:mm pm/am dd/mm/yy
+          </div>
+          <div class="more">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </div>
+          <ul class="collection files">
+            <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-purple download_file tiny">file_download</i></a></div></li>
+            <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-purple download_file tiny">file_download</i></a></div></li>
+            <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-purple download_file tiny">file_download</i></a></div></li>
+          </ul>
+          <!-- NEW_FEATURE_ANCHOR_START -->
+          <hr />
+          <h6><b>Feedback</b></h6>
+          <div class="form">
+            <input name="comment" type="text" class="comment-input"/>
+            <button name="comment-btn" type="submit" name="button" class="right-align btn nord-red">Give feedback</button>
+            <br /><br />
+          </div>
+          <div class="comments">
+            <div class="comment">
+              <div class="comment-marker nord-darkblue"></div>
+              <img class="comment-pfp" src="../images/default.jpg"/>
+              <div class="comment-poster">Teacher</div><span class="date-text">${date}</span>
+              <div class="comment-text more">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+            </div>
+          </div>
+          <!-- NEW_FEATURE_ANCHOR_END -->
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="notificationsModal">
+      <div class="modal-content">
+        <center>
+          <i class='material-icons nord-orange-text medium'>notifications</i>
+        </center>
+        <ul class="collection notification-collection">
+          <a href="#">
+            <li class="collection-item modal-notification post-notif">
+              <img src="../images/default.jpg" class="modal-notif-pfp"/>
+              <div>
+                <div class="truncate nord-purple-text notif-content">
+                  <b>Name</b> posted a <b>thing</b> in <b>class</b>
+                </div>
+                <div class="truncate">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </div>
+              </div>
+            </li>
+          </a>
+          <a href="#">
+            <li class="collection-item modal-notification assignment-notif">
+              <img src="../images/default.jpg" class="modal-notif-pfp"/>
+              <div>
+                <div class="truncate nord-purple-text notif-content">
+                  <b>Teacher</b> posted an <b>assignment</b> in <b>class</b>
+                </div>
+                <div class="truncate">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </div>
+              </div>
+            </li>
+          </a>
+          <a href="#">
+            <li class="collection-item modal-notification comment-notif">
+              <img src="../images/default.jpg" class="modal-notif-pfp"/>
+              <div>
+                <div class="truncate nord-purple-text notif-content">
+                  <b>Name</b> replied to your comment in <b>class</b>
+                </div>
+                <div class="truncate">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </div>
+              </div>
+            </li>
+          </a>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container col s12">
+      <div class="row assignment-box hoverable">
+          <!-- <div class="assignment-box"> -->
+          <div>
+            <div class="assignment-title">Assignment Title</div>
+            <i>Posted by teacher on date</i>
+            <br />
+            <b class="nord-yellow-text">Class Name</b>
+            <div class="due_date">
+              <i class="material-icons nord-red-text due-icon">watch_later</i>
+              <span class="nord-red-text valign-wrapper"><i>Due on hh:mm pm/am dd/mm/yy</i></span>
+              </div>
+            <hr />
+
+            <div class="assignment-content">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </div>
+              <div class="row center-align submit_assignment col s12">
+                  <a class="btn nord-red">
+                    <span class="valign-wrapper" id="post-attach-files-button"><i class="material-icons">attach_file</i>Attach file</span>
+                    <input type="file" class="hidden" multiple id="post-files">
+                  </a>
+              </div>
+                <div class="row">
+                  <ul class="collection files" id="post-file-collection">
+                    <session-error>
+                      <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-red remove_file tiny">close</i></a></div></li>
+                      <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-red remove_file tiny">close</i></a></div></li>
+                      <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-red remove_file tiny">close</i></a></div></li>
+                    </session-error>
+                  </ul>
+                </div>
+          </div>
+      <!-- </div> -->
+    </div>
+
+    <div class="modal" id="renameModal">
+      <div class="modal-content">
+        <center>
+          <h4>Rename ${class}</h4>
+        </center>
+        <div class="form">
+          <div class="input_field">
+            <input type="text" name="newGroupName" id="newGroupName"/>
+            <label for="newGroupName">Enter new group name</label>
+          </div>
+          <br />
+          <center>
+            <div class="nord-red btn-large modal-close">Cancel</div>
+            <button type="submit" name="button" class="btn-large nord-darkblue">Rename</button>
+          </center>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="deleteModal">
+      <div class="modal-content">
+        <center>
+          <h4>Are you sure you want to delete ${class}?</h4>
+          <h6><i>All data and posts from the group will be lost forever</i></h6>
+        </center>
+        <br />
+        <center>
+          <div class="nord-red btn-large modal-close">Cancel</div>
+          <div class="btn-large nord-darkblue">Delete</div>
+        </center>
+      </div>
+    </div>
+
+    <div class="modal" id="leaveModal">
+      <div class="modal-content">
+        <center>
+          <h4>Are you sure you want to leave ${class}?</h4>
+          <h6><i>You will not be able to access the data and posts in this group unless you rejoin the group.</i></h6>
+        </center>
+        <br />
+        <center>
+          <div class="nord-red btn-large modal-close">Cancel</div>
+          <div class="btn-large nord-darkblue">Leave Group</div>
+        </center>
+      </div>
+    </div>
+
+<div id="joinClass" class="modal">
+  <div class="modal-content">
+    <div class="form" method="POST" on-success-reload="true" action="/api/class/join" on-error-prompt-selector="#invalidClass" on-error="console.log(response)">
+      <h4>Enter Group Code</h4>
+      <input type="text" name="classCode" id="groupcode" data-length="5"/>
+      <label for="groupcode">Enter 6 character group code (case insensitive)</label><br>
+      <span id="invalidClass" style="color:red"></span>
+      <div class="modal-footer">
+        <button type="submit" name="button" class="btn-flat nord-darkblue-text">Submit</button>
+        <a href="#!" class="modal-close waves-effect waves-red btn-flat nord-red" style="color:white">Cancel</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="createClass" class="modal">
+  <div class="modal-content">
+    <div class="form" method="POST" validation-element="<span style='color:red'></span>" on-success-reload="true" action="/api/class/create" on-error-prompt-selector="#invalidClass" on-error="console.log(response)">
+      <h4>Enter class name</h4>
+      <input type="text" name="className" id="groupcode" min-length="4"/><br>
+      <label for="groupcode">Enter name of the class</label><br>
+      <span id="invalidClass" style="color:red"></span>
+      <div class="modal-footer">
+        <button type="submit" name="button" class="btn-flat nord-darkblue-text">Submit</button>
+        <a href="#!" class="modal-close waves-effect waves-red btn-flat nord-red" style="color:white">Cancel</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- /////////////////////////////////////////////////////// -->
+    <script type="text/javascript" src="../js/angular.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/materialize.js"></script>
+    <script type="text/javascript" src="../js/materialize.min.js"></script>
+    <script type="text/javascript" src="../js/initializing.js"></script>
+    <script type="text/javascript" src="../js/script.js"></script>
+    <script type="text/javascript" src="../js/events.js"></script>
+    <!-- /////////////////////////////////////////////////////// -->
+  </body>
+</html>

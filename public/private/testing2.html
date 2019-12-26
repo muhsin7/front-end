@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- /////////////////////////////////////////////////////// -->
+    <link rel="stylesheet" href="../css/icons.css">
+    <link rel="stylesheet" href="../css/materialize.css">
+    <link rel="stylesheet" href="../css/materialize.css">
+    <link rel="stylesheet" href="../css/nord-colours.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <!-- /////////////////////////////////////////////////////// -->
+
+  </head>
+  <body>
+
+    <nav class="nord-darkblue" role="navigation">
+      <ul id="profileDropdown" class="dropdown-content">
+        <li><a href="/profile/" class="modal-trigger">Profile</a></li>
+        <li><a href="/auth/logout" class="modal-trigger">Log out</a></li>
+      </ul>
+      <div class="nav-wrapper container">
+        <a id="logo-container" href="/home/" class="brand-logo"><img src="../images/cisco.png" height="50px" width="auto" style="padding-top:5px;" /></a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="/home/">Home</a></li>
+          <li><a href="/assignments/">Assignments</a></li>
+          <li><a class="modal-trigger nord-orange" href="#notificationsModal"><i class="material-icons">notifications</i></a></li>
+          <li><a class="dropdown-trigger" href="#!" data-target="profileDropdown"><i class="material-icons">person arrow_drop_down</i></a></li>
+        </ul>
+
+        <ul id="nav-mobile" class="sidenav">
+          <li><a href="/home/">Home</a></li>
+          <li><a href="/assignments/">Assignments</a></li>
+          <li><a class="modal-trigger nord-orange" href="#notificationsModal"><i class="material-icons">notifications</i></a></li
+          <li><a href="/profile/" class="modal-trigger">Profile</a></li>
+          <li><a href="/auth/logout" class="modal-trigger">Log out</a></li>
+        </ul>
+        <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      </div>
+    </nav>
+
+    <div class="container col s12">
+
+      <div class="row">
+        <!-- <div class="user"></div> -->
+        <div class="classes col s2">
+          <br style="font-size: 50%"/>
+          <b>Classes</b>
+          <hr/>
+          <div class="truncate">
+            <ul class="class_text" id="class-list">
+              <session-error>
+                <a href="/class/"><li class="truncate">Chemistry HL<a href="#" class="dropdown-trigger" data-target="classDropdown"><i class="material-icons class_menu">more_horiz</i></a></li></a>
+                <a href="/class/"><li class="truncate">Physics HL<a href="#" class="dropdown-trigger" data-target="classDropdown"><i class="material-icons class_menu">more_horiz</i></a></li></a>
+                <a href="/class/"><li class="truncate">Mathematics AA HL<a href="#" class="dropdown-trigger" data-target="classDropdown"><i class="material-icons class_menu">more_horiz</i></a></li></a>
+                <a href="/class/"><li class="truncate">Spanish Ab HL<a href="#" class="dropdown-trigger" data-target="classDropdown"><i class="material-icons class_menu">more_horiz</i></a></li></a>
+                <a href="/class/"><li class="truncate">Language and Literature SL<a href="#" class="dropdown-trigger" data-target="classDropdown"><i class="material-icons class_menu">more_horiz</i></a></li></a>
+                <a href="/class/"><li class="truncate">Economics SL<a href="#" class="dropdown-trigger" data-target="classDropdown"><i class="material-icons class_menu">more_horiz</i></a></li></a>
+              </session-error>
+            </ul>
+          </div>
+          <hr />
+          <center class="class_buttons">
+            <a href="#joinClass" class="joinclass modal-trigger"><i class="material-icons tiny">add</i><b>Join Class</b></a>
+            <br   /><br />
+            <a href="#createClass" class="joinclass modal-trigger"><i class="material-icons tiny">add</i><b>Create Class</b></a>
+          </center>
+          <!-- <br /> -->
+        </div>
+
+        <ul class="dropdown-content" id="classDropdown" href="#">
+          <li class="class_options"><a href="/class/">Open class</a></li>
+          <li class="class_options modal-trigger" href="#leaveModal"><a id="leaveClass">Leave class</a></li>
+          <li class="warn class_options modal-trigger renameClass" href="#renameModal"><a id="renameClass"><i class="material-icons">edit</i>Rename</a></li>
+          <li class="warn class_options modal-trigger deleteClass" href="#deleteModal"><a id="deleteClass"><i class="material-icons">delete</i>Delete class</a></li>
+        </ul>
+
+
+            <div class="modal" id="renameModal">
+              <div class="modal-content">
+                <center>
+                  <h4>Rename ${class}</h4>
+                </center>
+                <div class="form">
+                  <div class="input_field">
+                    <input type="text" name="newGroupName" id="newGroupName"/>
+                    <label for="newGroupName">Enter new group name</label>
+                  </div>
+                  <br />
+                  <center>
+                    <div class="nord-red btn-large modal-close">Cancel</div>
+                    <button type="submit" name="button" class="btn-large nord-darkblue">Rename</button>
+                  </center>
+                </div>
+              </div>
+            </div>
+
+            <div class="modal" id="deleteModal">
+              <div class="modal-content">
+                <center>
+                  <h4>Are you sure you want to delete ${class}?</h4>
+                  <h6><i>All data and posts from the group will be lost forever</i></h6>
+                </center>
+                <br />
+                <center>
+                  <div class="nord-red btn-large modal-close">Cancel</div>
+                  <div class="btn-large nord-darkblue">Delete</div>
+                </center>
+              </div>
+            </div>
+
+            <div class="modal" id="leaveModal">
+              <div class="modal-content">
+                <center>
+                  <h4>Are you sure you want to leave ${class}?</h4>
+                  <h6><i>You will not be able to access the data and posts in this group unless you rejoin the group.</i></h6>
+                </center>
+                <br />
+                <center>
+                  <div class="nord-red btn-large modal-close">Cancel</div>
+                  <div class="btn-large nord-darkblue">Leave Group</div>
+                </center>
+              </div>
+            </div>
+
+        <div id="joinClass" class="modal">
+          <div class="modal-content">
+            <div class="form" method="POST" on-success-reload="true" action="/api/class/join" on-error-prompt-selector="#invalidClass" on-error="console.log(response)">
+              <h4>Enter Group Code</h4>
+              <input type="text" name="classCode" id="groupcode" data-length="5"/>
+              <label for="groupcode">Enter 6 character group code (case insensitive)</label><br>
+              <span id="invalidClass" style="color:red"></span>
+              <div class="modal-footer">
+                <button type="submit" name="button" class="btn-flat nord-darkblue-text">Submit</button>
+                <a href="#!" class="modal-close waves-effect waves-red btn-flat nord-red" style="color:white">Cancel</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="createClass" class="modal">
+          <div class="modal-content">
+            <div class="form" method="POST" validation-element="<span style='color:red'></span>" on-success-reload="true" action="/api/class/create" on-error-prompt-selector="#invalidClass" on-error="console.log(response)">
+              <h4>Enter class name</h4>
+              <input type="text" name="className" id="groupcode" min-length="4"/><br>
+              <label for="groupcode">Enter name of the class</label><br>
+              <span id="invalidClass" style="color:red"></span>
+              <div class="modal-footer">
+                <button type="submit" name="button" class="btn-flat nord-darkblue-text">Submit</button>
+                <a href="#!" class="modal-close waves-effect waves-red btn-flat nord-red" style="color:white">Cancel</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="notificationsModal">
+      <div class="modal-content">
+        <center>
+          <i class='material-icons nord-orange-text medium'>notifications</i>
+        </center>
+        <ul class="collection notification-collection">
+          <a href="#">
+            <li class="collection-item modal-notification post-notif">
+              <img src="../images/default.jpg" class="modal-notif-pfp"/>
+              <div>
+                <div class="truncate nord-purple-text notif-content">
+                  <b>Name</b> posted a <b>thing</b> in <b>class</b>
+                </div>
+                <div class="truncate">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </div>
+              </div>
+            </li>
+          </a>
+          <a href="#">
+            <li class="collection-item modal-notification assignment-notif">
+              <img src="../images/default.jpg" class="modal-notif-pfp"/>
+              <div>
+                <div class="truncate nord-purple-text notif-content">
+                  <b>Teacher</b> posted an <b>assignment</b> in <b>class</b>
+                </div>
+                <div class="truncate">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </div>
+              </div>
+            </li>
+          </a>
+          <a href="#">
+            <li class="collection-item modal-notification comment-notif">
+              <img src="../images/default.jpg" class="modal-notif-pfp"/>
+              <div>
+                <div class="truncate nord-purple-text notif-content">
+                  <b>Name</b> replied to your comment in <b>class</b>
+                </div>
+                <div class="truncate">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </div>
+              </div>
+            </li>
+          </a>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container col s12">
+      <div class="assignment-box hoverable">
+          <!-- <div class="assignment-box"> -->
+          <div>
+            <div class="assignment-title">${title}</div>
+            <i>Posted by ${initiatorName}</i>
+            <br />
+            <b class="nord-yellow-text">${className}</b>
+            <div class="due_date">
+              <i class="material-icons nord-red-text due-icon">watch_later</i>
+              <span class="nord-red-text valign-wrapper"><i>Due on ${dueDate}</i></span>
+              </div>
+            <hr />
+
+            <div class="assignment-content">
+              <!-- Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. -->
+              ${content}
+              </div>
+              <div class="row">
+                <ul class="collection files" id="attachmentContainer" style="">
+
+                </ul>
+              </div>
+              <div class="row center-align submit_assignment col s12">
+                  <a class="hidden btn nord-blue" id="submissionsEditButton">
+                    <span class="valign-wrapper" id="">Edit submission</span>
+                  </a>
+              </div>
+              <div class="row center-align submit_assignment col s12">
+                  <a class="btn nord-red" id="submissionAttachmentsContainer">
+                    <span class="valign-wrapper" id="submissionsAttachmentsButton"><i class="material-icons">attach_file</i>Attach file</span>
+                    <input type="file" class="hidden" multiple id="submissionAttachments">
+                  </a>
+              </div>
+              <!-- NEW_FEATURE_ANCHOR_START -->
+              <div class="container">
+                <div class="row col s12">
+                  <div class="input-field">
+                    <!-- <i class="material-icons prefix">mode_edit</i> -->
+                    <textarea class="materialize-textarea" min-length="5" required placeholder="Enter text response" name="content" id="post-content"></textarea>
+                    <!-- <label for="icon_prefix2">Enter Post</label> -->
+                    <button type="submit" class="btn-large nord-darkblue">Submit text response</button>
+                  </div>
+                </div>
+              </div>
+              <!-- NEW_FEATURE_ANCHOR_END -->
+                </div>
+                <div class="row">
+                  <ul class="collection files" id="post-file-collection" style="display:block !important">
+                    <li class="collection-item file large hidden" id="fileAttachmentContainer"><div><a id="fileAttachmentName">file_name.mp3</a><a href="#" class="secondary-content"></a></div></li>
+                    <session-error>
+                    </session-error>
+                  </ul>
+                </div>
+                <div class="row center">
+                  <div id="submissionContainer" class="hidden">
+                    <a id="submissionCancel" class="btn nord-blue">Cancel</a>
+                    <a class="btn nord-red submitPost" id="submissionPost">Submit</a>
+                  </div>
+                </div>
+      <!-- </div> -->
+    </div>
+
+    <!-- /////////////////////////////////////////////////////// -->
+    <script type="text/javascript" src="../js/angular.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/materialize.js"></script>
+    <script type="text/javascript" src="../js/materialize.min.js"></script>
+    <script type="text/javascript" src="../js/initializing.js"></script>
+    <script type="text/javascript" src="../js/script.js"></script>
+    <script type="text/javascript" src="../js/events.js"></script>
+    <script type="text/javascript">
+        $.initSession()
+        $('#submissionsAttachmentsButton').on('click',() => {
+          $('#submissionAttachments').click()
+        })
+        $('#submissionAttachments').on('change',function() {
+          let file = this.files[0];
+          console.log($('#fileAttachmentName'))
+          $('#fileAttachmentName').html(file.name)
+          $('#fileAttachmentContainer').removeClass('hidden')
+          $('#submissionContainer').removeClass('hidden')
+        })
+        $('#submissionCancel').on('click',() => {
+          $('#submissionContainer').addClass('hidden')
+          $('fileAttachmentNameContainer').addClass('hidden')
+        })
+        let assignmentID = window.splitUrl().lastElem();
+        $.ajax({
+          url:"/api/assignments/get",
+          type:'POST',
+          data:{assignmentID:assignmentID},
+          success:function(data){
+            console.log(data)
+            for(let attachment of data.attachments){
+              let elem = $(`
+                <li class="collection-item"><div><a href="#">${attachment.originalName}</a><a href="#" class="secondary-content"></a></div></li>
+                `);
+              $('attachmentContainer').append(elem);
+            }
+            console.log(data.isDue)
+            if(data.isDue == false){
+              $('#submissionAttachmentsContainer').addClass('hidden')
+              $('#submissionsEditButton').removeClass('hidden')
+              let validSubmission = {}
+              for(let submission of data.submissions) {
+                if(submission.owner == sessionStorage.getItem('id')) validSubmission = submission
+              }
+              $("#fileAttachmentName").html(validSubmission.originalName)
+              $("#fileAttachmentContainer").removeClass('hidden')
+              $('#submissionPost').removeClass('submitPost')
+              $('#submissionPost').removeClass('nord-red')
+              $('#submissionPost').addClass('editPost')
+              $('#submissionPost').addClass('nord-darkblue')
+              $('#submissionPost').html('EDIT')
+              $('#submissionsEditButton').on('click',() => {
+                $('#submissionAttachmentsContainer').removeClass('hidden')
+              })
+            }
+          }, error:function(data){
+            console.error(data)
+          }
+        })
+        $('#submissionPost.submitPost').on('click',() => {
+          let formData = new FormData();
+          formData.append("assignmentID",assignmentID)
+          let file = $('#submissionAttachments')[0].files[0]
+          formData.append("additionalFile",new Blob([file]),file.name)
+          $.ajax({
+            url:"/api/assignments/submission/edit",
+            type:'POST',
+            data:formData,
+            processData:false,
+            contentType:false,
+            cache:false,
+            success:function(data){
+              window.location.reload(true)
+            },error:function(err){
+              console.error(err.responseText)
+            }
+          })
+        })
+        $('#submissionPost.editPost').on('click',() => {
+          let formData = new FormData();
+          formData.append("assignmentID",assignmentID)
+          let file = $('#submissionAttachments')[0].files[0]
+          formData.append("additionalFile",new Blob([file]),file.name)
+          $.ajax({
+            url:"/api/assignments/submission/edit",
+            type:'POST',
+            data:formData,
+            processData:false,
+            contentType:false,
+            cache:false,
+            success:function(data){
+              window.location.reload(true)
+            },error:function(err){
+              console.error(err.responseText)
+            }
+          })
+        })
+    </script>
+    <!-- /////////////////////////////////////////////////////// -->
+  </body>
+</html>
