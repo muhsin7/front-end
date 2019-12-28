@@ -183,7 +183,8 @@
         <center>
           <i class='material-icons nord-orange-text medium'>notifications</i>
         </center>
-        <ul class="collection notification-collection">
+        <session-error>
+          <ul class="collection notification-collection">
           <a href="#">
             <li class="collection-item modal-notification post-notif">
               <img src="../images/default.jpg" class="modal-notif-pfp"/>
@@ -223,6 +224,10 @@
               </div>
             </li>
           </a>
+        </ul>
+        </session-error>
+        <ul class="collection notification-collection" id="notificationsContainer">
+
         </ul>
       </div>
     </div>
@@ -401,7 +406,7 @@
                     </div>
                   </form>
                   <label for="due_date">Due date</label>
-                  <input type="text" class="datepicker" id="due_date" required>
+                  <input type="text" class="datepicker" id="due_date" required readonly>
                   <div class="row">
                       <a class="btn nord-red">
                         <span class="valign-wrapper" id="createAssignmentAttachButton"><i class="material-icons">attach_file</i>Attach file</span>
@@ -429,7 +434,6 @@
               <h3>Assignments</h3>
               <hr />
               <a on-student-remove href="#assignmentModal" class="modal-trigger"><div class="assignment-btn btn"><center><b class="valign-wrapper"><i class="material-icons small">mode_edit</i>CREATE AN ASSIGNMENT</b></center></div></a>
-              <br /><br />
                 <div>
                   <div class="row hidden" id="allAssignments">
                     <h4>All</h4>
@@ -457,7 +461,6 @@
                         </div>
                       </div>
                     </session-error>
-
                 </div>
 
                 <br>
@@ -570,7 +573,9 @@
             let dueAssignmentsContainer = $('#dueAssignmentsContainer');
             let submittedAssignmentsContainer = $('#submittedAssignmentsContainer');
             let submissionsRequired = duesRequired = false;
-            if(data.length != 0) allAssignments.removeClass('hidden')
+            if(data.length != 0) {
+              allAssignments.removeClass('hidden');
+            } else $('#assignmentsPrompt').removeClass('hidden')
             for(let assignment of data){
               let {dueDate,id,content,title,attachments,status,className} = assignment;
               dueDate = new Date(Number(dueDate));
@@ -701,7 +706,7 @@
               <!--
               <a post-id="${postID}" owner="${isOwnerOfPost}" class="dropdown-trigger" data-target="post-dropdown-${postID}"><i class="material-icons post-options">more_horiz</i></a>
               -->
-              <div class="poster"><a href="/user/${poster}">${posterName}</a>div>
+              <div class="poster"><a href="/user/${poster}">${posterName}</a><div>
               ${ifTeacherAccountAddElementHere}
               <span class="date-text">${dateCreated}</span>
               <span class="date-text small-side-margins pointer-cursor"><a href="/post/${postID}">Go to post  </a></span>
@@ -1088,7 +1093,7 @@
           let fileName = elem.attr('file-name');
           for(let i=0;i<chooseFiles.additionalFiles.length;i++){
             if(chooseFiles.additionalFiles[i].name == fileName) {
-              console.log('yes?')
+              // console.log('yes?')
               chooseFiles.additionalFiles.splice(i,1)
             }
           }
@@ -1100,20 +1105,23 @@
         for(let input of $('#assignmentModal [required]')) if($(input).val().trim() == '' && $(input).next().attr('class') != 'red-text') $(input).after($('<span class="red-text">This field is required</span>'))
         for(let input of $('#assignmentModal [required]')) if($(input).val().trim() != '' && $(input).next().attr('class')=='red-text') $(input).next().remove()
         formData.append('dueDate',new Date($('#due_date').val()).getTime())
-        for(let file of chooseFiles.additionalFiles) formData.append("additionalFiles",new Blob([file]),file.name);
         let classID = window.splitUrl().lastElem();
-        console.log(formData.get('dueDate'))
         formData.append('classID',classID)
-        for(let item of formData.entries()) console.log(item)
+        for(let file of chooseFiles.additionalFiles) formData.append("additionalFiles",new Blob([file]),file.name);
+        // console.log(classID)
+        // console.log(formData.get('dueDate'))
+        // console.log()
+        // for(let item of formData.entries()) console.log(item)
         $.ajax({
-          url:"/api/assignments/create?uploadingFiles=true",
+          url:"/api/assignments/create?uploadingFiles=true&json=true",
           type:'POST',
           data:formData,
           processData:false,
           cache:false,
           contentType:false,
           success:function(data) {
-            console.log(data)
+            // console.log(data)
+            window.location.href = `/assignment/${data.id}`
           },error:function(err){
             console.error(err.responseText)
           }

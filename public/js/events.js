@@ -225,10 +225,10 @@ $.fn.dissolve = function(){
   let elem = $(this);
   let parent = elem.parent();
   let sibling = elem.prev();
-  elem.detach();
   for(let child of elem.children()) {
     if(sibling[0] == undefined) parent.prepend(child)
     else sibling.after(child)
+    console.log(elem.parent())
   }
   elem.remove()
 }

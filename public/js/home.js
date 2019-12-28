@@ -71,6 +71,7 @@ $(() => {
       //   postContainer.append(elem)
       // }
       // response = response.reverse();
+      response = response.sort((a,b)=>b.dateCreated-a.dateCreated)
       // let dropDownHTML = ""
       for(let post of response){
         let {classID,className,content,title,posterName,dateCreated,poster} = post;

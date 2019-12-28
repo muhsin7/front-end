@@ -46,18 +46,23 @@
           <b>Students</b>
           <hr/>
           <div class="truncate">
-            <ul class="class_text" id="class-list">
-              <!-- <session-error> -->
-              <a href="#" class="submittor_name"><li>Student name</li></a>
+            <ul class="class_text" id="studentList">
+
+              <session-error>
+                <a href="#" class="submittor_name"><li>Student name</li></a>
                 <a href="#" class="defaulter_name"><li>Defaulter name</li></a>
-              <!-- </session-error> -->
+              </session-error>
             </ul>
           </div>
+          <br>
+          <b>Assignment</b>
           <hr />
           <center class="class_buttons">
-            <a href="#joinClass" class="joinclass modal-trigger"><i class="material-icons tiny">add</i><b>Join Class</b></a>
+            <a href="#lockAssignmentModal" class="side-button red modal-trigger" id="lockAssignmentButton"><i class="material-icons tiny" id="lockIcon">lock</i><b id="lockText">Lock</b></a>
             <br /><br />
-            <a href="#createClass" class="joinclass modal-trigger"><i class="material-icons tiny">add</i><b>Create Class</b></a>
+            <a href="#deleteAssignmentModal" class="side-button red joinclass modal-trigger"><i class="material-icons tiny">delete</i><b>Delete</b></a>
+            <br /><br />
+            <a href="#assignmentModal" class="side-button joinclass modal-trigger"><i class="material-icons tiny">edit</i><b>Edit</b></a>
           </center>
           <!-- <br /> -->
         </div>
@@ -75,20 +80,28 @@
           </div>
         </div>
 
-        <div class="submission-box col offset-s1 s9">
-          <h5>${name}'s submission'</h5>
-          <hr />
-          <div class="submission-date">
-            Submitted on hh:mm pm/am dd/mm/yy
+        <center id="AssignmentPrompt">
+          <h5 class="grey-text" style="padding-top:70px">Click on a student to view their submission</h5>
+        </center>
+        <div class="hidden submission-box col offset-s1 s9" id="submissionContainer">
+          <div id="submissionBox">
+
           </div>
-          <div class="more">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </div>
-          <ul class="collection files">
-            <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-purple download_file tiny">file_download</i></a></div></li>
-            <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-purple download_file tiny">file_download</i></a></div></li>
-            <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-purple download_file tiny">file_download</i></a></div></li>
-          </ul>
+          <session-error>
+            <h5>${name}'s submission'</h5>
+            <hr />
+            <div class="submission-date">
+              Submitted on hh:mm pm/am dd/mm/yy
+            </div>
+            <div class="more">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </div>
+            <ul class="collection files">
+              <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-purple download_file tiny">file_download</i></a></div></li>
+              <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-purple download_file tiny">file_download</i></a></div></li>
+              <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-purple download_file tiny">file_download</i></a></div></li>
+            </ul>
+          </session-error>
         </div>
       </div>
     </div>
@@ -146,27 +159,21 @@
       <div class="row assignment-box hoverable">
           <!-- <div class="assignment-box"> -->
           <div>
-            <div class="assignment-title">Assignment Title</div>
-            <i>Posted by teacher on date</i>
+            <div class="assignment-title">${title} (<a class="modal-trigger" href="#editAssignment">Edit</a>)</div>
+            <i>Posted by ${initiatorName}</i>
             <br />
-            <b class="nord-yellow-text">Class Name</b>
+            <b class="nord-yellow-text">${className}</b>
             <div class="due_date">
               <i class="material-icons nord-red-text due-icon">watch_later</i>
-              <span class="nord-red-text valign-wrapper"><i>Due on hh:mm pm/am dd/mm/yy</i></span>
+              <span class="nord-red-text valign-wrapper"><i>${dueDate}</i></span>
               </div>
             <hr />
 
-            <div class="assignment-content">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </div>
-              <div class="row center-align submit_assignment col s12">
-                  <a class="btn nord-red">
-                    <span class="valign-wrapper" id="post-attach-files-button"><i class="material-icons">attach_file</i>Attach file</span>
-                    <input type="file" class="hidden" multiple id="post-files">
-                  </a>
+            <div class="assignment-content" id="assignmentContent">
+              ${content}
               </div>
                 <div class="row">
-                  <ul class="collection files" id="post-file-collection">
+                  <ul class="collection files" id="assignmentFileContainer">
                     <session-error>
                       <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-red remove_file tiny">close</i></a></div></li>
                       <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-red remove_file tiny">close</i></a></div></li>
@@ -178,7 +185,7 @@
       <!-- </div> -->
     </div>
 
-    <div class="modal" id="renameModal">
+    <!-- <div class="modal" id="renameModal">
       <div class="modal-content">
         <center>
           <h4>Rename ${class}</h4>
@@ -195,23 +202,24 @@
           </center>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <div class="modal" id="deleteModal">
       <div class="modal-content">
         <center>
-          <h4>Are you sure you want to delete ${class}?</h4>
-          <h6><i>All data and posts from the group will be lost forever</i></h6>
+          <h4>Are you sure you want to remove your feedback?</h4>
+          <h6 class="grey-text">You cannot undo this action</h6>
         </center>
         <br />
         <center>
-          <div class="nord-red btn-large modal-close">Cancel</div>
-          <div class="btn-large nord-darkblue">Delete</div>
+          <h6 class='red-prompt' id="feedbackDeleteError"></h6>
+          <div class="nord-red btn-large modal-close" id="deleteFeedbackCancel">Cancel</div>
+          <div class="btn-large nord-darkblue" id="deleteFeedbackButton">Delete</div>
         </center>
       </div>
     </div>
 
-    <div class="modal" id="leaveModal">
+    <!-- <div class="modal" id="leaveModal">
       <div class="modal-content">
         <center>
           <h4>Are you sure you want to leave ${class}?</h4>
@@ -223,9 +231,9 @@
           <div class="btn-large nord-darkblue">Leave Group</div>
         </center>
       </div>
-    </div>
+    </div> -->
 
-<div id="joinClass" class="modal">
+<!-- <div id="joinClass" class="modal">
   <div class="modal-content">
     <div class="form" method="POST" on-success-reload="true" action="/api/class/join" on-error-prompt-selector="#invalidClass" on-error="console.log(response)">
       <h4>Enter Group Code</h4>
@@ -238,8 +246,8 @@
       </div>
     </div>
   </div>
-</div>
-<div id="createClass" class="modal">
+</div> -->
+<!-- <div id="createClass" class="modal">
   <div class="modal-content">
     <div class="form" method="POST" validation-element="<span style='color:red'></span>" on-success-reload="true" action="/api/class/create" on-error-prompt-selector="#invalidClass" on-error="console.log(response)">
       <h4>Enter class name</h4>
@@ -252,8 +260,85 @@
       </div>
     </div>
   </div>
+</div> -->
+<div class="modal" id="lockAssignmentModal">
+  <div class="modal-content">
+    <center>
+      <div>
+        <input type="text" class='hidden' name="commentID" value="" id="deleteCommentId">
+        <h5>Are you sure you want to <span id="unlockText"></span>lock this assignment?</h5>
+        <h6 class="grey-text" id="lockAssigmentPrompt"></h6>
+        <br />
+        <h6 id="lockAssignmentError"></h6>
+        <button class="btn-large nord-red" type="submit" id="lockSubmitButton">Lock</button>
+        <div class="btn-large nord-darkblue modal-close">Cancel</div>
+      </div>
+    </center>
+  </div>
 </div>
+<div class="modal" id="deleteAssignmentModal">
+  <div class="modal-content">
+    <center>
+      <div>
+        <h5>Are you sure you want to delete this assignment?</h5>
+        <h6 class="grey-text">You cannot undo this action</h6>
+        <br />
+        <h6 id="deleteAssignmentError"></h6>
+        <button class="btn-large nord-red" type="submit" id="deleteSubmitButton">Delete</button>
+        <div class="btn-large nord-darkblue modal-close">Cancel</div>
+      </div>
+    </center>
+  </div>
+</div>
+<div class="modal" id="assignmentModal">
+  <div class="modal-content">
+    <center>
+      <h2>Edit assignment</h2>
+    </center>
+    <div>
+      <form id="editAssignmentForm">
+        <div class="input-field col s12">
+          <input type="text" id="assignment_title" name="title" value="" placeholder="Enter title" required>
+          <label for="assignment_title">Assignment title</label>
+        </div>
+        <div class="input-field col s12" id="editAssignmentContentContainer">
+          <textarea id="icon_prefix2" class="materialize-textarea" name="content" placeholder="Enter Content of post" required></textarea>
+          <label for="icon_prefix2">Content</label>
+        </div>
+      </form>
+      <label for="due_date">Due date
+      </label>
+      <input type="text" class="datepicker" id="due_date" required readonly>
+      <ul id="editOldAssignmentFileContainer" class="collection files">
 
+        <session-error>
+          <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-purple download_file tiny">file_download</i></a></div></li>
+          <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-purple download_file tiny">file_download</i></a></div></li>
+          <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-purple download_file tiny">file_download</i></a></div></li>
+        </session-error>
+      </ul>
+      <div class="row">
+          <a class="btn nord-red">
+            <span class="valign-wrapper" id="editAssignmentAttachButton"><i class="material-icons">attach_file</i>Attach (more) files</span>
+            <input type="file" class="hidden" multiple id="editAssignmentAttachments">
+          </a>
+      </div>
+      <ul id="editNewAssignmentFileContainer" class="collection files">
+        <session-error>
+          <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-purple download_file tiny">file_download</i></a></div></li>
+          <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-purple download_file tiny">file_download</i></a></div></li>
+          <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-purple download_file tiny">file_download</i></a></div></li>
+        </session-error>
+      </ul>
+    </div>
+    <center>
+      <h6 class='nord-red' id="editAssignmentError"></h6>
+      <div class="btn-large modal-close nord-red">Cancel</div>
+      <button type="submit" class="btn-large nord-darkblue" id="editAssignmentSubmit">EDIT Assignment</button>
+    </center>
+  </div>
+
+</div>
     <!-- /////////////////////////////////////////////////////// -->
     <script type="text/javascript" src="../js/angular.min.js"></script>
     <script type="text/javascript" src="../js/jquery.js"></script>
@@ -263,5 +348,308 @@
     <script type="text/javascript" src="../js/script.js"></script>
     <script type="text/javascript" src="../js/events.js"></script>
     <!-- /////////////////////////////////////////////////////// -->
+    <script type="text/javascript">
+      $.initSession();
+      window.SUBMISSIONS = [];
+      window.ASSIGNMENT_ID = window.splitUrl().lastElem()
+      $(window).on('sessionLoaded',(event,error,sessionData) => {
+        $.ajax({
+          url:"/api/assignments/get",
+          type:'POST',
+          data:{assignmentID:ASSIGNMENT_ID},
+          success:function(data){
+            // HANDLING THE ASSIGNMENT
+            let dueDate = new Date(Number(data.dueDate));
+            dueDate = `${dueDate.getMonthName()} ${dueDate.getDate()}, ${dueDate.getFullYear()}`
+            let {attachments,title,content} = data;
+            $('#assignment_title').val(title)
+            $('#editAssignmentContentContainer').children('textarea').eq(0).val(content)
+            $('#due_date').val(dueDate)
+            for(let attachment of attachments) {
+              $('#assignmentFileContainer').append($(`<li class="collection-item" class="file"><div><a href="#">${attachment.originalName}</a></div></li>`))
+              $('#editOldAssignmentFileContainer').append($(`<li class="collection-item" class="file"><div><a>${attachment.originalName}</a><a class="secondary-content"><i class="white material-icons nord-red download_file tiny cross" file-name="${attachment.originalName}" file-id="${attachment.fileName}">delete</i></a></div></li>`))
+            }
+            $('#editOldAssignmentFileContainer .cross').on('click',function(){
+              let fileID = $(this).attr("file-id")
+              let fileName = $(this).attr("file-name")
+              DOMChooseFiles.removedFiles.push({fileName:fileID,originalName:fileName});
+              $(this).parents('.collection-item').eq(0).remove()
+            })
+            window.DOMChooseFiles = $('#editAssignmentAttachments')[0]
+            DOMChooseFiles.removedFiles = DOMChooseFiles.removedFiles || []
+            DOMChooseFiles.additionalFiles = DOMChooseFiles.additionalFiles || []
+            $('#editAssignmentAttachButton').on('click',() => {
+              $(DOMChooseFiles).click()
+            })
+            $(DOMChooseFiles).on('change',() => {
+              for(let file of DOMChooseFiles.files){
+                let elem = $(`<li class="collection-item" class="file"><div><a>${file.name}</a><a class="secondary-content"><i class="white material-icons nord-red download_file tiny cross" file-name="${file.name}">delete</i></a></div></li>`)
+                $('#editNewAssignmentFileContainer').append(elem);
+                DOMChooseFiles.additionalFiles.push(file)
+              }
+              $('#editNewAssignmentFileContainer .cross').off('click')
+              $('#editNewAssignmentFileContainer .cross').on('click',function() {
+                let fileName = $(this).attr('file-name');
+                for(let i=0;i<DOMChooseFiles.additionalFiles.length;i++){
+                  file=DOMChooseFiles.additionalFiles[i]
+                  if(file.name == fileName) {
+                    DOMChooseFiles.additionalFiles.splice(i,1)
+                    break
+                  };
+                }
+                $(this).parents('.collection-item').eq(0).remove();
+              })
+            })
+            $('#editAssignmentSubmit').on('click',function(){
+              let formData = new FormData($('#editAssignmentForm')[0]);
+              let dueDate = new Date($('#due_date').val()).getTime()
+              formData.append('assignmentID', ASSIGNMENT_ID);
+              formData.append('dueDate',dueDate);
+              let {removedFiles, additionalFiles} = DOMChooseFiles;
+              for(let removedFile of removedFiles) formData.append('removedFiles',JSON.stringify(removedFile));
+              for(let additionalFile of additionalFiles) formData.append('additionalFiles',new Blob([additionalFile]),additionalFile.name)
+              $.ajax({
+                url:"/api/assignments/edit?fileUpload=true",
+                type:'POST',
+                cache:false,
+                processData:false,
+                contentType:false,
+                data:formData,
+                success:function(data){
+                  window.location.reload(true)
+                },error:function(err){
+                  $('#editAssignmentError').text(err.responseText)
+                }
+              })
+            })
+            $('#deleteSubmitButton').on('click',() => {
+              $.ajax({
+                url:"/api/assignments/delete",
+                type:"POST",
+                data:{assignmentID:ASSIGNMENT_ID},
+                success:function(response){
+                  // console.log(data)
+                  window.location.href = `/class/${data.classID}`
+                }, error:function(err){
+                  console.error(err.responseText);
+                  $('#deleteAssignmentError').text(err.responseText)
+                }
+              })
+
+            })
+            if (data.locked) {
+              $('#lockAssignmentButton').addClass('green');
+              $('#lockAssignmentButton').removeClass('red');
+              $('#lockAssignmentButton').removeClass('hidden');
+              $('#lockText').text("Unlock");
+              $('#lockIcon').text("lock_open");
+              $('#unlockText').text("un");
+              $('#lockAssigmentPrompt').text("Students can now submit after unlocking")
+              $('#lockSubmitButton').text('Unlock')
+              $('#lockSubmitButton').on('click',() => {
+                $.ajax({
+                  url:"/api/assignments/unlock",
+                  type:'POST',
+                  data:{assignmentID:ASSIGNMENT_ID},
+                  success:function(data){
+                    // console.log(data)
+                    window.location.reload(true)
+                  },error:function(err){
+                    // console.error(err.responseText)
+                    $('#lockAssignmentError').text(err.responseText)
+                  }
+                })
+              })
+            } else {
+              $('#lockSubmitButton').on('click',() => {
+                $.ajax({
+                  url:"/api/assignments/lock",
+                  type:'POST',
+                  data:{assignmentID:ASSIGNMENT_ID},
+                  success:function(data){
+                    // console.log(data)
+                    window.location.reload(true)
+                  },error:function(err){
+                    console.error(err.responseText)
+                    $('#lockAssignmentError').text(err.responseText)
+
+                  }
+                })
+              })
+              $('#lockSubmitButton').text('Lock')
+              $('#lockAssigmentPrompt').text("Students cannot submit after locking")
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            // HANDLING SUBMISSIONS
+            for(let submission of data.submissions){
+              window.SUBMISSIONS.push(submission);
+              $('#studentList').append($(`<a class="submittor_name" submitter-id="${submission.owner}"><li>${submission.ownerName}</li></a>`))
+            }
+            $('.submittor_name').on('click',function(e) {
+              let desiredSubmission;
+              let id = $(this).attr('submitter-id')
+              for(let submission of window.SUBMISSIONS) if(submission.owner == id) desiredSubmission  = submission;
+              $('#AssignmentPrompt').addClass('hidden');
+              let name = desiredSubmission.ownerName;
+              let feedbackContent = ""
+              if(desiredSubmission.feedback.length == 0) {
+                feedbackContent = `<div>
+                  <input name="comment" type="text" class="comment-input" id="feedbackInput"/>
+                  <center><h6 class="red-prompt" id="feedbackError"></h6></center>
+                  <button name="comment-btn" type="submit" name="button" class="right-align btn nord-red" id="feedbackButton">Give feedback</button>
+                  <br /><br />
+                </div>`
+              } else {
+                for(let feedback of desiredSubmission.feedback){
+                  let {id,owner,ownerName,dateCreated} = feedback;
+                  isOwnerOfFeedback = (owner == sessionData.id);
+                  feedbackText = feedback.content
+                  feedbackContent += `
+                  <div class="comment">
+                    <div class="comment-marker nord-darkblue"></div>
+                    <img class="comment-pfp" src="/api/users/${owner}/image"/>
+                    <div class="comment-poster">${ownerName}</div><span class="date-text">${new Date(dateCreated).getSemiSimpleTime()}</span>
+                    ${
+                      (isOwnerOfFeedback) ?
+                      `<span class="date-text pointer small-side-margin edit-feedback pointer-cursor" feedback-id="${id}"><a>Edit  </a></span>
+                       <span class="date-text pointer modal-trigger small-side-margin delete-feedback pointer-cursor" feedback-id="${id}" href="#deleteModal"><a>Delete</a></span>`
+                       : ''
+                    }
+                    <textarea class="materialize-textarea comment-readonly" readonly>${feedbackText}</textarea>
+                    ${
+                      (isOwnerOfFeedback) ?
+                      `
+                      <div class="feedbackContainer hidden">
+                      <center>
+                        <h6 class="red-prompt" id="feedbackediterror"></h6>
+                      </center>
+                        <button class="btn nord-red feedback-edit-confirm" type="submit"  feedback-id="${id}">SAVE CHANGES</button>
+                        <button class="btn nord-blue feedback-edit-cancel-button">CANCEL</button>
+                      </div>
+                      `:``
+                    }
+                  </div>
+                  `
+                }
+              }
+
+
+              $("#submissionContainer").removeClass('hidden')
+              $('#submissionBox').html(`
+                <h5>${name}'s submission'</h5>
+                <hr />
+                <div class="submission-date">
+                  Submitted on ${new Date(desiredSubmission.dateCreated).getSemiSimpleTime()}
+                </div>
+                <div class="more">
+                  ${desiredSubmission.content}
+                </div>
+                <ul class="collection files">
+                  <li class="collection-item" class="file"><div><a href="#">${desiredSubmission.originalName}</a><a class="secondary-content"><i class="white material-icons nord-purple download_file tiny">file_download</i></a></div></li>
+                </ul>
+                ${feedbackContent}
+                `)
+                $('.edit-feedback').off('click')
+                $('.edit-feedback').on('click',function(){
+                  let parent = $(this).parent()
+                  let textarea = parent.find(".materialize-textarea").eq(0)
+                  textarea.attr('initialValue',textarea.val())
+                  textarea.removeAttr('readonly');
+                  textarea.focus();
+                  parent.find('.feedbackContainer').eq(0).removeClass('hidden')
+                })
+                $('.delete-feedback').off('click')
+                $('.delete-feedback').on('click',function(){
+                  $('#deleteFeedbackButton').off('click');
+                  $('#deleteFeedbackButton').on('click',() => {
+                    let elem = $(this)
+                    $.ajax({
+                      url:"/api/assignments/feedback/clear",
+                      type:'POST',
+                      data:{feedbackID:elem.attr("feedback-id")},
+                      success:function(data){
+                        console.log(data);
+                        elem.parents('.comment').eq(0).remove();
+                        $('#deleteFeedbackCancel').click()
+                      }
+                    })
+                  })
+                })
+                $('.feedback-edit-confirm').off('click')
+                $('.feedback-edit-confirm').on('click',function() {
+                  console.log('lskdjflskdjflksjdlk')
+                  let parent = $(this).parents('.comment').eq(0);
+                  let textarea =  parent.find(".materialize-textarea")
+                  let val = textarea.val()
+                  if (val.trim().length == 0 ) {
+                    $('#feedbackediterror').html("Blank feedback not allowed")
+                  } else {
+                    $.ajax({
+                      url:"/api/assignments/feedback/edit",
+                      type:'POST',
+                      data:{feedbackID:$(this).attr("feedback-id"),content:val},
+                      success:function(data){
+                        console.log(data);
+                        textarea.attr('readonly','readonly');
+                        textarea.val(val);
+                        parent.find('.feedbackContainer').eq(0).addClass('hidden')
+                      }
+                    })
+                  }
+                })
+                $('.feedback-edit-cancel-button').off('click')
+                $('.feedback-edit-cancel-button').on('click',function(){
+                  let parent = $(this).parents('.comment').eq(0);
+                  console.log('j')
+                  let textarea = parent.find(".materialize-textarea").eq(0);
+                  textarea.attr("readonly","readonly");
+                  textarea.val(textarea.attr("initialValue"))
+                  textarea.blur()
+                  parent.find('.feedbackContainer').eq(0).addClass('hidden')
+                })
+                $('#feedbackButton').off("click")
+                $('#feedbackButton').on("click",() => {
+                  console.log('Huh')
+                  let val = $('#feedbackInput').val();
+                  if(val.trim().length == 0) $("#feedbackError").html("Blank feedback not allowed")
+                  else {
+                    $("#feedbackError").html("")
+                    $.ajax({
+                      url:"/api/assignments/feedback/create",
+                      type:'POST',
+                      data:{submissionID:desiredSubmission.id,content:val},
+                      success:function(data){
+                        console.log(data)
+                      },error:function(err){
+                        console.log(err)
+                      }
+                    })
+                  }
+                })
+            })
+            // console.log(data)
+          }, error:function(err){
+            console.error(err.responseText)
+          }
+        })
+      })
+      $(document).ready(function(){
+        $('.datepicker').datepicker();
+      });
+    </script>
   </body>
 </html>

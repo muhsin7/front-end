@@ -87,50 +87,58 @@ $(() => {
 // Notifications
 
 $(window).on('sessionLoaded',(event,error,response) => {
-  if(response.type != 'teacher') $('[on-student-remove]').remove()
-  $.ajax({
-    url:'/api/notifications/getAll',
-    type:'GET',
-    success:function(data){
-      let notificationsContainer = $('#notificationsContainer');
-      console.log(notificationsContainer)
-      for(let notification of data){
-        let {hook,content,message,id,initiator,type} = notification;
-        console.log(type)
-        let path = (type == 'assignment') ? `/assignment/${hook}` : `/post/${hook}`;
-        let elem = $(`
-          <a href="${path}" class="notificationAnchor" notification-id="id">
-          <li class="collection-item modal-notification ${type}-notif">
-          <img src="/api/users/${initiator}/image" class="modal-notif-pfp"/>
-          <div>
-          <div class="truncate nord-purple-text notif-content">
-          ${message}
-          </div>
-          <div class="truncate">
-          ${content}
-          </div>
-          </div>
-          </li>
-          </a>
-          `)
-          notificationsContainer.append(elem)
-          console.log('sdlkfjdskljfskdljdsfkljdklfsdjflkjsd')
-      }
-      $('.notificationAnchor').on('click',function(event){
-        $(this).trigger("click.customClick",[event])
+  if(error) console.error(error)
+  else {
+    if(response.type != 'teacher') $('[on-student-remove]').remove()
+    $.ajax({
+      url:'/api/notifications/getAll',
+      type:'GET',
+      success:function(data){
+        let notificationsContainer = $('#notificationsContainer');
+        console.log(notificationsContainer)
+        for(let notification of data){
+          let {hook,content,message,id,initiator,type} = notification;
+          // console.log(type)
+          let path = (type == 'assignment') ? `/assignment/${hook}` : `/post/${hook}`;
+          let elem = $(`
+            <span href="${path}" class="notificationAnchor" notification-id="id">
+            <li class="collection-item modal-notification ${type}-notif">
+            <img src="/api/users/${initiator}/image" class="modal-notif-pfp"/>
+            <div>
+            <div class="truncate nord-purple-text notif-content">
+            ${message}
+            </div>
+            <div class="truncate">
+            ${content}
+            </div>
+            </div>
+            </li>
+            </span>
+            `)
+            notificationsContainer.append(elem)
+            // console.log('sdlkfjdskljfskdljdsfkljdklfsdjflkjsd')
+          }
+          $('.notificationAnchor').on('click',function(event){
+            $(this).trigger("click.customClick",[event])
+          })
+          $('.notificationAnchor').off('click.customClick')
+          $('.notificationAnchor').on('click.customClick',function(event){
+            $.ajax({
+              url:"/api/notifications/markRead",
+              type:'post',
+              data:{id:$(this).attr('notification-id')},
+              success:function(data){
+                console.log(data)
+              },error:function(err){
+                console.error(err)
+              }
+            })
+          })
+        },error:function(data){
+          console.error(data.reponseText)
+        }
       })
-      $('.notificationAnchor').off('click.customClick')
-      $('.notificationAnchor').on('click',function(){
-        $.ajax({
-          url:"/api/notifications/markRead",
-          type:'post',
-          data:{id:$(this).attr('notification-id')},
-        })
-      })
-    },error:function(data){
-      console.error(data.reponseText)
-    }
-  })
+  }
 })
 
 
@@ -155,15 +163,15 @@ $(document).ready(function(){
 
 
 
-$(.defaulter_name).on('click', function(){
-  $('.submission-box').css('visibility', 'hidden')
-  $('.hidden-defaulter-box').addClass('defaulter-box')
-  $('.defaulter-box').css("visibility", "visible")
-  $('#defaulter_name').text("Defaulter name")
-})
-
-$(.submittor_name).on('click', function(){
-  $('.submission-box').css('visibility', 'visible')
-  $('.hidden-defaulter-box').removeClass('defaulter-box')
-  $('.defaulter-box').css("visibility", "hidden")
-})
+// $(.defaulter_name).on('click', function(){
+//   $('.submission-box').css('visibility', 'hidden')
+//   $('.hidden-defaulter-box').addClass('defaulter-box')
+//   $('.defaulter-box').css("visibility", "visible")
+//   $('#defaulter_name').text("Defaulter name")
+// })
+//
+// $(.submittor_name).on('click', function(){
+//   $('.submission-box').css('visibility', 'visible')
+//   $('.hidden-defaulter-box').removeClass('defaulter-box')
+//   $('.defaulter-box').css("visibility", "hidden")
+// })

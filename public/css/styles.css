@@ -261,6 +261,40 @@ teacher-container,session, session-onload, student-container,session-error {
   top: 50% !important;
   bottom: 50% !important;
 }
+.side-button.red {
+  background-color: #EA3056;
+  color: white;
+}
+.side-button.green {
+  background-color: lightgreen;
+  color: white;
+}
+.side-button{
+  margin: 10px;
+  bottom: 10px !important;
+  padding: 5px;
+  border-radius: 5px;
+  transition: .5s ease;
+  background-color: #F28650;
+  color: #003255;
+  /* padding-left: 5px; */
+  font-size:14px;
+  /* padding-right: 5px; */
+  width: 100% !important;
+}
+
+.lockassignment:hover{
+  color: #EA3056;
+  background-color:#003255
+}
+
+#lockassignment{
+  width: 400px !important;
+  height: 230px !important;
+  border-radius: 5px;
+  top: 50% !important;
+  bottom: 50% !important;
+}
 
 .class_menu{
   border-radius: 50px;
@@ -446,6 +480,7 @@ textarea.materialize-textarea {
 }
 textarea.materialize-textarea[readonly] {
   height: 50px !important;
+  color:black !important;
 }
 backend-data {
   display:none !important
