@@ -1,4 +1,4 @@
-x`  html{
+html{
     height: 100%;
   }
   .assignment-item{
@@ -873,4 +873,49 @@ button[name="comment-btn"]{
   font-style: italic;
   font-size: 75%;
   border:
+}
+
+.email{
+  margin-top: 100px !important;
+  display: block;
+}
+
+.email_header{
+  height: 80px;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  color: white;
+  display: block;
+  font-size: 50px;
+}
+
+.email_header i.medium{
+  font-size: 3rem !important;
+}
+
+.email_content{
+  padding: 50px;
+  min-height: 400px;
+  border: 1px solid #E3E1DC;
+  border-top: none;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+
+.email_content_box{
+  height: 100px;
+  margin-top: 50px !important;
+}
+
+.email_goto_link{
+  float: right;
+  font-style: italic;
+  font-weight: bold;
+  text-decoration: underline;
+  transition: .5s ease;
+  margin-top: 10px !important;
+}
+
+.email_goto_link:hover{
+  color: #722C8A !important;
 }
