@@ -73,8 +73,8 @@ $(() => {
       // response = response.reverse();
       response = response.sort((a,b)=>b.dateCreated-a.dateCreated)
       // let dropDownHTML = ""
-      for(let post of response){
-        let {classID,className,content,title,posterName,dateCreated,poster} = post;
+      /*for(let post of response){
+        let {classID,className,content,title,posterName,dateCreated,poster,lastModified} = post;
         let postID = post.id;
         let posterType = post.posterType;
         dateCreated = new Date(dateCreated).getSemiSimpleTime();
@@ -147,7 +147,7 @@ $(() => {
           <div class="poster"><a href="/user/${poster}">${posterName}</a></div>
           ${ifTeacherAccountAddElementHere}
           <a href="/class/${classID}" class="post-class">${className}</a>
-          <span class="date-text">${dateCreated}</span>
+          <span class="date-text">${dateCreated} ${(post.dateCreated != post.lastModified) ? "(Edited)" : ''}</span>
           <span class="date-text small-side-margins pointer-cursor"><a href="/post/${postID}">Go to post  </a></span>
           ${(isOwnerOfPost)?
           `
@@ -175,8 +175,10 @@ $(() => {
           ${loadMoreContainer}
         </div>`)
         postContainer.append(elem)
+      }*/
+      for(let post of response){
+        $.genPost(post,postContainer,sessionData,{comments:true})
       }
-
       if(response.length == 0){
         postContainer.append($(`<center><h6 class="grey-text">No posts to be loaded</h6></center>`))
       }

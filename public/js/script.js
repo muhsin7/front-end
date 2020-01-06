@@ -85,7 +85,6 @@ $(() => {
 
 
 // Notifications
-
 $(window).on('sessionLoaded',(event,error,response) => {
   if(error) console.error(error)
   else {
@@ -95,14 +94,48 @@ $(window).on('sessionLoaded',(event,error,response) => {
       type:'GET',
       success:function(data){
         let notificationsContainer = $('#notificationsContainer');
-        console.log(notificationsContainer)
+        // console.log(notificationsContainer)
+        notificationsContainer.after($(`<h6 id="notificationsError" class="red-text"></h6>")`))
+        if(data.length == 0){
+          notificationsContainer.append($(
+            `
+            <center>
+            <h5 class="grey-text">No notifications to show</h5>
+            </center>
+            `
+          ))
+        } else {
+          notificationsContainer.after($(`<center id="clearContainer">
+          <a class="btn nord-red" id="clearNotif">Clear All</a>
+          </center>`))
+          $('#clearNotif').on('click',() => {
+            $.ajax({
+              url:"/api/notifications/clearAll",
+              type:'GET',
+              success:function(data){
+                notificationsContainer.html('');
+                $('#clearNotif').remove()
+                notificationsContainer.append($(
+                  `
+                  <center>
+                  <h5 class="grey-text">No notifications to show</h5>
+                  </center>
+                  `
+                ))
+              },error:function(err){
+                console.error(err.responseText)
+              }
+            })
+          })
+        }
         for(let notification of data){
-          let {hook,content,message,id,initiator,type} = notification;
+          let {hook,content,message,id,initiator,type,status} = notification;
+          let classType = (['assignment','post'].includes(type)) ? type : 'assignment'
           // console.log(type)
-          let path = (type == 'assignment') ? `/assignment/${hook}` : `/post/${hook}`;
+          let path = hook
           let elem = $(`
-            <span href="${path}" class="notificationAnchor" notification-id="id">
-            <li class="collection-item modal-notification ${type}-notif">
+            <span href="${path}" status="${status}" class="notificationAnchor" notification-id="${id}">
+            <li class="collection-item modal-notification ${classType}-notif">
             <img src="/api/users/${initiator}/image" class="modal-notif-pfp"/>
             <div>
             <div class="truncate nord-purple-text notif-content">
@@ -118,24 +151,26 @@ $(window).on('sessionLoaded',(event,error,response) => {
             notificationsContainer.append(elem)
             // console.log('sdlkfjdskljfskdljdsfkljdklfsdjflkjsd')
           }
+          $('.notificationAnchor').off('click');
           $('.notificationAnchor').on('click',function(event){
-            $(this).trigger("click.customClick",[event])
-          })
-          $('.notificationAnchor').off('click.customClick')
-          $('.notificationAnchor').on('click.customClick',function(event){
+            let elem = $(this)
+            if (elem.attr('status') == 'read') window.location.href = elem.attr('href')
+             else {
             $.ajax({
               url:"/api/notifications/markRead",
               type:'post',
-              data:{id:$(this).attr('notification-id')},
+              data:{id:elem.attr('notification-id')},
               success:function(data){
-                console.log(data)
+                console.log(data);
+                window.location.href = elem.attr('href');
               },error:function(err){
-                console.error(err)
+                console.error(err.responseText)
               }
             })
+            }
           })
         },error:function(data){
-          console.error(data.reponseText)
+          console.error(data.responseText)
         }
       })
   }

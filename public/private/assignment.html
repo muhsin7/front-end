@@ -41,7 +41,7 @@
 
       <div class="row">
         <!-- <div class="user"></div> -->
-        <div class="classes col s2">
+        <!-- <div class="classes col s2">
           <br style="font-size: 50%"/>
           <b>Classes</b>
           <hr/>
@@ -63,8 +63,8 @@
             <br   /><br />
             <a href="#createClass" class="joinclass modal-trigger"><i class="material-icons tiny">add</i><b>Create Class</b></a>
           </center>
-          <!-- <br /> -->
-        </div>
+          
+        </div> -->
 
         <ul class="dropdown-content" id="classDropdown" href="#">
           <li class="class_options"><a href="/class/">Open class</a></li>
@@ -311,7 +311,7 @@
           $('#submissionContainer').addClass('hidden')
           $('fileAttachmentNameContainer').addClass('hidden')
         })
-        let assignmentID = window.splitUrl().lastElem();
+        let assignmentID = $.getResourceID()
         $.ajax({
           url:"/api/assignments/get",
           type:'POST',

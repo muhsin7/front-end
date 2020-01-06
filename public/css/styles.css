@@ -471,7 +471,10 @@ teacher-container,session, session-onload, student-container,session-error {
 .hidden {
   display:none
 }
-
+#clearContainer {
+  margin-top:15px;
+  margin-bottom:15px;
+}
 textarea.materialize-textarea {
   height: 70px !important;
   border-bottom:0 !important;

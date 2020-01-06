@@ -105,13 +105,13 @@
         </div>
       </div>
     </div>
-
     <div class="modal" id="notificationsModal">
       <div class="modal-content">
         <center>
           <i class='material-icons nord-orange-text medium'>notifications</i>
         </center>
-        <ul class="collection notification-collection">
+        <session-error>
+          <ul class="collection notification-collection">
           <a href="#">
             <li class="collection-item modal-notification post-notif">
               <img src="../images/default.jpg" class="modal-notif-pfp"/>
@@ -152,8 +152,14 @@
             </li>
           </a>
         </ul>
+        </session-error>
+        <ul class="collection notification-collection" id="notificationsContainer">
+
+        </ul>
+
       </div>
     </div>
+
 
     <div class="container col s12">
       <div class="row assignment-box hoverable">
@@ -351,7 +357,7 @@
     <script type="text/javascript">
       $.initSession();
       window.SUBMISSIONS = [];
-      window.ASSIGNMENT_ID = window.splitUrl().lastElem()
+      window.ASSIGNMENT_ID = $.getResourceID()
       $(window).on('sessionLoaded',(event,error,sessionData) => {
         $.ajax({
           url:"/api/assignments/get",
@@ -499,6 +505,7 @@
               window.SUBMISSIONS.push(submission);
               $('#studentList').append($(`<a class="submittor_name" submitter-id="${submission.owner}"><li>${submission.ownerName}</li></a>`))
             }
+
             $('.submittor_name').on('click',function(e) {
               let desiredSubmission;
               let id = $(this).attr('submitter-id')
@@ -559,7 +566,7 @@
                   ${desiredSubmission.content}
                 </div>
                 <ul class="collection files">
-                  <li class="collection-item" class="file"><div><a href="#">${desiredSubmission.originalName}</a><a class="secondary-content"><i class="white material-icons nord-purple download_file tiny">file_download</i></a></div></li>
+                  <li class="collection-item" class="file"><div><a target="_blank" href="/class/${data.classID}/attachment/${desiredSubmission.fileName}">${desiredSubmission.originalName}</a><a class="secondary-content" download=${desiredSubmission.originalName.replace(/ /g,"_")} href="/class/${data.classID}/attachment/${desiredSubmission.fileName}"><i class="white material-icons nord-purple download_file tiny">file_download</i></a></div></li>
                 </ul>
                 ${feedbackContent}
                 `)
@@ -642,12 +649,23 @@
                 })
             })
             // console.log(data)
+            if($.isQuery()) {
+              let queryObject = $.getQuery();
+              if(queryObject.submission != undefined){
+                $('.submittor_name').each((e,k) => {
+                  k = $(k)
+                  if(k.attr("submitter-id") == queryObject.submission) k.click()
+                })
+              }
+            }
+            $(window).trigger("submissionsLoaded")
           }, error:function(err){
             console.error(err.responseText)
           }
         })
       })
       $(document).ready(function(){
+        $('.modal').modal()
         $('.datepicker').datepicker();
       });
     </script>

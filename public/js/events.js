@@ -17,6 +17,32 @@ $.randGen = function(len=5){
   for(let i=0;i<len;i++) final+= allowed[Math.floor(Math.random()*allowed.length)];
   return final
 }
+$.getQuery = function(){
+  let obj = {};
+  let queryString = window.location.href.split("?")[1]
+  for(let declaration of queryString.split('&')){
+    let [key,value] = declaration.split('=');
+    obj[key] = value
+  }
+  return obj
+}
+$.isQuery = function(){
+  return window.location.href.split("?").length == 2
+}
+$.getResourceID = function(){
+  let idValue = window.splitUrl().lastElem();
+  let requiredSymbols = ['?','#'];
+  let extractedValue = "";
+  for(let i=0;i<idValue.length;i++){
+    let current = idValue[i];
+    if(current == '?' || current == '#') {
+      extractedValue = idValue.substring(0,i);
+      break
+    }
+  }
+  extractedValue = (extractedValue == "") ? idValue : extractedValue
+  return extractedValue
+}
 $.initSession = () => {
   $(() => {
     // $(window).trigger("sessionLoaded",["Hello sir"])
@@ -228,7 +254,7 @@ $.fn.dissolve = function(){
   for(let child of elem.children()) {
     if(sibling[0] == undefined) parent.prepend(child)
     else sibling.after(child)
-    console.log(elem.parent())
+    // console.log(elem.parent())
   }
   elem.remove()
 }
@@ -268,6 +294,123 @@ Date.prototype.getSimpleTime = function(){
   let month = months[this.getMonth()];
   return `${day}, ${month} ${this.resolveDate()}, ${this.getFullYear()}`
 }
+$.bindProps = function(obj1,obj2){
+  for(let key in obj2) {
+    obj1[key] = obj2[key]
+  }
+}
+$.genPost = function(post,targetElem,sessionData,config={}){
+  let defaultConfig = {comments:false,commentLength:3};
+  $.bindProps(defaultConfig,config);
+  config = defaultConfig
+  if(!config.comments) post.comments = []
+  // else {
+  //   console.log(post)
+  // }
+    let {classID,className,content,title,posterName,dateCreated,poster,lastModified} = post;
+    let postID = post.id;
+    let posterType = post.posterType;
+    dateCreated = new Date(dateCreated).getSemiSimpleTime();
+    let ifTeacherAccountAddElementHere = (posterType == 'teacher') ? '<a class="tooltipped" data-posiion="left" data-tooltip="Teacher"><i class="material-icons nord-yellow-text">school</i></a>' : ''
+    comments = "";
+    let isOwnerOfPost = (poster==sessionData.id)
+    // let dropDownTextEditable = (isOwnerOfPost) ? `<li class="modal-trigger edit-post-modal-trigger" href="#editModal" post-id="${postID}"><a>Edit Post</a></li>
+    // <li class="warn modal-trigger delete-post-modal-trigger" href="#deletePostModal" post-id="${postID}"><a>Delete Post</a></li>` : ""
+    // dropDownHTML += `<ul class="dropdown-content" id="post-dropdown-${postID}">
+    //   <li><a href="/post/${postID}">Go to post</a></li>
+    //   ${dropDownTextEditable}
+    // </ul>`
+    if(post.comments.length > 0){
+      let amount = Math.min(post.comments.length,config.commentLength)
+      for(let i=0;i<amount;i++){
+        let comment = post.comments[i]
+        let {id,dateCreated,commenter,commenterName,content} = comment;
+        let isOwnerOfComment = (commenter==sessionData.id);
+        let dateCommented = new Date(dateCreated).getSemiSimpleTime()
+        comments+=`<div class="comment">
+        <div class="comment-marker nord-darkblue"></div>
+        <img class="comment-pfp" src="/api/users/${commenter}/image"/>
+        <div class="comment-poster"><a href="/user/${commenter}">${commenterName}</a></div><span class="date-text">${dateCommented}
+        ${(isOwnerOfComment)?
+          `
+          <span class="date-text small-side-margin edit-comment pointer-cursor" post-id="${id}"><a>Edit  </a></span>
+          <span class="date-text modal-trigger small-side-margin delete-comment pointer-cursor" comment-id="${id}" href="#deleteCommentModal"><a>Delete</a></span>
+          `:""
+        }
+        </span>
+        <!-- <div class="comment-text more">${content}</div> -->
+        ${(isOwnerOfComment)?
+          `
+          <div class="form comment-edit-form" action="/api/post/comment/edit" method="POST">
+            <input type="hidden" name="commentID" value="${id}">
+            <textarea class="materialize-textarea comment-readonly" readonly name="content">${content}</textarea>
+            <div class="hidden">
+            <button class="btn nord-red" type="submit">SAVE CHANGES</button>
+            <button class="btn nord-blue comment-edit-cancel-button">CANCEL</button>
+            </div>
+          </div>
+          `
+          :
+          `
+          <textarea class="materialize-textarea comment-readonly" readonly>${content}</textarea>
+          `
+        }
+        </div>`
+      }
+    }
+    let attachmentContent = ""
+    post.attachments = post.attachments || []
+    for(let attachment of post.attachments){
+      attachmentContent+=
+      // `<a href="/class/${classID}/attachment/${attachment.fileName}"><i class="tiny material-icons">attach_file</i> ${attachment.originalName}</a><br>`
+      `
+        <li class="collection-item file"><div><a href="/class/${post.classID}/attachment/${attachment.fileName}" target="_blank">${attachment.originalName}</a><a download href="/class/${post.classID}/attachment/${attachment.fileName}" class="secondary-content"><i class="white material-icons nord-purple download_file tiny">file_download</i></a></div></li>
+      `
+    }
+    let loadMoreContainer = (post.comments.length > 3) ? `<div class="load-more-comments">
+      <a href="/post/${postID}">[Load more comments...]</a>
+    </div>` : ''
+    let elem = $(`<div class="post hoverable">
+      <div class="post-header">
+        <img class="post-pfp" src="/api/users/${poster}/image" />
+      </div>
+      <!--
+      <a post-id="${postID}" owner="${isOwnerOfPost}" class="dropdown-trigger" data-target="post-dropdown-${postID}"><i class="material-icons post-options">more_horiz</i></a>
+      -->
+      <div class="poster"><a href="/user/${poster}">${posterName}</a></div>
+      ${ifTeacherAccountAddElementHere}
+      <a href="/class/${classID}" class="post-class">${className}</a>
+      <span class="date-text">${dateCreated} ${(post.dateCreated != post.lastModified) ? "(Edited)" : ''}</span>
+      <span class="date-text small-side-margins pointer-cursor"><a href="/post/${postID}">Go to post  </a></span>
+      ${(isOwnerOfPost)?
+      `
+      <span class="date-text modal-trigger pointer small-side-margin edit-post pointer-cursor" post-id="${postID}" href="#editModal"><a>Edit  </a></span>
+      <span class="date-text pointer modal-trigger small-side-margin delete-post pointer-cursor" post-id="${postID}" href="#deletePostModal"><a>Delete</a></span>
+
+      `:""
+      }
+      <div class="more content-of-post">${content}</div>
+      <ul class="collection files">
+      ${attachmentContent}
+      </ul>
+      <hr />
+      <h6><b>Comments</b></h6>
+      <div class="form comment-form" method='POST' action="/api/post/comment/create?json=true"  on-error="console.log(response)">
+
+        <input name="postID" type="text" value="${postID}" class="hidden comment-input"/>
+        <input name="content" type="text" class="comment-input" placeholder="Comment here..."/><br>
+        <button name="comment-btn" type="submit" name="button" class="right-align btn nord-red">Comment</button>
+        <br /><br />
+      </div>
+      <div class="comments">
+        ${comments}
+      </div>
+      ${loadMoreContainer}
+    </div>`)
+    targetElem.append(elem)
+
+}
+
 $.getDataValue = function(key){
   let desiredValue = null;
   $('backend-data').each((e,k) => {

@@ -288,7 +288,7 @@
           $('#submissionContainer').addClass('hidden')
           $('fileAttachmentNameContainer').addClass('hidden')
         })
-        let assignmentID = window.splitUrl().lastElem();
+        let assignmentID = $.getResourceID();
         $.ajax({
           url:"/api/assignments/get",
           type:'POST',

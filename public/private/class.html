@@ -11,56 +11,7 @@
 
   </head>
   <body>
-    <div class="modal modal-fixed-footer" id="post">
-      <div class="modal-content">
-         <div>
-           <label>Class</label>
-           <div class="row">
-             <!-- <div class="input-field col s6">
-               <input type="text" id="autocomplete-input" class="autocomplete" placeholder="Enter class name">
-             </div> -->
-             <div class="input-field col s12" ignore-value-container>
-               <select id="classSelect" read-value-container read-value name="classID" required >
-                 <option value="" disabled selected class="disabled">Select a class to post in</option>
-               </select>
-             </div>
-           </div>
-           <div class="row">
-             <div class="input-field col s12">
-               <!-- <i class="material-icons prefix">mode_edit</i> -->
-               <textarea class="materialize-textarea" min-length="5" required placeholder="Enter content of post" name="content" id="post-content"></textarea>
-               <!-- <label for="icon_prefix2">Enter Post</label> -->
-             </div>
-           </div>
-           <div class="row">
-             <div id="post-error" style="color:red">
 
-             </div>
-           </div>
-           <div class="row">
-               <a class="btn nord-red">
-                 <span class="valign-wrapper" id="post-attach-files-button"><i class="material-icons">attach_file</i>Attach file</span>
-                 <input type="file" class="hidden" multiple id="post-files">
-               </a>
-           </div>
-           <div class="row">
-             <ul class="collection files" id="post-file-collection">
-               <session-error>
-                 <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-red remove_file tiny">close</i></a></div></li>
-                 <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-red remove_file tiny">close</i></a></div></li>
-                 <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-red remove_file tiny">close</i></a></div></li>
-               </session-error>
-             </ul>
-           </div>
-         </div>
-
-      </div>
-      <div class="modal-footer">
-        <center>
-          <button class="btn-flat postbutton" type='submit' id="post-submit">Post<!--<div class="post2">Post</div>--></button>
-        </center>
-      </div>
-    </div>
     <div class="modal" id="editModal">
       <div class="modal-content">
         <div>
@@ -124,36 +75,69 @@
         <i class="large material-icons">mode_edit</i>
       </a>
    </div>
-   <div class="modal modal-fixed-footer form" id="post" action="/api/post/create" method="POST" test-only="true">
+   <!-- <div class="modal modal-fixed-footer">
      <div class="modal-content">
        <center>
          <h4>Post to ${class}</h4>
        </center>
         <div>
-          <label>Title</label>
-          <input type="text" name="classID" value="${classID}" class="hidden">
-          <div class="row">
-            <div class="input-field col s12">
-              <input type="text" name="title" value="" placeholder="Enter title">
-            </div>
-          </div>
           <label>Content</label>
           <div class="row">
             <div class="input-field col s12">
-              <textarea id="icon_prefix2" class="materialize-textarea" placeholder="Enter Content of post"></textarea>
+              <textarea id="icon_prefix2" class="materialize-textarea" name="postContent" placeholder="Enter Content of post"></textarea>
               <!-- <label for="icon_prefix2">Enter Post</label> -->
             </div>
+          </div>
+        </div>
+        <div id="postError" class="red-text">
+
+        </div>
+     </div>
+   </div>
+   <div class="modal modal-fixed-footer" id="post">
+     <div class="modal-content">
+        <div>
+          <div class="row">
+            <center>
+              <h2>Post to ${class}</h2>
+            </center>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <!-- <i class="material-icons prefix">mode_edit</i> -->
+              <textarea class="materialize-textarea" min-length="5" required placeholder="Enter content of post" name="content" id="post-content"></textarea>
+              <!-- <label for="icon_prefix2">Enter Post</label> -->
+            </div>
+          </div>
+          <div class="row">
+            <div id="post-error" style="color:red">
+
+            </div>
+          </div>
+          <div class="row">
+              <a class="btn nord-red">
+                <span class="valign-wrapper" id="post-attach-files-button"><i class="material-icons">attach_file</i>Attach file</span>
+                <input type="file" class="hidden" multiple id="post-files">
+              </a>
+          </div>
+          <div class="row">
+            <ul class="collection files" id="post-file-collection">
+              <session-error>
+                <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-red remove_file tiny">close</i></a></div></li>
+                <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-red remove_file tiny">close</i></a></div></li>
+                <li class="collection-item" class="file"><div><a href="#">file_name.mp3</a><a href="#" class="secondary-content"><i class="white material-icons nord-red remove_file tiny">close</i></a></div></li>
+              </session-error>
+            </ul>
           </div>
         </div>
 
      </div>
      <div class="modal-footer">
        <center>
-         <a href="#" class="btn-flat postbutton waves-effect"><div class="post2">Post</div></a>
+         <button class="btn-flat postbutton" type='submit' id="post-submit">Post<!--<div class="post2">Post</div>--></button>
        </center>
      </div>
    </div>
-
     <nav class="nord-darkblue" role="navigation">
       <ul id="profileDropdown" class="dropdown-content">
         <li><a href="/profile/" class="modal-trigger">Profile</a></li>
@@ -530,7 +514,7 @@
         $.ajax({
           url:"/api/class/leave",
           type:"POST",
-          data:{classID:splitUrl().lastElem()},
+          data:{classID:$.getResourceID()},
           success:function(e){
             window.location.href = "/home"
           }, error:function(e){
@@ -543,7 +527,7 @@
         $.ajax({
           url:"/api/class/disband",
           type:"POST",
-          data:{classID:splitUrl().lastElem()},
+          data:{classID:$.getResourceID()},
           success:function(response){
             window.location.href = "/home"
           }, error:function(error){
@@ -559,7 +543,8 @@
       }
 
       $(window).on('sessionLoaded',(event,error,sessionData) => {
-        let currentClass = window.splitUrl().lastElem();
+        let currentClass = $.getResourceID()
+        // console.log(currentClass)
         $.ajax({
           url:"/api/assignments/list",
           type:'POST',
@@ -581,7 +566,7 @@
               dueDate = new Date(Number(dueDate));
               let submittedBoolean = (status != 'due');
               let isSubmitted = submittedBoolean ? '' : 'not-';
-              console.log(allAssignmentsContainer)
+              // console.log(allAssignmentsContainer)
               if(sessionData.type == 'student') isSubmittedText = submittedBoolean ? 'Submitted' : 'Not submitted';
               else isSubmittedText = 'VIEW'
               let elemString = `
@@ -615,7 +600,7 @@
         $.ajax({
         url:"/api/post/list",
         type:"POST",
-        data:{classID:splitUrl().lastElem()},
+        data:{classID:$.getResourceID()},
         success:function(response){
           // console.log(response)
           let postContainer = $('#postContainer');
@@ -635,7 +620,7 @@
           // }
           // response = response.reverse();
           // let dropDownHTML = ""
-          for(let post of response){
+          /*for(let post of response){
             let {classID,className,content,title,posterName,dateCreated,poster} = post;
             let postID = post.id;
             let posterType = post.posterType;
@@ -708,7 +693,7 @@
               -->
               <div class="poster"><a href="/user/${poster}">${posterName}</a><div>
               ${ifTeacherAccountAddElementHere}
-              <span class="date-text">${dateCreated}</span>
+              <span class="date-text">${dateCreated}  ${(post.dateCreated != post.lastModified) ? '(Edited)' : ''}</span>
               <span class="date-text small-side-margins pointer-cursor"><a href="/post/${postID}">Go to post  </a></span>
               ${(isOwnerOfPost)?
               `
@@ -737,8 +722,11 @@
             </div>
             </div>`)
             postContainer.append(elem)
+          }*/
+          for(let post of response){
+            $.genPost(post,postContainer,sessionData,{comments:true})
+            console.log(post)
           }
-
           if(response.length == 0){
             postContainer.append($(`<center><h6 class="grey-text">No posts to be loaded</h6></center>`))
           }
@@ -802,6 +790,67 @@
           $('.delete-comment').on("click",function(){
             let elem = $(this);
             $('#deleteCommentId').attr("value",elem.attr('comment-id'))
+          })
+          $('#post-attach-files-button').on('click',() => {
+            $('#post-files').click()
+            // l('why is this a thing')
+          })
+          $('#writePostButton').on('click',function(){
+            $('#post-files')[0].fileList = [];
+            $('#post-file-collection').html("")
+          })
+          $('#post-files').on('change',function(){
+            let elem = $(this)[0];
+            elem.fileList = elem.fileList || [];
+            for(let file of elem.files) {
+              $('#post-file-collection').append(
+                $(
+                  `<li class="collection-item" class="file"><div><a href="#">${file.name}</a><a href="#" class="secondary-content"><i  file-name="${file.name}" class="white post-remove-file material-icons nord-red remove_file tiny">close</i></a></div></li>`
+                )
+              )
+              $('#post .post-remove-file').off('click')
+              $('#post .post-remove-file').on('click',function(){
+                // l($(this).parents(".collection-item").eq(0))
+                for(let i=0;i<elem.fileList.length;i++) {
+                  let file = elem.fileList[i];
+                  if(file.name == $(this).attr('file-name')) elem.fileList.splice(i,1)
+                }
+                $(this).parents(".collection-item").eq(0).remove();
+                l(elem.fileList)
+              })
+              elem.fileList.push(file)
+            }
+          })
+          $('#post-submit').on("click",() => {
+            let classID = $.getResourceID()
+            let content = $('#post-content').val();
+            let validationMessage = ""
+            if(content.trim().length < 6) {
+              validationMessage += "Min content length has to be more than 6<br>"
+            } else {
+              let postFiles = $('#post-files');
+              let formData = new FormData();
+              formData.append("classID",classID);
+              formData.append("content",content);
+              postFiles[0].fileList = postFiles[0].fileList || []
+              for(let file of postFiles[0].fileList) formData.append("additionalFiles",new Blob([file]),file.name)
+              $.ajax({
+                url:"/api/post/create?uploadingFile=true",
+                type:"POST",
+                data:formData,
+                processData:false,
+                contentType:false,
+                cache:false,
+                success:function(data){
+                  console.log(data);
+                  window.location.reload(true)
+                },error:function(err){
+                  // console.log(err)
+                  $('#post-error').text(err)
+                }
+              })
+            }
+            $("#post-error").html(validationMessage)
           })
           // $('.post-dropdown-button').on('click',function() {
           //   let elem = $(this);
@@ -886,7 +935,7 @@
       })
       })
       $.ajax({
-        url:"/api/class/"+$.splitUrl()[$.splitUrl().length-1]+"/list/members",
+        url:"/api/class/"+$.getResourceID()+"/list/members",
         success:function(data){
           // console.log(data)
           for(let person of data){
@@ -986,68 +1035,6 @@
 
 
       // FILE UPLOAD FOR POSTING
-      $('#post-attach-files-button').on('click',() => {
-        $('#post-files').click()
-        // l('why is this a thing')
-      })
-      $('#writePostButton').on('click',function(){
-        $('#post-files')[0].fileList = [];
-        $('#post-file-collection').html("")
-      })
-      $('#post-files').on('change',function(){
-        let elem = $(this)[0];
-        elem.fileList = elem.fileList || [];
-        for(let file of elem.files) {
-          $('#post-file-collection').append(
-            $(
-              `<li class="collection-item" class="file"><div><a href="#">${file.name}</a><a href="#" class="secondary-content"><i  file-name="${file.name}" class="white post-remove-file material-icons nord-red remove_file tiny">close</i></a></div></li>`
-            )
-          )
-          $('#post .post-remove-file').off('click')
-          $('#post .post-remove-file').on('click',function(){
-            // l($(this).parents(".collection-item").eq(0))
-            for(let i=0;i<elem.fileList.length;i++) {
-              let file = elem.fileList[i];
-              if(file.name == $(this).attr('file-name')) elem.fileList.splice(i,1)
-            }
-            $(this).parents(".collection-item").eq(0).remove();
-            l(elem.fileList)
-          })
-          elem.fileList.push(file)
-        }
-      })
-      $('#post-submit').on("click",() => {
-        let classID = $('#classSelect').val();
-        let content = $('#post-content').val();
-        let validationMessage = ""
-        if (classID == "null" || classID == null) {
-          validationMessage += "Class required<br>"
-        } if(content.trim().length < 6) {
-          validationMessage += "Min content length has to be more than 6<br>"
-        } else {
-          let postFiles = $('#post-files');
-          let formData = new FormData();
-          formData.append("classID",classID);
-          formData.append("content",content);
-          for(let file of postFiles[0].fileList) formData.append("additionalFiles",new Blob([file]),file.name)
-          $.ajax({
-            url:"/api/post/create?uploadingFile=true",
-            type:"POST",
-            data:formData,
-            processData:false,
-            contentType:false,
-            cache:false,
-            success:function(data){
-              console.log(data);
-              window.location.reload(true)
-            },error:function(err){
-              // console.log(err)
-              $('#post-error').text(err)
-            }
-          })
-        }
-        $("#post-error").html(validationMessage)
-      })
       // function show(){
       //   if this.hasClass("class_members"){
       //     this.css("visibility", "visible");
@@ -1105,7 +1092,8 @@
         for(let input of $('#assignmentModal [required]')) if($(input).val().trim() == '' && $(input).next().attr('class') != 'red-text') $(input).after($('<span class="red-text">This field is required</span>'))
         for(let input of $('#assignmentModal [required]')) if($(input).val().trim() != '' && $(input).next().attr('class')=='red-text') $(input).next().remove()
         formData.append('dueDate',new Date($('#due_date').val()).getTime())
-        let classID = window.splitUrl().lastElem();
+        let classID = $.getResourceID();
+        console.log(classID)
         formData.append('classID',classID)
         for(let file of chooseFiles.additionalFiles) formData.append("additionalFiles",new Blob([file]),file.name);
         // console.log(classID)
@@ -1130,6 +1118,7 @@
       $(document).ready(function(){
         $('.datepicker').datepicker();
       });
+
     </script>
 
   </body>
