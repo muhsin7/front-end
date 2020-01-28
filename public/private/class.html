@@ -227,7 +227,7 @@
     </div>
 
     <ul class="dropdown-content" id="class_page_menu">
-      <li class="color_list_item">
+      <!-- <li class="color_list_item">
             <ul class="color-picker">
               <div href="#" class="color nord-lightblue"></div>
               <div href="#" class="color nord-darkblue"></div>
@@ -237,8 +237,8 @@
               <div href="#" class="color nord-purple"></div>
               <div href="#" class="color nord-yellow"></div>
             </ul>
-        </li>
-          <li class="class_options modal-trigger" href="#leaveModal"><a id="leaveClass">Leave class</a></li>
+        </li> -->
+          <li class="class_options modal-trigger" href="#leaveModal"><a>Leave class</a></li>
           <teacher-container>
             <li class="warn class_options modal-trigger renameClass" href="#renameModal"><a id="renameClass"><i class="material-icons">edit</i>Rename</a></li>
             <li class="warn class_options modal-trigger deleteClass" href="#deleteModal"><a id="deleteClass"><i class="material-icons">delete</i>Delete class</a></li>
@@ -250,10 +250,11 @@
         <center>
           <h4>Rename ${class}</h4>
         </center>
-        <div class="form">
+        <div class="form" method="POST" action="/api/class/rename" on-success-reload="true">
           <div class="input_field">
-            <input type="text" name="newGroupName" id="newGroupName"/>
+            <input type="text" name="newClassName" id="newGroupName" />
             <label for="newGroupName">Enter new group name</label>
+            <input type="hidden" name="classID" value="${classID}">
           </div>
           <br />
           <center>
@@ -287,7 +288,7 @@
         <br />
         <center>
           <div class="nord-red btn-large modal-close">Cancel</div>
-          <div class="btn-large nord-darkblue">Leave Group</div>
+          <div class="btn-large nord-darkblue" id="leaveClass">Leave Group</div>
         </center>
       </div>
     </div>
@@ -338,7 +339,7 @@
         <!-- </div> -->
         <div>
           <div class="" id="postContainer">
-            <div class="post hoverable" id="samplePost">
+            <div class="post hoverable hidden" id="samplePost">
               <div class="post-header">
                 <img class="post-pfp" src="../images/default.jpg" />
               </div>
@@ -567,7 +568,13 @@
               let submittedBoolean = (status != 'due');
               let isSubmitted = submittedBoolean ? '' : 'not-';
               // console.log(allAssignmentsContainer)
-              if(sessionData.type == 'student') isSubmittedText = submittedBoolean ? 'Submitted' : 'Not submitted';
+              let isLockedText = (assignment.locked && !submittedBoolean) ? 'locked':"";
+              isSubmittedText = "";
+              if(sessionData.type == 'student') {
+                if(submittedBoolean) isSubmittedText = "Submitted"
+                else if(assignment.locked) isSubmittedText = "LOCKED"
+                else isSubmittedText = 'due'
+              }
               else isSubmittedText = 'VIEW'
               let elemString = `
                 <div class="col s3 assignment-item">
@@ -575,7 +582,7 @@
                     <div class="assignment-name">${title}</div>
                     <div class="assignment-subject">${className}</div>
                     <div class="due">Due ${dueDate.getDayName()}<br>${dueDate.getMonthName()} ${dueDate.getDate()}, ${dueDate.getFullYear()}</div>
-                    <center><div onclick="window.location.href = '/assignment/${id}'" class="${isSubmitted}submitted btn submit">${isSubmittedText}</div></center>
+                    <center><div onclick="window.location.href = '/assignment/${id}'" class="${isSubmitted}submitted ${isLockedText} btn submit">${isSubmittedText}</div></center>
                   </div>
                 </div>
                 `
@@ -878,7 +885,7 @@
             let comment = $(`
               <div class="comment">
                 <div class="comment-marker nord-darkblue"></div>
-                <img class="comment-pfp" src="/api/users/${commenter}/image"/>
+                <img class="comment-pfp" src="/api/users/${sessionData.id}/image"/>
                 <div class="comment-poster">${user}</div><span class="date-text">${new Date().getSemiSimpleTime()}</span>
                 <span class="date-text small-side-margin edit-comment pointer-cursor"><a>Edit  </a></span>
                 <span class="date-text modal-trigger small-side-margin delete-comment pointer-cursor" comment-id="${commentID}" href="#deleteCommentModal"><a>Delete</a></span>

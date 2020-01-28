@@ -129,7 +129,7 @@ $(window).on('sessionLoaded',(event,error,response) => {
           })
         }
         for(let notification of data){
-          let {hook,content,message,id,initiator,type,status} = notification;
+          let {hook,content,message,id,initiator,type,status,timeStamp} = notification;
           let classType = (['assignment','post'].includes(type)) ? type : 'assignment'
           // console.log(type)
           let path = hook
@@ -139,7 +139,8 @@ $(window).on('sessionLoaded',(event,error,response) => {
             <img src="/api/users/${initiator}/image" class="modal-notif-pfp"/>
             <div>
             <div class="truncate nord-purple-text notif-content">
-            ${message}
+            ${message} <br><span class='grey-text' style="font-size:12px">${new Date(Number(timeStamp)).getSemiSimpleTime()}
+            </span>
             </div>
             <div class="truncate">
             ${content}

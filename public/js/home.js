@@ -44,12 +44,15 @@ $(() => {
       if(e.length == 0){
         classList.append(`<center><h6 class="grey-text">No classes, join one.</h6></center>`)
         $('#writePostButton').remove()
-      }
+      } else $('#createPostButton').removeClass('hidden')
+
     }, error:function(e){
       console.error(e)
     }
   })
   $(window).on("sessionLoaded",(event,error,sessionData) => {
+    $('.session-info-username').text(sessionData.user)
+    $('.login-info').removeClass('hidden')
     $.ajax({
     url:"/api/post/list/all",
     type:"GET",
@@ -267,7 +270,7 @@ $(() => {
             <img class="comment-pfp" src="/api/users/${commenter}/image"/>
             <div class="comment-poster">${user}</div><span class="date-text">${new Date().getSemiSimpleTime()}</span>
             <span class="date-text small-side-margin edit-comment pointer-cursor"><a>Edit  </a></span>
-            <span class="date-text modal-trigger small-side-margin delete-comment pointer-cursor" comment-id="${commentID}" href="#deleteCommentModal"><a>Delete</a></span>
+            <span class="date-text modal-trigger small-side-margin delete-comment pointer-cursor" comment-id="${commentID}" href="#editModal"><a>Delete</a></span>
             <div class="form comment-edit-form" action="/api/post/comment/edit" method="POST">
               <input type="hidden" name="commentID" value="${commentID}">
               <textarea class="materialize-textarea comment-readonly" readonly name="content">${commentValue}</textarea>

@@ -303,17 +303,22 @@
           let {dueDate,id,content,title,attachments,status,className} = assignment;
           dueDate = new Date(Number(dueDate));
           let submittedBoolean = (status != 'due');
+          console.log(status)
           let isSubmitted = submittedBoolean ? '' : 'not-';
-          console.log(allAssignmentsContainer)
-          if(sessionData.type == 'student') isSubmittedText = submittedBoolean ? 'Submitted' : 'Not submitted';
-          else isSubmittedText = 'VIEW'
+          let isLockedText = (assignment.locked && !submittedBoolean) ? 'locked':"";
+          isSubmittedText = "";
+          if(sessionData.type == 'student') {
+            if(submittedBoolean) isSubmittedText = "Submitted"
+            else if(assignment.locked) isSubmittedText = "LOCKED"
+            else isSubmittedText = 'due'
+          } else isSubmittedText = 'VIEW'
           let elemString = `
             <div class="col s3 assignment-item">
               <div class="assignment-content">
                 <div class="assignment-name">${title}</div>
                 <div class="assignment-subject">${className}</div>
                 <div class="due">Due ${dueDate.getDayName()}<br>${dueDate.getMonthName()} ${dueDate.getDate()}, ${dueDate.getFullYear()}</div>
-                <center><div onclick="window.location.href = '/assignment/${id}'" class="${isSubmitted}submitted btn submit">${isSubmittedText}</div></center>
+                <center><div onclick="window.location.href = '/assignment/${id}'" class="${isSubmitted}submitted ${isLockedText} btn submit">${isSubmittedText}</div></center>
               </div>
             </div>
             `

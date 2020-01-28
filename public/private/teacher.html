@@ -104,7 +104,7 @@
       <center>
         <i class='material-icons nord-orange-text medium'>notifications</i>
       </center>
-      <session-error>
+      <session-error class="hidden">
         <a href="#">
           <li class="collection-item modal-notification post-notif">
             <img src="../images/default.jpg" class="modal-notif-pfp"/>
@@ -151,9 +151,9 @@
 
 
     <div class="container col s12">
-      <div class="row login-info-teacher login-info nord-orange valign-wrapper center-align">
+      <div class="row login-info-teacher login-info nord-orange valign-wrapper center-align hidden">
           <img src="../images/icon.png" />
-          <h4>Logged in as {name} <i class="material-icons ">school</i> (teacher)</h4>
+          <h4>Logged in as <span class="session-info-username"></span> <i class="material-icons ">school</i> (teacher)</h4>
       </div>
       <div class="row">
         <!-- <div class="user"></div> -->
@@ -278,7 +278,7 @@
                 <h5>Edit post</h5>
                 <input type="hidden" name="postID" id="edit-postID">
                 <div class="input-field">
-                  <i class="material-icons prefix">mode_edit</i>
+                  <!-- <i class="material-icons prefix">mode_edit</i> -->
                   <textarea class="materialize-textarea" id="editPostContent">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
                 </div>
                 <div class="row">
@@ -306,6 +306,13 @@
               </div>
             </div>
           </div>
+          <div class="modal" id="testModal">
+            <div class="modal-content">
+              <div class="">
+                Test?
+              </div>
+            </div>
+          </div>
 
           <div class="modal form" action="/api/post/delete" method="post" on-success-reload="true" id="deletePostModal">
             <div class="modal-content">
@@ -318,19 +325,7 @@
               </center>
             </div>
           </div>
-          <div class="modal" id="deleteCommentModal">
-            <div class="modal-content">
-              <center>
-                <div class="form" method="POST" action="/api/post/comment/delete" on-success-reload="true" on-error="console.error(response)">
-                  <input type="text" class='hidden' name="commentID" value="" id="deleteCommentId">
-                  <h5>Are you sure you want to delete this comment?</h5>
-                  <br />
-                  <button class="btn-large nord-red" type="submit">Delete comment</button>
-                  <div class="btn-large nord-darkblue modal-close">Cancel</div>
-                </div>
-              </center>
-            </div>
-          </div>
+
 
         </div>
 
@@ -339,13 +334,13 @@
           <h2>Posts</h2>
           <hr />
           <!-- <br /> -->
-          <a href="#post" class="modal-trigger"><div class="post-btn btn"><center><b class="valign-wrapper"><i class="material-icons small">mode_edit</i>CREATE A POST</b></center></div></a>
+          <a href="#post" class="modal-trigger hidden" id="createPostButton"><div class="post-btn btn"><center><b class="valign-wrapper"><i class="material-icons small">mode_edit</i>CREATE A POST</b></center></div></a>
           <br />
           <br />
         </div>
         <div class="container col offset-s1 s8">
           <div class="row" id="postContainer">
-            <div class="post hoverable" id="samplePost">
+            <div class="post hoverable hidden" id="samplePost">
               <div class="post-header">
                 <img class="post-pfp" src="../images/default.jpg" />
               </div>
@@ -392,7 +387,19 @@
       </div>
     </div>
     </div>
-
+    <div class="modal" id="deletingACommentModal">
+      <div class="modal-content">
+        <center>
+          <div class="form" method="POST" action="/api/post/comment/delete" on-success-reload="true" on-error="console.error(response)">
+            <input type="text" class='hidden' name="commentID" value="" id="deleteCommentId">
+            <h5>Are you sure you want to delete this comment?</h5>
+            <br />
+            <button class="btn-large nord-red" type="submit">Delete comment</button>
+            <div class="btn-large nord-darkblue modal-close">Cancel</div>
+          </div>
+        </center>
+      </div>
+    </div>
     <!-- /////////////////////////////////////////////////////// -->
     <script type="text/javascript" src="../js/angular.min.js"></script>
     <script type="text/javascript" src="../js/jquery.js"></script>

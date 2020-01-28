@@ -51,7 +51,10 @@ html{
     transition: .5s ease;
     width: 140px !important;
   }
-
+  .not-submitted.locked, .submitted.locked{
+    background-color: #E3E1DC !important;
+    color:darkgrey !important;
+  }
   /* .submitnow{
     display: none !important;
     transition: .5s ease;
@@ -503,6 +506,9 @@ backend-data {
 .blue-text {
   color:blue
 } /* hmm yes this blue text is made out of blue */
+.orange-text {
+  color:#F28650;
+} /* hmm yes this orange text is made out of orange */
 .bold-text {
   font-weight: bold;
 } /* hmm yes this bold text is made out of bold */
@@ -531,12 +537,12 @@ backend-data {
 
 .post-pfp{
   height: 50px;
+  width: 50px;
   border-radius: 50%;
   border: solid 2px #722C8A;
   float: left;
   margin-right: 10px;
 }
-
 .post-btn, .assignment-btn{
   background-color: #EA3056 !important;
   width: 100%;
@@ -933,6 +939,7 @@ button[name="comment-btn"]{
 
 .login-info img{
   height: 50px;
+  width: 50px;
   border-radius: 50%;
   border: solid #F28650 2px;
   float: left;

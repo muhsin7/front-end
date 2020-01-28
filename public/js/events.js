@@ -334,7 +334,7 @@ $.genPost = function(post,targetElem,sessionData,config={}){
         ${(isOwnerOfComment)?
           `
           <span class="date-text small-side-margin edit-comment pointer-cursor" post-id="${id}"><a>Edit  </a></span>
-          <span class="date-text modal-trigger small-side-margin delete-comment pointer-cursor" comment-id="${id}" href="#deleteCommentModal"><a>Delete</a></span>
+          <span class="date-text modal-trigger small-side-margin delete-comment pointer-cursor" comment-id="${id}" href="#testModal"><a>Delete</a></span>
           `:""
         }
         </span>

@@ -63,7 +63,7 @@
             <br   /><br />
             <a href="#createClass" class="joinclass modal-trigger"><i class="material-icons tiny">add</i><b>Create Class</b></a>
           </center>
-          
+
         </div> -->
 
         <ul class="dropdown-content" id="classDropdown" href="#">
@@ -157,7 +157,8 @@
         <center>
           <i class='material-icons nord-orange-text medium'>notifications</i>
         </center>
-        <ul class="collection notification-collection">
+        <session-error>
+          <ul class="collection notification-collection">
           <a href="#">
             <li class="collection-item modal-notification post-notif">
               <img src="../images/default.jpg" class="modal-notif-pfp"/>
@@ -198,6 +199,10 @@
             </li>
           </a>
         </ul>
+        </session-error>
+        <ul class="collection notification-collection" id="notificationsContainer">
+
+        </ul>
       </div>
     </div>
 
@@ -228,7 +233,7 @@
                 <div class="row col s12">
                   <div class="input-field">
                     <!-- <i class="material-icons prefix">mode_edit</i> -->
-                    <textarea class="materialize-textarea" min-length="5" required placeholder="Optional text response" name="content" id="submissionPostContent"></textarea>
+                    <textarea class="materialize-textarea" min-length="5" required placeholder="Optional text response" readonly name="content" id="submissionPostContent"></textarea>
                     <!-- <label for="icon_prefix2">Enter Post</label> -->
                   </div>
                 </div>
@@ -270,6 +275,13 @@
                   </div>
                 </div>
       <!-- </div> -->
+        <div id="feedbackContainer" class='hidden'>
+          <h4 class="grey-text">Feedback</h4>
+          <br />
+          <div id="feedbackCommentContainer">
+
+          </div>
+        </div>
     </div>
       <div class="modal" id="deleteSubmissionModal">
         <div class="modal-content">
@@ -317,11 +329,30 @@
           type:'POST',
           data:{assignmentID:assignmentID},
           success:function(data){
+            console.log(data)
             for(let attachment of data.attachments){
               let elem = $(`
                 <li class="collection-item"><div><a href="/class/${data.classID}/attachment/${attachment.fileName}">${attachment.originalName}</a><a href="#" class="secondary-content"></a></div></li>
                 `);
               $('#attachmentContainer').append(elem);
+            }
+            let feedbackContent = "";
+            for(let feedback of data.submission.feedback){
+              let {id,owner,ownerName,content,dateCreated} = feedback;
+              let contentOfFeedback = content;
+              feedbackContent +=
+              `
+              <div class="comment">
+                <div class="comment-marker nord-darkblue"></div>
+                <img class="comment-pfp" src="/api/users/${owner}/image"/>
+                <div class="comment-poster">${ownerName}</div><span class="date-text">${new Date(dateCreated).getSemiSimpleTime()}</span>
+                <textarea class="materialize-textarea comment-readonly" readonly>${contentOfFeedback}</textarea>
+              </div>
+              `
+              $('#feedbackCommentContainer').append($(feedbackContent))
+            }
+            if(data.submission.feedback.length != 0) {
+              $('#feedbackContainer').removeClass("hidden");
             }
             if(data.locked){
                 $('#submissionAttachmentsContainer').removeClass("nord-red")
@@ -331,7 +362,9 @@
                 $('#submissionAttachmentsContainer').css("cursor","not-allowed")
                 $('#submissionAttachmentsContainer *').off('click')
                 $('#submissionAttachmentText').text("Assignment is locked")
-                $('#submissionAttachmentsContainer').removeClass("hidden")
+                $('#submissionAttachmentsContainer').removeClass("hidden");
+                $('#submissionPostContent').val(data.submission.content)
+                if(data.isDue == false) $('#fileAttachmentContainer').removeClass('hidden')
             } else if(data.isDue == false){
               $('#submissionPostContent').attr("readonly","readonly")
               $('#submissionPostContent').val(data.submission.content)
@@ -365,6 +398,7 @@
               $('#submissionPost').html('EDIT')
               $('#submissionsEditButton').on('click',() => {
                 $('#submissionPostContent').removeAttr('readonly')
+                $('#submissionContainer').removeClass('hidden')
                 $('#submissionAttachmentsContainer').removeClass('hidden')
                 $('#submissionPostContent').focus()
               })
@@ -373,6 +407,7 @@
             else {
               // console.log(bindPost)
               $('#submissionAttachmentsContainer').removeClass('hidden')
+              $('#submissionPostContent').removeAttr('readonly')
               bindPost()
             }
           }, error:function(data){
@@ -406,15 +441,17 @@
         function bindEdit(){
           $('#submissionPost.editPost').on('click',() => {
           console.log('editPost')
-          let formData = new FormData();
-          // formData.append("assignmentID",assignmentID)
-          formData.append("content",$('#submissionPostContent').val())
-          let submissionID = $("#submissionPost.editPost").attr("submission-id")
-          formData.append("submissionID",submissionID)
-          let file = $('#submissionAttachments')[0].files[0]
-          formData.append("additionalFile",new Blob([file]),file.name)
-          $.ajax({
-            url:"/api/assignments/submission/edit",
+          let fileHandle = $('#submissionAttachments')[0]
+          if (fileHandle.files.length > 0) {
+            let file = $('#submissionAttachments')[0].files[0]
+            let formData = new FormData();
+            // formData.append("assignmentID",assignmentID)
+            formData.append("content",$('#submissionPostContent').val())
+            let submissionID = $("#submissionPost.editPost").attr("submission-id")
+            formData.append("submissionID",submissionID)
+            formData.append("additionalFile",new Blob([file]),file.name)
+            $.ajax({
+            url:"/api/assignments/submission/edit?uploadingFile=true",
             type:'POST',
             data:formData,
             processData:false,
@@ -427,6 +464,20 @@
               console.error(err.responseText)
             }
           })
+          } else {
+            let submissionID = $("#submissionPost.editPost").attr("submission-id");
+            let content = $('#submissionPostContent').val();
+            $.ajax({
+              url:"/api/assignments/submission/edit",
+              type:"POST",
+              data:{submissionID,content},
+              success:function(data){
+                console.log(data)
+              },error:function(error){
+                console.error(error.responseText)
+              }
+            })
+          }
         })
         }
     </script>

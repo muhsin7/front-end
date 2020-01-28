@@ -365,6 +365,7 @@
           data:{assignmentID:ASSIGNMENT_ID},
           success:function(data){
             // HANDLING THE ASSIGNMENT
+            console.log(data)
             let dueDate = new Date(Number(data.dueDate));
             dueDate = `${dueDate.getMonthName()} ${dueDate.getDate()}, ${dueDate.getFullYear()}`
             let {attachments,title,content} = data;
@@ -372,7 +373,7 @@
             $('#editAssignmentContentContainer').children('textarea').eq(0).val(content)
             $('#due_date').val(dueDate)
             for(let attachment of attachments) {
-              $('#assignmentFileContainer').append($(`<li class="collection-item" class="file"><div><a href="#">${attachment.originalName}</a></div></li>`))
+              $('#assignmentFileContainer').append($(`<li class="collection-item" class="file"><div><a href="/class/${data.classID}/attachment/${attachment.fileName}" target="_blank">${attachment.originalName}</a></div></li>`))
               $('#editOldAssignmentFileContainer').append($(`<li class="collection-item" class="file"><div><a>${attachment.originalName}</a><a class="secondary-content"><i class="white material-icons nord-red download_file tiny cross" file-name="${attachment.originalName}" file-id="${attachment.fileName}">delete</i></a></div></li>`))
             }
             $('#editOldAssignmentFileContainer .cross').on('click',function(){
@@ -591,6 +592,7 @@
                       success:function(data){
                         console.log(data);
                         elem.parents('.comment').eq(0).remove();
+                        window.location.reload(true)
                         $('#deleteFeedbackCancel').click()
                       }
                     })
@@ -640,7 +642,7 @@
                       type:'POST',
                       data:{submissionID:desiredSubmission.id,content:val},
                       success:function(data){
-                        console.log(data)
+                        window.location.reload(true)
                       },error:function(err){
                         console.log(err)
                       }
